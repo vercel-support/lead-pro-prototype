@@ -1,0 +1,15 @@
+export type IconStrings =
+  | "ArrowRight"
+  | "ArrowLeft"
+  | "Close"
+  | "Calendar"
+  | "ChevronDown"
+  | "Cog"
+  | "HorizontalDots"
+  | "Plus"
+  | "Logout"
+  | "Moon"
+  | "Sun"
+  | "Selector"
+  | "Trash"
+  | "VerticalDots";
