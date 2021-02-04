@@ -1,13 +1,5 @@
-import { Stack } from "@chakra-ui/react";
 import { Box, Table, Avatar, Image, Dropdown } from "components";
-import { Children, useState } from "react";
-import { HiOutlineArchive, HiChevronDown, HiMenu } from "react-icons/hi";
-import { fetchLeads } from "services/api";
 import React from "react";
-import OutsideClickHandler from "react-outside-click-handler";
-import { Navigation } from "components/molecules";
-import { LeadsTable } from "components";
-
 import styled from "styled-components";
 
 const Styles = styled.div`
@@ -16,7 +8,7 @@ const Styles = styled.div`
   }
 `;
 
-export const TableControl = ({ children, isEditable, component }) => {
+export const TableControl = ({ children, isEditable, component }: {children?: any, isEditable?: any, component?: any}) => {
   return (
     <Styles>
       <Box height="100%">

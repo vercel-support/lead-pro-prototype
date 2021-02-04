@@ -59,7 +59,7 @@ const NavigationAccountSelect = () => {
   );
 };
 
-const NavigationLink = ({ children, icon, isActive }) => {
+const NavigationLink = ({ children, icon, isActive }: {children: any, icon?: any, isActive?: any}) => {
   return (
     <Box
       lineHeight="none"
@@ -67,7 +67,7 @@ const NavigationLink = ({ children, icon, isActive }) => {
       alignItems="center"
       cursor="pointer"
       fontSize="sm"
-      fontWeight={500}
+      fontWeight="normal"
       color="gray.600"
       py={3}
       px={horizontalPadding}

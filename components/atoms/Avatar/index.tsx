@@ -17,6 +17,12 @@ export const Avatar = ({
   size = "base",
   color,
   initials,
+}: {
+  imageSrc?: string;
+  borderColor?: any;
+  size?: any;
+  color?: any;
+  initials?: any;
 }) => {
   const selectedSize = sizes[size];
 
@@ -42,21 +48,5 @@ export const Avatar = ({
         </Box>
       )}
     </AspectRatio>
-  );
-};
-
-export const AvatarGroup = ({ children }) => {
-  const childrenWithProps = React.Children.map(children, (child, i) => {
-    if (child) {
-      return (
-        <Box marginLeft={i > 0 && "-8px"}>{React.cloneElement(child)}</Box>
-      );
-    }
-  });
-
-  return (
-    <Box display="inline-flex" flexDirection="rowReverse">
-      {childrenWithProps}
-    </Box>
   );
 };

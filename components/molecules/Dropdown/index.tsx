@@ -3,7 +3,13 @@ import { Children, useContext, useState } from "react";
 import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 
-export const Dropdown = ({ children, showMode }) => {
+export const Dropdown = ({
+  children,
+  showMode,
+}: {
+  children: any;
+  showMode?: any;
+}) => {
   const [isOpen, setStatus] = useState(false);
 
   const handleToggle = (status) => {
@@ -57,16 +63,28 @@ export const DropdownMenuItem = ({ children }) => {
   );
 };
 
-export const DropdownContext = React.createContext({
+interface IDropdownContext {
+  isOpen: boolean;
+  toggle: Function;
+}
+
+export const DropdownContext = React.createContext<IDropdownContext>({
   isOpen: false,
+  toggle: () => {},
 });
 
 export const DropdownMenu = ({
   children,
   width = "100%",
   isOpen = false,
+  p = 0,
   position = "right",
-  ...rest
+}: {
+  children: any;
+  width?: any;
+  isOpen?: boolean;
+  position?: any;
+  p?: any;
 }) => {
   const { isOpen: _isOpen } = useContext(DropdownContext);
 
@@ -79,6 +97,7 @@ export const DropdownMenu = ({
       color="gray.900"
       shadow="sm"
       left={0}
+      p={p}
       top="100%"
       rounded="md"
       width={width}
@@ -90,7 +109,6 @@ export const DropdownMenu = ({
       visibility={_isOpen === true ? "visible" : "hidden"}
       opacity={_isOpen === true ? "1" : 0}
       zIndex={999}
-      {...rest}
     >
       {children}
     </Box>

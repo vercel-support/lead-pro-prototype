@@ -28,7 +28,7 @@ export const PageHeader = ({
           </Box>
         
       )}
-      <Box fontSize="xl" fontWeight={600}>
+      <Box fontSize="xl" fontWeight="medium">
         {title}
       </Box>
     </Box>

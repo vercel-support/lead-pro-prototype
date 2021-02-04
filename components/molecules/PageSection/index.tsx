@@ -13,7 +13,7 @@ export const PageSection = ({
       <Box
         pb={5}
         borderBottom="1px solid"
-        fontWeight={600}
+        fontWeight="medium"
         fontSize="lg"
         borderColor="gray.100"
         mb={6}

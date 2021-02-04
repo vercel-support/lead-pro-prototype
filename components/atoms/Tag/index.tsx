@@ -12,7 +12,7 @@ export const Tag = ({ children, mr }: { children: any; mr: number }) => {
       borderColor="gray.100"
       lineHeight="none"
       color="gray.400"
-      fontWeight={600}
+      fontWeight="medium"
       fontSize="xs"
       display="inline-block"
       rounded="sm"

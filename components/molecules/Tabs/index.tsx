@@ -8,7 +8,7 @@ export const Tabs = ({ children }) => {
   );
 };
 
-export const TabItem = ({ children, isActive }) => {
+export const TabItem = ({ children, isActive }: {children: any, isActive?: any}) => {
   return (
     <Box
       flex={1}

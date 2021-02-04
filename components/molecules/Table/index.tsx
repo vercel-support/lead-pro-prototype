@@ -1,5 +1,4 @@
-import { Box, Heading, PseudoBox, AspectRatioBox, Image } from "components";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { Box } from "components";
 import { usePagination, useTable, useSortBy } from "react-table";
 import styled from "styled-components";
 
