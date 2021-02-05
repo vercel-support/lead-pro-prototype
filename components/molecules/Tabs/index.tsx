@@ -1,14 +1,14 @@
 import {Box} from "components";
 
-export const Tabs = ({ children }) => {
+export const Tabs = ({ children, height }) => {
   return (
-    <Box display="flex" borderBottom="1px solid" borderColor="gray.100">
+    <Box display="flex" borderBottom="1px solid" borderColor="gray.100" height={height}>
       {children}
     </Box>
   );
 };
 
-export const TabItem = ({ children, isActive }: {children: any, isActive?: any}) => {
+export const TabItem = ({ children, isActive, color = "blue" }: {children: any, isActive?: any, color?: string}) => {
   return (
     <Box
       flex={1}
@@ -19,7 +19,7 @@ export const TabItem = ({ children, isActive }: {children: any, isActive?: any})
       cursor="pointer"
       position="relative"
       fontWeight="medium"
-      color={isActive === true ? "blue.500" : "gray.400"}
+      color={isActive === true ? `${color}.500` : "gray.400"}
       role="group"
       _hover={{
         color: isActive === false && "gray.900"
@@ -31,7 +31,7 @@ export const TabItem = ({ children, isActive }: {children: any, isActive?: any})
           position="absolute"
           bottom={0}
           width="100%"
-          bg={isActive === true ? "blue.500" : "transparent"}
+          bg={isActive === true ? `${color}.500` : "transparent"}
           height="3px"
           _groupHover={{
             bg: !isActive && "gray.100"

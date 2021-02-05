@@ -49,14 +49,24 @@ export const Dropdown = ({
   );
 };
 
-export const DropdownMenuItem = ({ children }) => {
+export const DropdownMenuItem = ({ children, onClick }) => {
+  const { toggle } = useContext(DropdownContext);
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    toggle(false);
+    onClick && onClick();
+  };
+
   return (
     <Box
-      _hover={{ bg: "gray.100" }}
+      _hover={{ bg: "gray.50" }}
+      rounded="md"
       cursor="pointer"
-      px={3}
-      py={2}
+      px={2}
+      py={1}
       fontSize="sm"
+      onClick={(e) => handleClick(e)}
     >
       {children}
     </Box>
@@ -77,7 +87,7 @@ export const DropdownMenu = ({
   children,
   width = "100%",
   isOpen = false,
-  p = 0,
+  p = 1,
   position = "right",
 }: {
   children: any;
@@ -88,7 +98,6 @@ export const DropdownMenu = ({
 }) => {
   const { isOpen: _isOpen } = useContext(DropdownContext);
 
-  console.log(_isOpen);
   return (
     <Box
       position="absolute"

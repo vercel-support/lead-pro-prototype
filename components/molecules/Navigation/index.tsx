@@ -1,15 +1,18 @@
 import { Box, Table, Avatar, Image } from "components";
 import { HiOutlineArchive, HiChevronDown, HiMenu, HiSelector } from "react-icons/hi";
 import React from "react";
+import { InternalLink } from "components/atoms";
 
 const horizontalPadding = 4;
 
 const NavigationHeader = () => {
   return (
     <Box mb={4} display="flex" alignItems="center" px={horizontalPadding}>
+      <InternalLink href="/">
       <Box width="120px">
         <Image src="https://dashboard.lead.pro/images/leadpro-banner.png" />
       </Box>
+      </InternalLink>
       <Box
         ml="auto"
         bg="gray.100"
@@ -59,15 +62,16 @@ const NavigationAccountSelect = () => {
   );
 };
 
-const NavigationLink = ({ children, icon, isActive }: {children: any, icon?: any, isActive?: any}) => {
+const NavigationLink = ({ children, icon, isActive, href }: {children: any, icon?: any, isActive?: any, href?: string}) => {
   return (
+    
     <Box
       lineHeight="none"
       display="flex"
       alignItems="center"
       cursor="pointer"
       fontSize="sm"
-      fontWeight="normal"
+      fontWeight="medium"
       color="gray.600"
       py={3}
       px={horizontalPadding}
@@ -78,7 +82,8 @@ const NavigationLink = ({ children, icon, isActive }: {children: any, icon?: any
     >
       {children}
     </Box>
-  );
+  )
+    
 };
 
 const NavigationSection = ({ children }) => {
@@ -102,7 +107,9 @@ export const Navigation = () => {
       <NavigationSection>
         <NavigationHeader />
         <NavigationAccountSelect />
+        <InternalLink  href="/leads/unread">
         <NavigationLink isActive={true}>Leads</NavigationLink>
+        </InternalLink>
         <NavigationLink>League</NavigationLink>
         <NavigationLink>Analytics</NavigationLink>
         <NavigationLink>Achievements</NavigationLink>

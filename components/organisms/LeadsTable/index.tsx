@@ -9,15 +9,15 @@ import {
   Attribute,
 } from "components/molecules";
 import { Lead } from "./components/Lead";
-import { HiFilter, HiOutlineFilter } from "react-icons/hi";
+import { HiFilter, HiOutlineFilter, HiOutlineLibrary, HiOutlineSwitchVertical, HiOutlineViewList } from "react-icons/hi";
 import moment from "moment";
 import _ from "underscore";
 
 const statuses = [
-  { href: "unread", label: "Unread", code: 50 },
-  { href: "in-progress", label: "In progress", code: 100 },
-  { href: "business", label: "Business", code: 150 },
-  { href: "no-business", label: "No business", code: 200 },
+  { href: "unread", label: "Unread", code: 50, color: "blue" },
+  { href: "in-progress", label: "In progress", code: 100, color: "orange" },
+  { href: "business", label: "Business", code: 150, color: "green" },
+  { href: "no-business", label: "No business", code: 200, color: "gray" },
 ];
 
 export const LeadsTable = ({ status }) => {
@@ -54,7 +54,7 @@ export const LeadsTable = ({ status }) => {
       isEditable: true,
       width: "220px",
       Cell: (row) => {
-        return <TeamMember assignee={row.cell.row.original.assignee} />;
+        return <TeamMember assignee={row.cell.row.original.assignee} row={row} />;
       },
     },
     {
@@ -136,12 +136,12 @@ export const LeadsTable = ({ status }) => {
       >
         Leads
       </Box>
-      <Tabs>
+      <Tabs height="45px">
         {statuses.map((s, i) => {
-          const { href } = s;
+          const { href, color } = s;
           return (
             <InternalLink href={`/leads/${href}`} display="block" flex={1}>
-              <TabItem isActive={status === s.href ? true : false}>
+              <TabItem isActive={status === s.href ? true : false} color={color}>
                 {s.label}
               </TabItem>
             </InternalLink>
@@ -160,7 +160,7 @@ export const LeadsTable = ({ status }) => {
           <Box
             display="inline-flex"
             rounded="full"
-            px={5}
+            px={3}
             py={2}
             lineHeight="none"
             bg="gray.100"
@@ -170,6 +170,9 @@ export const LeadsTable = ({ status }) => {
               bg: "gray.50",
             }}
           >
+            <Box mr={1}>
+            <HiOutlineSwitchVertical/>
+            </Box>
             Filter
           </Box>
           <DropdownMenu width="200px">

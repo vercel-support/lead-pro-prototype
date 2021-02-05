@@ -13,6 +13,8 @@ import { fetchLeads, fetchTeam } from "services/api";
 import React from "react";
 import { TeamMember, TeamMemberDropdownItem } from "./TeamMember";
 import { DropdownMenu, Dropdown, DropdownMenuItem } from "components/molecules";
+import { ILead } from "interfaces/lead.interface";
+import { HiChevronDown, HiSelector } from "react-icons/hi";
 const Section = ({ title, children }) => {
   return (
     <Box p={5} bg="white" shadow="sm" mb={2} rounded="md">
@@ -38,7 +40,8 @@ const Cell = ({ children, isEditable }) => {
   );
 };
 
-export const Lead = ({ isOpen }) => {
+export const Lead = ({ isOpen, lead = {} as ILead }: { isOpen: boolean; lead: ILead }) => {
+  const { person } = lead;
   const team = fetchTeam();
   return (
     <>
@@ -49,63 +52,84 @@ export const Lead = ({ isOpen }) => {
             <TabItem>Notes</TabItem>
           </Tabs>
           <Box p={2}>
-          <Section title="Details">
-            <Attribute label="Date" value="Thu 4/02/21 @ 09:42" />
-            <Attribute
-              label="Assignee"
-              value={
-                <>
-                  <Box position="relative">
-                    <Dropdown>
-                      <Cell isEditable={true}>
-                        <Box display="flex" alignItems="center">
-                          <Box mr={1}>
-                            <Avatar initials={team[0].name?.charAt(0)} color={team[0].color} size="xxs" />
+            <Box bg="white" shadow="sm" border="1px solid" mb={2} rounded="md" px={3} lineHeight="none" fontSize="sm" py={3} borderColor="gray.200" display="flex" alignItems="center">
+              <Box width={2} height={2} bg="teal.500" rounded="md" mr={2}/>
+              Unread
+              <Box ml="auto">
+              <HiSelector/>
+              </Box>
+            </Box>
+            <Section title="Details">
+              <Attribute label="Date" value="Thu 4/02/21 @ 09:42" />
+              <Attribute
+                label="Assignee"
+                value={
+                  <>
+                    <Box position="relative">
+                      <Dropdown>
+                        <Cell isEditable={true}>
+                          <Box display="flex" alignItems="center">
+                            <Box mr={1}>
+                              <Avatar
+                                initials={team[0].name?.charAt(0)}
+                                color={team[0].color}
+                                size="xxs"
+                              />
+                            </Box>
+                            {team[0].name}
                           </Box>
-                          {team[0].name}
-                        </Box>
-                      </Cell>
-                      <DropdownMenu width="200px">
-                        {team.map((member) => {
-                          return (
-                            <DropdownMenuItem>
-                              <Box display="flex" alignItems="center">
-                                <Box mr={2}>
-                                  <Avatar size="xxs" initials={member.name?.charAt(0)} color={member.color}/>
+                        </Cell>
+                        <DropdownMenu width="200px">
+                          {team.map((member) => {
+                            return (
+                              <DropdownMenuItem>
+                                <Box display="flex" alignItems="center">
+                                  <Box mr={2}>
+                                    <Avatar
+                                      size="xxs"
+                                      initials={member.name?.charAt(0)}
+                                      color={member.color}
+                                    />
+                                  </Box>
+                                  {member.name}
                                 </Box>
-                                {member.name}
-                              </Box>
-                            </DropdownMenuItem>
-                          );
-                        })}
-                      </DropdownMenu>
-                    </Dropdown>
-                  </Box>
-                </>
-              }
-            />
+                              </DropdownMenuItem>
+                            );
+                          })}
+                        </DropdownMenu>
+                      </Dropdown>
+                    </Box>
+                  </>
+                }
+              />
 
-            <Attribute label="Source" value={<Label color="blue">IVT</Label>} />
-            <Attribute
-              label="Type"
-              value={<Label color="blue">Vendor</Label>}
-            />
-          </Section>
-          <Section title="Contact">
-            <Attribute label="Name" value="Thu 4/02/21 @ 09:42" />
-            <Attribute label="Phone" value="079 22 999 559" />
-            <Attribute label="Email" value="sebastienpowell@gmail.com" />
-            <Attribute label="Address" value="15 Marlborough Court, IG9 5BN" />
-          </Section>
-          <Section title="Valuation report">
-            <Attribute label="Bedrooms" value={3} />
-            <Attribute label="Address line 1" value="15 Marlborough Court," />
-            <Attribute label="Postcode" value="IG9 5BN" />
-            <Attribute label="Min. sales price" value="£150,000" />
-            <Attribute label="Est. sales price" value="£250,000" />
-            <Attribute label="Max. sales price" value="£300,000" />
-          </Section>
-        </Box>
+              <Attribute
+                label="Source"
+                value={<Label color="blue">IVT</Label>}
+              />
+              <Attribute
+                label="Type"
+                value={<Label color="blue">Vendor</Label>}
+              />
+            </Section>
+            <Section title="Contact">
+              <Attribute label="Name" value="Thu 4/02/21 @ 09:42" />
+              <Attribute label="Phone" value="079 22 999 559" />
+              <Attribute label="Email" value="sebastienpowell@gmail.com" />
+              <Attribute
+                label="Address"
+                value="15 Marlborough Court, IG9 5BN"
+              />
+            </Section>
+            <Section title="Valuation report">
+              <Attribute label="Bedrooms" value={3} />
+              <Attribute label="Address line 1" value="15 Marlborough Court," />
+              <Attribute label="Postcode" value="IG9 5BN" />
+              <Attribute label="Min. sales price" value="£150,000" />
+              <Attribute label="Est. sales price" value="£250,000" />
+              <Attribute label="Max. sales price" value="£300,000" />
+            </Section>
+          </Box>
         </Box>
       </Box>
       <Box bg="gray.100" mt="auto">

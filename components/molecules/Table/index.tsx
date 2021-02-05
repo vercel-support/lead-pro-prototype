@@ -106,7 +106,7 @@ const TableRow = ({ row, onClick }) => {
             borderColor="gray.100"
             _hover={{
               bg: isEditable === true && "gray.100",
-              boxShadow: isEditable === true  && "inset 0px 0px 0px 1px #000",
+              boxShadow: isEditable === true  && "inset 0px 0px 0px 1px rgba(00, 00, 00, 0.3)",
               outline: "",
             }}
             height="40px"

@@ -3,15 +3,25 @@ import React from "react";
 import styled from "styled-components";
 
 const Styles = styled.div`
+  height: 100%;
   > div {
     height: 100%;
   }
 `;
 
-export const TableControl = ({ children, isEditable, component }: {children?: any, isEditable?: any, component?: any}) => {
+export const TableControl = ({
+  children,
+  isEditable,
+  component,
+}: {
+  children?: any;
+  isEditable?: any;
+  component?: any;
+}) => {
   return (
-    <Styles>
+    
       <Box height="100%">
+        <Styles>
         <Dropdown>
           <Box
             cursor="pointer"
@@ -24,7 +34,8 @@ export const TableControl = ({ children, isEditable, component }: {children?: an
             {component ? component : children}
           </Box>
         </Dropdown>
+        </Styles>
       </Box>
-    </Styles>
+    
   );
 };
