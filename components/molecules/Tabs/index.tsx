@@ -1,6 +1,6 @@
 import {Box} from "components";
 
-export const Tabs = ({ children, height }) => {
+export const Tabs = ({ children, height }: {children: any, height?: any}) => {
   return (
     <Box display="flex" borderBottom="1px solid" borderColor="gray.100" height={height}>
       {children}

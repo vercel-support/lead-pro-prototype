@@ -40,7 +40,7 @@ const Cell = ({ children, isEditable }) => {
   );
 };
 
-export const Lead = ({ isOpen, lead = {} as ILead }: { isOpen: boolean; lead: ILead }) => {
+export const Lead = ({ isOpen, lead = {} as ILead }: { isOpen: boolean; lead?: ILead }) => {
   const { person } = lead;
   const team = fetchTeam();
   return (

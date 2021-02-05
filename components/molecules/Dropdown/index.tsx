@@ -49,7 +49,7 @@ export const Dropdown = ({
   );
 };
 
-export const DropdownMenuItem = ({ children, onClick }) => {
+export const DropdownMenuItem = ({ children, onClick }: {children: any, onClick?: Function}) => {
   const { toggle } = useContext(DropdownContext);
 
   const handleClick = (e) => {
