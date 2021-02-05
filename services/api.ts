@@ -49,7 +49,7 @@ export const fetchLeads = () => {
       address: "25 Torridge Road",
       advertPostcode: null,
       advertAddress: null,
-      assignee: 1,
+      assignee: null,
       person: {
         fullName: "Karl Fisher",
         phone: "07368874295",
