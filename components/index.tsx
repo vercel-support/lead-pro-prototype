@@ -12,5 +12,6 @@ export {
   Drawer,
   Tabs,
   TabItem,
+  Stack
 } from "components/molecules";
 export { LeadsTable } from "components/organisms/LeadsTable";

@@ -8,18 +8,132 @@ import {
   TabItem,
   Attribute,
   Label,
+  Stack,
 } from "components";
 import { fetchLeads, fetchTeam } from "services/api";
-import React from "react";
+import React, { Children, useState } from "react";
 import { TeamMember, TeamMemberDropdownItem } from "./TeamMember";
 import { DropdownMenu, Dropdown, DropdownMenuItem } from "components/molecules";
 import { ILead } from "interfaces/lead.interface";
-import { HiChevronDown, HiSelector } from "react-icons/hi";
-const Section = ({ title, children }) => {
+import {
+  HiChevronDown,
+  HiOutlineArchive,
+  HiSelector,
+  HiStop,
+} from "react-icons/hi";
+import {
+  BiArchive,
+  BiArrowFromLeft,
+  BiBuilding,
+  BiUser,
+  BiChevronDown,
+  BiAddToQueue,
+  BiListPlus,
+  BiDollar,
+  BiLabel,
+  BiArrowFromRight,
+} from "react-icons/bi";
+
+const additional = [
+  // {
+  //   status: "Unread",
+  //   office: "Nottingham",
+  //   assignee: "Hannah Swift",
+  //   type: "Vendor",
+  // },
+  {
+    status: "In progress",
+    office: "Manchester",
+    assignee: "Hannah Swift",
+    type: "Mortgage",
+  },
+];
+
+const HeaderActions = ({ children }) => {
   return (
-    <Box p={5} bg="white" shadow="sm" mb={2} rounded="md">
-      <Box mb={2}>{title}</Box>
+    <Box display="flex" ml="auto">
       {children}
+    </Box>
+  );
+};
+
+const HeaderAction = ({ children }) => {
+  return (
+    <Box
+      w={8}
+      h={8}
+      display="flex"
+      color="gray.500"
+      alignItems="center"
+      cursor="pointer"
+      rounded="md"
+      fontSize="md"
+      justifyContent="center"
+      _hover={{
+        bg: "gray.50",
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
+const Header = () => {
+  return (
+    <Box
+      height="60px"
+      minHeight="60px"
+      borderBottom="1px solid"
+      display="flex"
+      alignItems="center"
+      px={6}
+      borderColor="gray.100"
+    >
+      Sebastien Powell
+      <HeaderActions>
+        <HeaderAction>
+          <BiArchive />
+        </HeaderAction>
+        <HeaderAction>
+          <BiArrowFromLeft />
+        </HeaderAction>
+      </HeaderActions>
+    </Box>
+  );
+};
+
+const Section = ({ title, children, icon }) => {
+  const [isOpen, setOpen] = useState(true);
+  return (
+    <Box bg="white" rounded="md">
+      <Box
+        display="flex"
+        alignItems="center"
+        mb={2}
+        onClick={() => setOpen(!isOpen)}
+        _hover={{ color: "blue.500" }}
+        cursor="pointer"
+      >
+        {/* <Box
+          mr={2}
+          display="flex"
+          bg="gray.50"
+          w={6}
+          h={6}
+          alignItems="center"
+          justifyContent="center"
+          rounded="md"
+        >
+          {icon && React.createElement(icon)}
+        </Box> */}
+        <Box fontWeight="semibold" fontSize="base">
+          {title}
+        </Box>
+        <Box ml="auto" fontSize="2xl" position="relative" right={-1}>
+          <BiChevronDown />
+        </Box>
+      </Box>
+      {isOpen && children}
     </Box>
   );
 };
@@ -28,7 +142,7 @@ const Cell = ({ children, isEditable }) => {
   return (
     <Box
       py={1}
-      px={3}
+      // px={3}
       rounded="md"
       cursor="pointer"
       _hover={{
@@ -40,36 +154,114 @@ const Cell = ({ children, isEditable }) => {
   );
 };
 
-export const Lead = ({ isOpen, lead = {} as ILead }: { isOpen: boolean; lead?: ILead }) => {
+const AdditionalLead = ({ lead }) => {
+  const { status, assignee, type } = lead;
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      fontSize="xs"
+      _hover={{ bg: "gray.50" }}
+      py={2}
+      cursor="pointer"
+    >
+      <Box mr={2}>
+        <Office>{lead.office}</Office>
+      </Box>
+      <Label color={type === "Vendor" ? "blue" : "green"}>{type}</Label>
+
+      <Box ml="auto" color="gray.400" display="flex">
+        <Box display="flex" alignItems="center">
+          <Box
+            w={2}
+            h={2}
+            bg={status === "Unread" ? "blue.500" : "orange.500"}
+            rounded="full"
+            mr={1}
+          />
+          {lead.status}
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+const Status = () => {
+  return (
+    <Box
+      bg="white"
+      shadow="sm"
+      border="1px solid"
+      mb={2}
+      rounded="md"
+      px={3}
+      lineHeight="none"
+      fontSize="sm"
+      cursor="pointer"
+      py={3}
+      borderColor="gray.200"
+      display="flex"
+      alignItems="center"
+    >
+      <Box width={2} height={2} bg="blue.500" rounded="md" mr={2} />
+      Unread
+      <Box ml="auto">
+        <HiSelector />
+      </Box>
+    </Box>
+  );
+};
+
+const Office = ({ children }) => {
+  return (
+    <Box
+      display="flex"
+      bg="gray.50"
+      rounded="md"
+      py={1}
+      border="1px solid"
+      borderColor="gray.100"
+      alignItems="center"
+      px={2}
+      lineHeight="none"
+    >
+      {/* <Box h="6px" w="6px" bg="blue.500" rounded="full" mr={1}/> */}
+      {children}
+    </Box>
+  );
+};
+
+export const Lead = ({
+  isOpen,
+  lead = {} as ILead,
+}: {
+  isOpen: boolean;
+  lead?: ILead;
+}) => {
   const { person } = lead;
   const team = fetchTeam();
   return (
     <>
-      <Box height="100%" display="flex" flexDirection="column">
-        <Box flex={1}>
-          <Tabs>
+      <Box bg="white" height="100%" display="flex" flexDirection="column">
+        <Header />
+        <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
+          <Tabs height="45px" isFitted={false} px={6}>
             <TabItem isActive={true}>Lead</TabItem>
             <TabItem>Notes</TabItem>
           </Tabs>
-          <Box p={2}>
-            <Box bg="white" shadow="sm" border="1px solid" mb={2} rounded="md" px={3} lineHeight="none" fontSize="sm" py={3} borderColor="gray.200" display="flex" alignItems="center">
-              <Box width={2} height={2} bg="teal.500" rounded="md" mr={2}/>
-              Unread
-              <Box ml="auto">
-              <HiSelector/>
-              </Box>
-            </Box>
-            <Section title="Details">
-              <Attribute label="Date" value="Thu 4/02/21 @ 09:42" />
-              <Attribute
-                label="Assignee"
-                value={
-                  <>
+          <Box p={5} flex={1} overflow="scroll">
+            <Stack spacing={6}>
+              <Status />
+              <Section title="Details" icon={BiListPlus}>
+                <Attribute label="Date" value="Thu 4/02/21 @ 09:42" />
+                <Attribute
+                  label="Assignee"
+                  value={
                     <Box position="relative">
                       <Dropdown>
                         <Cell isEditable={true}>
                           <Box display="flex" alignItems="center">
-                            <Box mr={1}>
+                            <Box mr={2}>
                               <Avatar
                                 initials={team[0].name?.charAt(0)}
                                 color={team[0].color}
@@ -99,42 +291,64 @@ export const Lead = ({ isOpen, lead = {} as ILead }: { isOpen: boolean; lead?: I
                         </DropdownMenu>
                       </Dropdown>
                     </Box>
-                  </>
-                }
-              />
+                  }
+                />
 
-              <Attribute
-                label="Source"
-                value={<Label color="blue">IVT</Label>}
-              />
-              <Attribute
-                label="Type"
-                value={<Label color="blue">Vendor</Label>}
-              />
-            </Section>
-            <Section title="Contact">
-              <Attribute label="Name" value="Thu 4/02/21 @ 09:42" />
-              <Attribute label="Phone" value="079 22 999 559" />
-              <Attribute label="Email" value="sebastienpowell@gmail.com" />
-              <Attribute
-                label="Address"
-                value="15 Marlborough Court, IG9 5BN"
-              />
-            </Section>
-            <Section title="Valuation report">
-              <Attribute label="Bedrooms" value={3} />
-              <Attribute label="Address line 1" value="15 Marlborough Court," />
-              <Attribute label="Postcode" value="IG9 5BN" />
-              <Attribute label="Min. sales price" value="£150,000" />
-              <Attribute label="Est. sales price" value="£250,000" />
-              <Attribute label="Max. sales price" value="£300,000" />
-            </Section>
+                <Attribute label="Office" value={<Office>Bristol</Office>} />
+                <Attribute
+                  label="Referred by"
+                  value={<Office>Nottingham</Office>}
+                />
+
+                <Attribute
+                  label="Source"
+                  value={<Label color="blue">IVT</Label>}
+                />
+                <Attribute
+                  label="Type"
+                  value={<Label color="blue">Vendor</Label>}
+                />
+              </Section>
+              <Section title="Other leads" icon={BiLabel}>
+                {additional.map((additional) => {
+                  return <AdditionalLead lead={additional} />;
+                })}
+              </Section>
+              <Section title="Contact" icon={BiUser}>
+                <Attribute label="Name" value="Sebastien Powell" />
+                <Attribute label="Phone" value="079 22 999 559" />
+                <Attribute label="Email" value="sebastienpowell@gmail.com" />
+                <Attribute
+                  label="Address"
+                  value="15 Marlborough Court, IG9 5BN"
+                />
+              </Section>
+              <Section title="Valuation report" icon={BiDollar}>
+                <Attribute label="Bedrooms" value={3} />
+                <Attribute
+                  label="Address line 1"
+                  value="15 Marlborough Court,"
+                />
+                <Attribute label="Postcode" value="IG9 5BN" />
+                <Attribute label="Min. sales price" value="£150,000" />
+                <Attribute label="Est. sales price" value="£250,000" />
+                <Attribute label="Max. sales price" value="£300,000" />
+              </Section>
+            </Stack>
           </Box>
         </Box>
-      </Box>
-      <Box bg="gray.100" mt="auto">
-        <Avatar imageSrc="" />
-        <textarea placeholder="Add a note" />
+        <Box bg="gray.50" p={5}>
+          <Box display="flex">
+            <Avatar imageSrc="" initials="SP" color="orange" />
+            <Box
+              bg="white"
+              width="100%"
+              p={5}
+              rounded="md"
+              border="1px solid"
+            />
+          </Box>
+        </Box>
       </Box>
     </>
   );

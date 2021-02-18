@@ -12,7 +12,7 @@ export const theme = extendTheme({
     },
   },
   fonts: {
-    body: "IBM Plex Sans, system-ui, sans-serif",
+    body: "system-ui, sans-serif",
     heading: "Georgia, serif",
     mono: "Menlo, monospace",
   },

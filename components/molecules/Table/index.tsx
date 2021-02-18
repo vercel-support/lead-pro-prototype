@@ -1,10 +1,16 @@
 import { Box } from "components";
 import { usePagination, useTable, useSortBy } from "react-table";
 import styled from "styled-components";
+import _ from "underscore"
+import React from "react";
 
 const TableHeader = ({ headerGroup }) => {
   return headerGroup.headers.map((column, i) => {
-    return <TableHeaderCell key={i} column={column} />;
+
+    const isLastIndex = i === _.findLastIndex(headerGroup.headers, function(o) { return o.isVisible === true; }) ? true : false;
+
+  
+    return <TableHeaderCell key={i} column={column} isLast={isLastIndex}/>;
   });
 };
 
@@ -18,7 +24,9 @@ const Styles = styled.div`
   
 `;
 
-const TableHeaderCell = ({ column }) => {
+const TableHeaderCell = ({ column, isLast }) => {
+
+  const {icon} = column;
   return (
     <Box
       as="th"
@@ -29,6 +37,7 @@ const TableHeaderCell = ({ column }) => {
       top={0}
       position="sticky"
       p={0}
+      
       fontWeight="medium"
       color="gray.400"
       borderColor="gray.100"
@@ -37,8 +46,11 @@ const TableHeaderCell = ({ column }) => {
     >
       <Box
         borderBottom="1px solid"
-        borderRight="1px solid"
-        py={3}
+        borderRight={isLast === true ? "none" : "1px solid"}
+        // py={3}
+        height="45px"
+        display="flex"
+        alignItems="center"
         px={3}
         borderColor="gray.100"
       >
@@ -58,7 +70,8 @@ const TableHeaderCell = ({ column }) => {
             alignItems="center"
             justifyContent="center"
           >
-            <Box mr={column.isSorted ? 2 : 0}>{column.render("Header")}</Box>
+            {icon && <Box mr={1} fontSize="md">{React.createElement(icon)}</Box>}
+            <Box mr={column.isSorted ? 2 : 0} position="relative" top="1px">{column.render("Header")}</Box>
             {/* <Box ml="auto" position="relative">
               {column.isSorted ? (
                 <Box>
@@ -88,8 +101,12 @@ const TableRow = ({ row, onClick }) => {
         bg: "gray.50",
       }}
     >
+
+      
       {row.cells.map((cell, i) => {
         const { isEditable } = cell.column;
+
+        const isLastIndex = _.findLastIndex(row.cells, function(o) { return o.column.isVisible === true; });
 
         return cell.column.isVisible !== false ? (
           <Box
@@ -102,7 +119,7 @@ const TableRow = ({ row, onClick }) => {
             fontWeight="medium"
             color="gray.700"
             as="td"
-            borderRight="1px solid"
+            borderRight={i < isLastIndex && "1px solid"}
             borderColor="gray.100"
             _hover={{
               bg: isEditable === true && "gray.100",

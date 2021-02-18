@@ -4,6 +4,7 @@ import { Box, AspectRatio, Image } from "components";
 import { HiOutlineUser } from "react-icons/hi";
 
 const sizes = {
+  xxxs: "20px",
   xxs: "28px",
   xs: "36px",
   sm: "45px",
@@ -42,7 +43,7 @@ export const Avatar = ({
       display="inline-block"
       verticalAlign="middle"
       bg={colors[color] && colors[color][100]}
-      color={colors[color] && colors[color][900]}
+      color={colors[color] && colors[color][700]}
       overflow="hidden"
       {...(style === "outline" && {
         border: "1px solid"

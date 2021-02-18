@@ -1,8 +1,8 @@
 import {Box} from "components";
 
-export const Tabs = ({ children, height }: {children: any, height?: any}) => {
+export const Tabs = ({ children, height, isFitted = true, px }: {children: any, height?: any, isFitted?: boolean, px?: number}) => {
   return (
-    <Box display="flex" borderBottom="1px solid" borderColor="gray.100" height={height}>
+    <Box display="flex" borderBottom="1px solid" borderColor="gray.100" height={height} px={px}>
       {children}
     </Box>
   );
@@ -11,10 +11,14 @@ export const Tabs = ({ children, height }: {children: any, height?: any}) => {
 export const TabItem = ({ children, isActive, color = "blue" }: {children: any, isActive?: any, color?: string}) => {
   return (
     <Box
-      flex={1}
+      // flex={1}
       textAlign="center"
-      px={3}
-      py={3}
+      px={5}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection="column"
+      height="100%"
       fontSize="sm"
       cursor="pointer"
       position="relative"

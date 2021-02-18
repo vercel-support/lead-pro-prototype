@@ -1,5 +1,11 @@
 import { Box, Table, Avatar, Image } from "components";
-import { HiOutlineArchive, HiChevronDown, HiMenu, HiSelector } from "react-icons/hi";
+import {
+  HiOutlineArchive,
+  HiChevronDown,
+  HiMenu,
+  HiSelector,
+} from "react-icons/hi";
+import { BiCog, BiAward, BiChart, BiBuilding, BiUser, BiArchive, BiNotification, BiDollar, BiBookOpen, BiCheckCircle, BiFootball } from "react-icons/bi";
 import React from "react";
 import { InternalLink } from "components/atoms";
 
@@ -9,9 +15,9 @@ const NavigationHeader = () => {
   return (
     <Box mb={4} display="flex" alignItems="center" px={horizontalPadding}>
       <InternalLink href="/">
-      <Box width="120px">
-        <Image src="https://dashboard.lead.pro/images/leadpro-banner.png" />
-      </Box>
+        <Box width="120px">
+          <Image src="https://dashboard.lead.pro/images/leadpro-banner.png" />
+        </Box>
       </InternalLink>
       <Box
         ml="auto"
@@ -46,8 +52,8 @@ const NavigationAccountSelect = () => {
       }}
     >
       <Box
-        width="24px"
-        height="24px"
+        width={6}
+        height={6}
         bg="blue.500"
         mr={2}
         backgroundImage="url('/YourMove.png')"
@@ -62,9 +68,18 @@ const NavigationAccountSelect = () => {
   );
 };
 
-const NavigationLink = ({ children, icon, isActive, href }: {children: any, icon?: any, isActive?: any, href?: string}) => {
+const NavigationLink = ({
+  children,
+  icon,
+  isActive,
+  href,
+}: {
+  children: any;
+  icon?: any;
+  isActive?: any;
+  href?: string;
+}) => {
   return (
-    
     <Box
       lineHeight="none"
       display="flex"
@@ -73,17 +88,23 @@ const NavigationLink = ({ children, icon, isActive, href }: {children: any, icon
       fontSize="sm"
       fontWeight="medium"
       color="gray.600"
-      py={3}
+      py={1}
       px={horizontalPadding}
       bg={isActive === true ? "gray.100" : "transparent"}
       _hover={{
         bg: "gray.100",
       }}
     >
+      {icon && (
+        <Box>
+          <Box w={6} h={6} mr={2} display="flex" alignItems="center" justifyContent="center" fontSize="xl">
+          {React.createElement(icon)}
+          </Box>
+        </Box>
+      )}
       {children}
     </Box>
-  )
-    
+  );
 };
 
 const NavigationSection = ({ children }) => {
@@ -107,27 +128,26 @@ export const Navigation = () => {
       <NavigationSection>
         <NavigationHeader />
         <NavigationAccountSelect />
-        <InternalLink  href="/leads/unread">
-        <NavigationLink isActive={true}>Leads</NavigationLink>
+        <InternalLink href="/leads/unread">
+          <NavigationLink isActive={true} icon={BiCheckCircle}>Leads</NavigationLink>
         </InternalLink>
-        <NavigationLink>League</NavigationLink>
-        <NavigationLink>Analytics</NavigationLink>
-        <NavigationLink>Achievements</NavigationLink>
-        <NavigationLink>Guides</NavigationLink>
+        <NavigationLink icon={BiFootball}>League</NavigationLink>
+        <NavigationLink icon={BiChart}>Analytics</NavigationLink>
+        <NavigationLink icon={BiAward}>Achievements</NavigationLink>
+        <NavigationLink icon={BiBookOpen}>Guides</NavigationLink>
       </NavigationSection>
       <NavigationSection>
-        <NavigationLink>Account</NavigationLink>
-        <NavigationLink>Offices</NavigationLink>
-        <NavigationLink>Users</NavigationLink>
-        <NavigationLink>Archived leads</NavigationLink>
-        <NavigationLink>Notifications</NavigationLink>
-        <NavigationLink>Instant valuation tool</NavigationLink>
-        <NavigationLink>Lead responder</NavigationLink>
+        <NavigationLink icon={BiCog}>Account</NavigationLink>
+        <NavigationLink icon={BiBuilding}>Offices</NavigationLink>
+        <NavigationLink icon={BiUser}>Users</NavigationLink>
+        <NavigationLink icon={BiArchive}>Archived leads</NavigationLink>
+        <NavigationLink icon={BiNotification}>Notifications</NavigationLink>
+        <NavigationLink icon={BiDollar}>Instant valuation tool</NavigationLink>
       </NavigationSection>
       <Box mt="auto" px={horizontalPadding}>
         <Box display="flex" alignItems="center">
           <Avatar
-            size="xs"
+            size="xxs"
             imageSrc="https://s3.amazonaws.com/profile_photos/1150295469120596.hDqezwpgpUKfHSCHK8J9_60x60.png"
           />
           <Box ml={2} fontSize="sm">
