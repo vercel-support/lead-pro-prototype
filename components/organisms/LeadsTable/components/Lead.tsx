@@ -50,6 +50,12 @@ const additional = [
     assignee: "Hannah Swift",
     type: "Mortgage",
   },
+  {
+    status: "In progress",
+    office: "Manchester",
+    assignee: "Hannah Swift",
+    type: "Sale",
+  },
 ];
 
 const HeaderActions = ({ children }) => {
@@ -178,7 +184,7 @@ const AdditionalLead = ({ lead }) => {
       <Box mr={2}>
         <Office>{lead.office}</Office>
       </Box>
-      <Label color={type === "Vendor" ? "blue" : "green"}>{type}</Label>
+      <Label color={type === "Vendor" ? "blue" : type === "Mortgage" ? "orange" : "green"}>{type}</Label>
 
       <Box ml="auto" color="gray.400" display="flex">
         <Box display="flex" alignItems="center">
@@ -320,9 +326,11 @@ export const Lead = ({
                 />
               </Section>
               <Section title="Other leads" icon={BiLabel}>
+                <Stack spacing={2}>
                 {additional.map((additional) => {
                   return <AdditionalLead lead={additional} />;
                 })}
+                </Stack>
               </Section>
               <Section title="Contact" icon={BiUser}>
                 <Attribute label="Name" value="Sebastien Powell" />

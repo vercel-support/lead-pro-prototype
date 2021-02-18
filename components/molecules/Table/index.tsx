@@ -190,62 +190,60 @@ const TableRow = ({ row, onClick, prepareRow }) => {
         })}
       </Box>
 
-      {subRows.length > 0 && (
-        <Box
-          as="tr"
-          bg="gray.50"
-          display={isOpen === true ? "table-row" : "none"}
-          onClick={onClick}
-          _hover={{
-            bg: "gray.50",
-          }}
-        >
-          <Box width="30px"></Box>
-          {subRows.map((subRow) => {
-            prepareRow(subRow);
-            return (
-              <>
-                {subRow.cells.map((cell, i) => {
-                  const { isEditable } = cell.column;
+      {subRows.length > 0 &&
+        subRows.map((subRow) => {
+          prepareRow(subRow);
 
-                  const isLastIndex = _.findLastIndex(subRow.cells, function (o) {
-                    return o.column.isVisible === true;
-                  });
+          return (
+            <Box
+              as="tr"
+              bg="gray.50"
+              display={isOpen === true ? "table-row" : "none"}
+              onClick={onClick}
+              _hover={{
+                bg: "gray.50",
+              }}
+            >
+              <Box width="30px"></Box>
+              {subRow.cells.map((cell, i) => {
+                const { isEditable } = cell.column;
 
-                  return cell.column.isVisible !== false ? (
-                    <Box
-                      key={i}
-                      title={cell.value}
-                      className={cell.column.class}
-                      lineHeight="none"
-                      p={0}
-                      px={isEditable === true ? 0 : 3}
-                      fontWeight="medium"
-                      color="gray.700"
-                      as="td"
-                      borderRight={i < isLastIndex && "1px solid"}
-                      borderColor="gray.100"
-                      _hover={{
-                        bg: isEditable === true && "gray.100",
-                        boxShadow:
-                          isEditable === true &&
-                          "inset 0px 0px 0px 1px rgba(00, 00, 00, 0.3)",
-                        outline: "",
-                      }}
-                      height="40px"
-                      role="group"
-                      fontSize="xs"
-                      {...cell.getCellProps()}
-                    >
-                      {cell.render("Cell")}
-                    </Box>
-                  ) : null;
-                })}
-              </>
-            );
-          })}
-        </Box>
-      )}
+                const isLastIndex = _.findLastIndex(subRow.cells, function (o) {
+                  return o.column.isVisible === true;
+                });
+
+                return cell.column.isVisible !== false ? (
+                  <Box
+                    key={i}
+                    title={cell.value}
+                    className={cell.column.class}
+                    lineHeight="none"
+                    p={0}
+                    px={isEditable === true ? 0 : 3}
+                    fontWeight="medium"
+                    color="gray.700"
+                    as="td"
+                    borderRight={i < isLastIndex && "1px solid"}
+                    borderColor="gray.100"
+                    _hover={{
+                      bg: isEditable === true && "gray.100",
+                      boxShadow:
+                        isEditable === true &&
+                        "inset 0px 0px 0px 1px rgba(00, 00, 00, 0.3)",
+                      outline: "",
+                    }}
+                    height="40px"
+                    role="group"
+                    fontSize="xs"
+                    {...cell.getCellProps()}
+                  >
+                    <Box pl={i === 0 ? 5 : 0}>{cell.render("Cell")}</Box>
+                  </Box>
+                ) : null;
+              })}
+            </Box>
+          );
+        })}
     </>
   );
 };

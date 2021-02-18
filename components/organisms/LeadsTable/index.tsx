@@ -178,7 +178,7 @@ export const LeadsTable = ({ status }) => {
       icon: BiNotepad,
       Cell: (row) => {
         return (
-          <Label color={row.cell.value === "vendor" ? "blue" : "green"}>
+          <Label color={row.cell.value === "vendor" ? "blue" : row.cell.value === "mortgage" ? "orange" : "green"}>
             <Box textTransform="capitalize">
             {row.cell.value}
             </Box>

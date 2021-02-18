@@ -59,7 +59,10 @@ export const fetchLeads = () => {
       },
       subRows: [
         {
-          "type": "Mortgage"
+          "type": "mortgage"
+        },
+        {
+          "type": "sale"
         }
       ]
     },
