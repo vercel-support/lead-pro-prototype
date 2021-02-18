@@ -25,6 +25,9 @@ import {
   BiArchive,
   BiArrowFromLeft,
   BiBuilding,
+  BiCaretRight,
+  BiRightIndent,
+  BiRightArrowAlt,
   BiUser,
   BiChevronDown,
   BiAddToQueue,
@@ -89,7 +92,7 @@ const Header = () => {
       px={6}
       borderColor="gray.100"
     >
-      Sebastien Powell
+      Karl Fisher
       <HeaderActions>
         <HeaderAction>
           <BiArchive />
@@ -126,12 +129,15 @@ const Section = ({ title, children, icon }) => {
         >
           {icon && React.createElement(icon)}
         </Box> */}
+        <Box fontSize="md" position="relative" mr={1} left={-1}>
+        <Box transform={isOpen === true ? "rotate(90deg)" : "rotate(0)"}>
+          <BiCaretRight/>
+          </Box>
+        </Box>
         <Box fontWeight="semibold" fontSize="base">
           {title}
         </Box>
-        <Box ml="auto" fontSize="2xl" position="relative" right={-1}>
-          <BiChevronDown />
-        </Box>
+        
       </Box>
       {isOpen && children}
     </Box>
@@ -161,6 +167,10 @@ const AdditionalLead = ({ lead }) => {
       display="flex"
       alignItems="center"
       fontSize="xs"
+      border="1px solid"
+      rounded="md"
+      px={3}
+      borderColor="gray.100"
       _hover={{ bg: "gray.50" }}
       py={2}
       cursor="pointer"
@@ -255,7 +265,7 @@ export const Lead = ({
               <Section title="Details" icon={BiListPlus}>
                 <Attribute label="Date" value="Thu 4/02/21 @ 09:42" />
                 <Attribute
-                  label="Assignee"
+                  label="Responsible"
                   value={
                     <Box position="relative">
                       <Dropdown>

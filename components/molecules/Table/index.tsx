@@ -1,32 +1,44 @@
 import { Box } from "components";
 import { usePagination, useTable, useSortBy } from "react-table";
 import styled from "styled-components";
-import _ from "underscore"
-import React from "react";
+import _ from "underscore";
+import React, { useState } from "react";
+import { BiChevronRight, BiCaretRight } from "react-icons/bi";
 
 const TableHeader = ({ headerGroup }) => {
-  return headerGroup.headers.map((column, i) => {
+  return (
+    <>
+      <Box
+        as="th"
+        width="40px"
+        borderBottom="1px solid"
+        borderColor="gray.100"
+      />
+      {headerGroup.headers.map((column, i) => {
+        const isLastIndex =
+          i ===
+          _.findLastIndex(headerGroup.headers, function (o) {
+            return o.isVisible === true;
+          })
+            ? true
+            : false;
 
-    const isLastIndex = i === _.findLastIndex(headerGroup.headers, function(o) { return o.isVisible === true; }) ? true : false;
-
-  
-    return <TableHeaderCell key={i} column={column} isLast={isLastIndex}/>;
-  });
+        return <TableHeaderCell key={i} column={column} isLast={isLastIndex} />;
+      })}
+    </>
+  );
 };
 
 const Styles = styled.div`
-  
-    tr:not(:last-of-type) {
-      td {
-        border-bottom: 1px solid #e6eaec;
-      }
+  tr:not(:last-of-type) {
+    td {
+      border-bottom: 1px solid #e6eaec;
     }
-  
+  }
 `;
 
 const TableHeaderCell = ({ column, isLast }) => {
-
-  const {icon} = column;
+  const { icon } = column;
   return (
     <Box
       as="th"
@@ -37,7 +49,6 @@ const TableHeaderCell = ({ column, isLast }) => {
       top={0}
       position="sticky"
       p={0}
-      
       fontWeight="medium"
       color="gray.400"
       borderColor="gray.100"
@@ -70,8 +81,14 @@ const TableHeaderCell = ({ column, isLast }) => {
             alignItems="center"
             justifyContent="center"
           >
-            {icon && <Box mr={1} fontSize="md">{React.createElement(icon)}</Box>}
-            <Box mr={column.isSorted ? 2 : 0} position="relative" top="1px">{column.render("Header")}</Box>
+            {icon && (
+              <Box mr={1} fontSize="md">
+                {React.createElement(icon)}
+              </Box>
+            )}
+            <Box mr={column.isSorted ? 2 : 0} position="relative" top="1px">
+              {column.render("Header")}
+            </Box>
             {/* <Box ml="auto" position="relative">
               {column.isSorted ? (
                 <Box>
@@ -90,52 +107,146 @@ const TableHeaderCell = ({ column, isLast }) => {
   );
 };
 
-const TableRow = ({ row, onClick }) => {
-  const { column } = row.cells[row.id];
-
+const TableExpander = ({ onClick, subRows, isOpen }) => {
   return (
     <Box
-      as="tr"
+      as="td"
+      width="40px"
       onClick={onClick}
-      _hover={{
-        bg: "gray.50",
-      }}
+      fontSize="md"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      height="40px"
+      cursor="pointer"
     >
-
-      
-      {row.cells.map((cell, i) => {
-        const { isEditable } = cell.column;
-
-        const isLastIndex = _.findLastIndex(row.cells, function(o) { return o.column.isVisible === true; });
-
-        return cell.column.isVisible !== false ? (
-          <Box
-            key={i}
-            title={cell.value}
-            className={cell.column.class}
-            lineHeight="none"
-            p={0}
-            px={isEditable === true ? 0 : 3}
-            fontWeight="medium"
-            color="gray.700"
-            as="td"
-            borderRight={i < isLastIndex && "1px solid"}
-            borderColor="gray.100"
-            _hover={{
-              bg: isEditable === true && "gray.100",
-              boxShadow: isEditable === true  && "inset 0px 0px 0px 1px rgba(00, 00, 00, 0.3)",
-              outline: "",
-            }}
-            height="40px"
-            role="group"
-            fontSize="xs"
-            {...cell.getCellProps()}
-          >
-            {cell.render("Cell")}
-          </Box>
-        ) : null;
-      })}
+      {subRows.length > 0 && (
+        <Box transform={isOpen === true ? "rotate(90deg)" : "rotate(0)"}>
+          <BiCaretRight />
+        </Box>
+      )}
     </Box>
+  );
+};
+
+const TableRow = ({ row, onClick, prepareRow }) => {
+  const { column } = row.cells[row.id];
+
+  const [isOpen, setOpen] = useState(false);
+
+  const { subRows } = row;
+
+  console.log(subRows);
+
+  return (
+    <>
+      <Box
+        as="tr"
+        onClick={onClick}
+        _hover={{
+          bg: "gray.50",
+        }}
+      >
+        <TableExpander
+          onClick={() => setOpen(!isOpen)}
+          subRows={subRows}
+          isOpen={isOpen}
+        />
+        {row.cells.map((cell, i) => {
+          const { isEditable } = cell.column;
+
+          const isLastIndex = _.findLastIndex(row.cells, function (o) {
+            return o.column.isVisible === true;
+          });
+
+          return cell.column.isVisible !== false ? (
+            <Box
+              key={i}
+              title={cell.value}
+              className={cell.column.class}
+              lineHeight="none"
+              p={0}
+              px={isEditable === true ? 0 : 3}
+              fontWeight="medium"
+              color="gray.700"
+              as="td"
+              borderRight={i < isLastIndex && "1px solid"}
+              borderColor="gray.100"
+              _hover={{
+                bg: isEditable === true && "gray.100",
+                boxShadow:
+                  isEditable === true &&
+                  "inset 0px 0px 0px 1px rgba(00, 00, 00, 0.3)",
+                outline: "",
+              }}
+              height="40px"
+              role="group"
+              fontSize="xs"
+              {...cell.getCellProps()}
+            >
+              {cell.render("Cell")}
+            </Box>
+          ) : null;
+        })}
+      </Box>
+
+      {subRows.length > 0 && (
+        <Box
+          as="tr"
+          bg="gray.50"
+          display={isOpen === true ? "table-row" : "none"}
+          onClick={onClick}
+          _hover={{
+            bg: "gray.50",
+          }}
+        >
+          <Box width="30px"></Box>
+          {subRows.map((subRow) => {
+            prepareRow(subRow);
+            return (
+              <>
+                {subRow.cells.map((cell, i) => {
+                  const { isEditable } = cell.column;
+
+                  const isLastIndex = _.findLastIndex(subRow.cells, function (o) {
+                    return o.column.isVisible === true;
+                  });
+
+                  return cell.column.isVisible !== false ? (
+                    <Box
+                      key={i}
+                      title={cell.value}
+                      className={cell.column.class}
+                      lineHeight="none"
+                      p={0}
+                      px={isEditable === true ? 0 : 3}
+                      fontWeight="medium"
+                      color="gray.700"
+                      as="td"
+                      borderRight={i < isLastIndex && "1px solid"}
+                      borderColor="gray.100"
+                      _hover={{
+                        bg: isEditable === true && "gray.100",
+                        boxShadow:
+                          isEditable === true &&
+                          "inset 0px 0px 0px 1px rgba(00, 00, 00, 0.3)",
+                        outline: "",
+                      }}
+                      height="40px"
+                      role="group"
+                      fontSize="xs"
+                      {...cell.getCellProps()}
+                    >
+                      {cell.render("Cell")}
+                    </Box>
+                  ) : null;
+                })}
+              </>
+            );
+          })}
+        </Box>
+      )}
+    </>
   );
 };
 
@@ -198,7 +309,6 @@ export const Table = (props) => {
         </Box>
 
         <Box as="tbody" {...getTableBodyProps()}>
-          
           {page.map((row, i) => {
             prepareRow(row);
             return row.original && row.original.blankRow ? (
@@ -221,11 +331,11 @@ export const Table = (props) => {
                   fontWeight="600"
                   textAlign="center"
                   verticalAlign="middle"
-                >
-                </Box>
+                ></Box>
               </Box>
             ) : (
               <TableRow
+                prepareRow={prepareRow}
                 key={i}
                 row={row}
                 onClick={() => onRowClick && onRowClick(row)}

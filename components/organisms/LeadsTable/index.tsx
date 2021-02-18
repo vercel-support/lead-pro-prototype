@@ -1,4 +1,4 @@
-import { Box, Table, Tabs, TabItem, InternalLink } from "components";
+import { Box, Table, Tabs, TabItem, InternalLink, Label } from "components";
 import { fetchLeads } from "services/api";
 import React, { useState } from "react";
 import { TeamMember, TeamMemberDropdownItem } from "./components/TeamMember";
@@ -19,7 +19,15 @@ import {
 } from "react-icons/hi";
 import moment from "moment";
 import _ from "underscore";
-import { BiCalendar, BiConversation, BiEnvelope, BiExtension, BiNotepad, BiTab, BiUser } from "react-icons/bi";
+import {
+  BiCalendar,
+  BiConversation,
+  BiEnvelope,
+  BiExtension,
+  BiNotepad,
+  BiTab,
+  BiUser,
+} from "react-icons/bi";
 
 const statuses = [
   { href: "unread", label: "Unread", code: 50, color: "blue" },
@@ -131,28 +139,35 @@ export const LeadsTable = ({ status }) => {
       Cell: (row) => {
         const person = row.cell.row.original.person;
 
-        return (
-          <>
-            <Dropdown showMode="hover">
-              <Box _hover={{}} textDecoration="underline" color="brand.500">
-                {person.fullName}
-              </Box>
+        if (person) {
+          return (
+            <>
+              <Dropdown showMode="hover">
+                <Box _hover={{}} textDecoration="underline" color="brand.500">
+                  {person.fullName}
+                </Box>
 
-              <DropdownMenu p={4} width="400px">
-                {Object.keys(person).map((key) => {
-                  return (
-                    <Attribute
-                      value={person[key]}
-                      label={key}
-                      py={2}
-                      fontSize="xs"
-                    />
-                  );
-                })}
-              </DropdownMenu>
-            </Dropdown>
-          </>
-        );
+                <DropdownMenu p={4} width="400px">
+                  {Object.keys(person).map((key) => {
+                    return (
+                      <Attribute
+                        value={person[key]}
+                        label={key}
+                        py={2}
+                        fontSize="xs"
+                      />
+                    );
+                  })}
+                </DropdownMenu>
+              </Dropdown>
+            </>
+          );
+        }
+        else {
+          return (
+            <></>
+          )
+        }
       },
     },
 
@@ -163,19 +178,11 @@ export const LeadsTable = ({ status }) => {
       icon: BiNotepad,
       Cell: (row) => {
         return (
-          <Box
-            bg="blue.100"
-            color="blue.900"
-            px={2}
-            py={1}
-            textAlign="center"
-            rounded="full"
-            lineHeight="none"
-            display="inline-flex"
-            textTransform="capitalize"
-          >
+          <Label color={row.cell.value === "vendor" ? "blue" : "green"}>
+            <Box textTransform="capitalize">
             {row.cell.value}
-          </Box>
+            </Box>
+          </Label>
         );
       },
     },
@@ -214,30 +221,29 @@ export const LeadsTable = ({ status }) => {
         <Box flex={1} display="flex" flexDirection="column">
           <Toolbar />
           <Box flex={1}>
-          <Table
-            data={leads}
-            columns={columns}
-            isLoading={false}
-            // onRowClick={handleRowClick}
-            hiddenColumns={hiddenColumns}
-          />
+            <Table
+              data={leads}
+              columns={columns}
+              isLoading={false}
+              // onRowClick={handleRowClick}
+              hiddenColumns={hiddenColumns}
+            />
           </Box>
           {/* </Box> */}
           <Box
-              flexShrink={0}
-              bg="white"
-
-              borderTop="1px solid"
-              height="50px"
-              display="flex"
-              alignItems="center"
-              px={3}
-              fontSize="xs"
-              borderColor="gray.100"
-            >
-              Showing 1 to {leads.length} of {leads.length} results
-              <Box display="flex"></Box>
-            </Box>
+            flexShrink={0}
+            bg="white"
+            borderTop="1px solid"
+            height="50px"
+            display="flex"
+            alignItems="center"
+            px={3}
+            fontSize="xs"
+            borderColor="gray.100"
+          >
+            Showing 1 to {leads.length} of {leads.length} results
+            <Box display="flex"></Box>
+          </Box>
         </Box>
         <Box
           width="600px"
