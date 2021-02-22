@@ -14,7 +14,7 @@ export const PageHeader = ({
   return (
     <Box
       bg="white"
-      px={16}
+      px={8}
       height="60px"
       display="flex"
       alignItems="center"

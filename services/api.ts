@@ -35,6 +35,80 @@ export const fetchTeam = () => {
   ];
 };
 
+export const fetchIntegrationsCategories = () => {
+  return [
+    
+      {
+        name: "CRM",
+        count: 12,
+      },
+      { name: "Marketing", count: 24 },
+    
+    
+  ]
+}
+
+export const fetchIntegrations = () => {
+  return [
+    {
+      name: "MailChimp",
+      category: "Marketing",
+      logo: "mailchimp.png",
+      activatedAt: "2020-01-02",
+      description:
+        "Discover how people find and interact with your typeform. Get the data you need to measure campaigns, improve conversions, and more.",
+    },
+    {
+      name: "Vebra Alto",
+      category: "Marketing",
+      logo: "vebra-alto.png",
+      activatedAt: null,
+      description:
+        "Discover how people find and interact with your typeform. Get the data you need to measure campaigns, improve conversions, and more.",
+    },
+    {
+      name: "Reapit",
+      category: "Marketing",
+      logo: "reapit.png",
+      activatedAt: null,
+      description:
+        "Discover how people find and interact with your typeform. Get the data you need to measure campaigns, improve conversions, and more.",
+    },
+    {
+      name: "Jupix",
+      category: "Marketing",
+      logo: "jupix.png",
+      activatedAt: null,
+      description:
+        "Discover how people find and interact with your typeform. Get the data you need to measure campaigns, improve conversions, and more.",
+    },
+    {
+      name: "Drip",
+      category: "Marketing",
+      logo: "drip.png",
+      activatedAt: null,
+      description:
+        "Discover how people find and interact with your typeform. Get the data you need to measure campaigns, improve conversions, and more.",
+    },
+    {
+      name: "SME Professional",
+      category: "Marketing",
+      logo: "sme-professional.png",
+      activatedAt: null,
+      description:
+        "Discover how people find and interact with your typeform. Get the data you need to measure campaigns, improve conversions, and more.",
+    },
+    {
+      name: "Autopilot",
+      category: "Marketing",
+      logo: "autopilot.png",
+      activatedAt: null,
+      description:
+        "Discover how people find and interact with your typeform. Get the data you need to measure campaigns, improve conversions, and more.",
+    },
+  ];
+};
+
 export const fetchLeads = () => {
   return [
     {
@@ -55,16 +129,16 @@ export const fetchLeads = () => {
         phone: "07368874295",
         email: "karlanthonyfisher@gmail.com",
         address: "25 Torridge Road",
-        source: "ivt",      
+        source: "ivt",
       },
       subRows: [
         {
-          "type": "mortgage"
+          type: "mortgage",
         },
         {
-          "type": "sale"
-        }
-      ]
+          type: "sale",
+        },
+      ],
     },
     {
       id: 3971462,

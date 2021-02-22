@@ -5,7 +5,7 @@ import {
   HiMenu,
   HiSelector,
 } from "react-icons/hi";
-import { BiCog, BiAward, BiChart, BiBuilding, BiUser, BiArchive, BiNotification, BiDollar, BiBookOpen, BiCheckCircle, BiFootball } from "react-icons/bi";
+import { BiCog, BiAward, BiChart, BiBuilding, BiUser, BiArchive, BiNotification, BiDollar, BiBookOpen, BiCheckCircle, BiFootball, BiPlug } from "react-icons/bi";
 import React from "react";
 import { InternalLink } from "components/atoms";
 
@@ -141,8 +141,9 @@ export const Navigation = () => {
         <NavigationLink icon={BiBuilding}>Offices</NavigationLink>
         <NavigationLink icon={BiUser}>Users</NavigationLink>
         <NavigationLink icon={BiArchive}>Archived leads</NavigationLink>
-        <NavigationLink icon={BiNotification}>Notifications</NavigationLink>
-        <NavigationLink icon={BiDollar}>Instant valuation tool</NavigationLink>
+        <InternalLink href="/integrations">
+        <NavigationLink icon={BiPlug}>Integrations</NavigationLink>
+        </InternalLink>
       </NavigationSection>
       <Box mt="auto" px={horizontalPadding}>
         <Box display="flex" alignItems="center">

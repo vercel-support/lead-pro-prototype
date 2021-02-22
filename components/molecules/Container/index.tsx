@@ -4,7 +4,7 @@ import React from "react";
 export const Container = ({
   children,
   display,
-  maxWidth = "1800px",
+  maxWidth = "1200px",
   bg,
 }: {
   children?: any;

@@ -10,6 +10,7 @@ export { Grid, Column } from "./Grid";
 export { Navigation } from "./Navigation";
 export { Table } from "./Table";
 export { Tags } from "./Tags";
+export {Modal} from "./Modal";
 export { Stack } from "./Stack";
 export {Tabs, TabItem} from "./Tabs";
 

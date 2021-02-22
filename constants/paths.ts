@@ -1,15 +1,4 @@
 export enum paths {
   DASHBOARD_INDEX = "/",
-  LOGIN_INDEX = "/login",
-  LOGOUT_INDEX = "/logout",
-  CALENDAR_INDEX = "/calendar",
-  FOUR_OH_FOUR_INDEX = "/404",
-  RESET_PASSWORD_INDEX = "/reset-password",
-  ORGANISE_INDEX = "/organise",
-  ORGANISE_ONE_ON_ONE = "/organise/one-on-one",
-  ORGANISE_SCHEDULE = "/organise/schedule",
-  PRIVACY_POLICY_INDEX = "/legal/privacy",
-  TERMS_INDEX = "/legal/terms",
-  SETTINGS_ACCOUNT_INDEX = "/settings/account",
-  SIGNUP_INDEX = "/signup",
+  INTEGRATIONS_INDEX = "/integrations"
 }
