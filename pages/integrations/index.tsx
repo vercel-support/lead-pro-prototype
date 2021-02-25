@@ -16,6 +16,7 @@ import _ from "underscore";
 import { AspectRatio } from "@chakra-ui/react";
 import { fetchIntegrations, fetchIntegrationsCategories } from "services/api";
 import { paths } from "constants/paths";
+import { Integration } from "components/organisms/Integration";
 
 const Logo = ({ imageSrc }) => {
   return (
@@ -37,7 +38,7 @@ const Logo = ({ imageSrc }) => {
 const IntegrationCard = ({ integration }) => {
   const { name, logo, description, activatedAt } = integration;
   return (
-    <InternalLink href="/integrations/mailchimp">
+    
       <Card>
         <Box display="flex" w="full" p={4}>
           <Logo imageSrc={`/integrations/${logo}`} />
@@ -53,11 +54,11 @@ const IntegrationCard = ({ integration }) => {
           </Box>
         </Box>
       </Card>
-    </InternalLink>
+    
   );
 };
 
-const Integration = ({ integration, handleModal }) => {
+const IntegrationListItem = ({ integration, handleModal }) => {
   const { name, logo, description, activatedAt } = integration;
   return (
     <Card>
@@ -127,6 +128,7 @@ const Integrations = () => {
   const categories = fetchIntegrationsCategories();
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isIntegrationOpen, setIntegrationOpen] = useState(false);
 
   return (
     <Box width="100%" height="full" overflow="scroll">
@@ -138,6 +140,10 @@ const Integrations = () => {
           <Button variant="primary">Go to integration</Button>
         </InternalLink>
       </Modal>
+
+      <Modal isOpen={isIntegrationOpen} handleClose={() => setIntegrationOpen(false)} maxW="3xl">
+        <Integration />
+      </Modal>
       <PageBody>
         <Container>
           <Box mb={4} fontSize="xl">
@@ -148,7 +154,9 @@ const Integrations = () => {
               if (integration.activatedAt) {
                 return (
                   <Column>
+                    <Box onClick={() => setIntegrationOpen(true)}>
                     <IntegrationCard integration={integration} />
+                    </Box>                 
                   </Column>
                 );
               }
@@ -190,7 +198,7 @@ const Integrations = () => {
 
                   if (!activatedAt) {
                     return (
-                      <Integration
+                      <IntegrationListItem
                         handleModal={(e) => {
                           setModalOpen(true);
                         }}
