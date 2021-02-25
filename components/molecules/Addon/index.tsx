@@ -10,7 +10,7 @@ import {
 } from "components";
 import React from "react";
 
-export const Addon = ({ addon, isActive }) => {
+export const Addon = ({ addon, isActive }: {isActive: boolean, addon: any}) => {
   const { name, price, usage, color, description } = addon;
   return (
     <>
@@ -63,10 +63,10 @@ export const Addon = ({ addon, isActive }) => {
                   {usage.type} beyond plan
                 </Box>
               )}
-              <Box width="300px" h={1} bg="blue.100">
+              <Box width="300px" h={1} bg="teal.100">
                 <Box
                   w={(usage.used / usage.allowance) * 100 + "%"}
-                  bg="blue.500"
+                  bg="teal.500"
                   h="100%"
                 />
               </Box>
@@ -78,7 +78,7 @@ export const Addon = ({ addon, isActive }) => {
           <Button>Add add-on</Button>
         ) : (
           <Box display="flex" fontSize="sm" lineHeight="none" >
-            <Box cursor="pointer" color="gray.400" _hover={{
+            <Box cursor="pointer" color="gray.400" fontSize="sm"  _hover={{
                 textDecoration: "underline"
             }}>
               Remove add-on

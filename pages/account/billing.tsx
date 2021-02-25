@@ -7,6 +7,8 @@ import { fetchAddons } from "services/api";
 import { Addon } from "components/molecules/Addon";
 import {AddonsModal} from "components/pages/Billing/components/AddonsModal";
 import { Plan } from "components/pages/Billing/components/Plan";
+import { PaymentDetails } from "components/pages/Billing/components/PaymentDetails";
+import { Invoices } from "components/pages/Billing/components/Invoices";
 
 export default function PageBilling() {
   const addons = fetchAddons();
@@ -44,6 +46,8 @@ export default function PageBilling() {
         </Box>
         </Box>
       </Section>
+      <PaymentDetails/>
+      <Invoices/>
     </LayoutSettings>
   );
 }

@@ -14,7 +14,7 @@ export const LayoutSettings = ({ title, children }) => {
         <Box fontSize="3xl" fontWeight="bold" mb={0}>
           {title}
         </Box>
-        <Tabs height={16} fontSize={"md"}>
+        <Tabs height={16}>
           <InternalLink href={"/account"}>
             <TabItem  isActive={route === "/account" && true}>Account</TabItem>
           </InternalLink>

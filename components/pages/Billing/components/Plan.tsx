@@ -10,7 +10,7 @@ import { paths } from "constants/paths";
 
 export const Plan = () => {
   return (
-    <Box border="1px solid" p={5}>
+    <Box border="1px solid" p={5} borderColor="gray.100" shadow="sm" borderTop="none">
       <Box display="flex" mb={2} alignItems="center">
         <Box fontSize="2xl" fontWeight="bold" lineHeight="none">
           Free
@@ -34,7 +34,7 @@ export const Plan = () => {
       </Box>
       <InternalLink href={paths.PLANS_INDEX}>
         <Box
-          color="blue.500"
+          color="teal.500"
           fontSize="sm"
           cursor="pointer"
           _hover={{

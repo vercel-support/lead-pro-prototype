@@ -2,7 +2,7 @@ import { Box } from "components";
 
 type variants = "primary" | "ghost";
 
-export const Button = ({ children, variant, onClick, isBlock }: {children, variant?: variants, onClick?: any}) => {
+export const Button = ({ children, variant, onClick, isBlock }: {children, variant?: variants, onClick?: any, isBlock?: boolean}) => {
 
   return (
     <Box
