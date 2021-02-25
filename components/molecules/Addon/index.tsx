@@ -10,7 +10,7 @@ import {
 } from "components";
 import React from "react";
 
-export const Addon = ({ addon, isActive }: {isActive: boolean, addon: any}) => {
+export const Addon = ({ addon, isActive }: {isActive?: boolean, addon: any}) => {
   const { name, price, usage, color, description } = addon;
   return (
     <>
