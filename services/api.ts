@@ -37,16 +37,110 @@ export const fetchTeam = () => {
 
 export const fetchIntegrationsCategories = () => {
   return [
-    
-      {
-        name: "CRM",
-        count: 12,
+    {
+      name: "CRM",
+      count: 12,
+    },
+    { name: "Marketing", count: 24 },
+  ];
+};
+
+export const fetchPlans = () => {
+  return [
+    {
+      name: "Starter",
+      description:
+      
+        "For estate agents who want a few extra instructions each month.",
+        price: "Free",
+      count: 12,
+      features: [
+        "Instant online valuation tool",
+        "Portal responder & applicant pre-qualification",
+        "Track the source of instructions",
+      ],
+    },
+    {
+      name: "Premium",
+      description:
+        "For estate agents who want to significantly grow their business.",
+      count: 24,
+      price: "£99",
+      features: [
+        "Over 10 valuations per month",
+        "Over 500 pre-qualified portal enquires per month",
+        "In-depth reporting including ROI analysis of Rightmove vs Zoopla vs OTM",
+        "Branded and customisable email templates",
+        "Unlimited number of branches",
+        "Integrations to Jupix, Reapit, your website and other 3rd party tools",
+      ],
+    },
+    {
+      name: "Enterprise",
+      count: 24,
+      price: "Let's talk",
+      description:
+        "For multi-branch estate agencies who want custom features and deep integrations.",
+      features: [
+        "Over 250 valuations per month",
+        "Over 10,000 pre-qualified portal enquiries per month",
+        "Advanced analytics including branch comparison analysis",
+      ],
+    },
+  ];
+};
+
+export const fetchAddons = () => {
+  return [
+    {
+      name: "Lead Responder",
+      isActive: true,
+      description:
+        "Leads portals & the agent’s website receive email and text message replies, with a custom questionnaire to identify vendor, mortgage and landlord leads.",
+      price: 39,
+      color: "blue",
+    },
+    {
+      name: "Instant Valuation Tool",
+      price: 50,
+      color: "teal",
+      description:
+        "In 5 minutes agents can start converting unknown website visitors into valuation leads.  The tool can be used in social media and in google campaigns to generate vendor and landlord leads.",
+      usage: {
+        type: "valuations",
+        allowance: 50,
+        used: 35,
+        feePerAdditionalUnit: 0.25,
       },
-      { name: "Marketing", count: 24 },
-    
-    
-  ]
-}
+    },
+    {
+      name: "AutoCaller",
+      description:
+        "High value email leads are converted from an email to a call, causing  the office phone to ring, connecting the agent directly to the lead, ahead of any competitors.",
+      price: 82.5,
+      usage: {
+        type: "mins",
+        allowance: 500,
+        used: 510,
+        feePerAdditionalUnit: 0.03,
+      },
+      color: "green",
+    },
+    {
+      name: "Drip Integration",
+      price: 25,
+      color: "purple",
+      description: "Connect third party marketing tools e.g. Drip",
+    },
+    {
+      name: "Marketing Package",
+      price: 699,
+      color: "orange",
+      description:
+        "Lead Generation: Facebook Advertising, Instagram Advertising",
+    },
+  ];
+};
 
 export const fetchIntegrations = () => {
   return [

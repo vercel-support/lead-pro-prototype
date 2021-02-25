@@ -6,11 +6,10 @@ import { useRouter } from "next/router";
 
 export const LayoutSettings = ({ title, children }) => {
   const router = useRouter();
-
   const {route} = router;
-  console.log(router);
+
   return (
-    <Box w="full" py={12}>
+    <Box w="full" py={12} overflow="scroll" h="full">
       <Container>
         <Box fontSize="3xl" fontWeight="bold" mb={0}>
           {title}
@@ -21,9 +20,6 @@ export const LayoutSettings = ({ title, children }) => {
           </InternalLink>
           <InternalLink href={"/account/billing"}>
             <TabItem isActive={route === "/account/billing" && true}>Billing</TabItem>
-          </InternalLink>
-          <InternalLink href={"/account/products"}>
-            <TabItem isActive={route === "/account/products" && true}>Products</TabItem>
           </InternalLink>
           <InternalLink href={"/account/offices"}>
             <TabItem isActive={route === "/account/offices" && true}>Offices</TabItem>

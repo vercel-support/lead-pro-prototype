@@ -2,7 +2,7 @@ import { Box } from "components";
 
 type variants = "primary" | "ghost";
 
-export const Button = ({ children, variant, onClick }: {children, variant?: variants, onClick?: any}) => {
+export const Button = ({ children, variant, onClick, isBlock }: {children, variant?: variants, onClick?: any}) => {
 
   return (
     <Box
@@ -15,7 +15,9 @@ export const Button = ({ children, variant, onClick }: {children, variant?: vari
       fontSize="sm"
       px={4}
       lineHeight="none"
+      textAlign="center"
       py={2}
+      w={isBlock && "100%"}
       rounded="4px"
       fontWeight="medium"
       borderColor={variant === "primary" ? "teal.600" : "gray.600"}

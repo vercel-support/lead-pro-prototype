@@ -159,7 +159,7 @@ export const Navigation = () => {
       </NavigationSection>
       <NavigationSection>
         <InternalLink href="/account">
-          <NavigationLink icon={BiCog}>Account</NavigationLink>
+          <NavigationLink icon={BiCog}>Settings</NavigationLink>
         </InternalLink>
         <InternalLink href="/integrations">
           <NavigationLink icon={BiPlug}>Integrations</NavigationLink>

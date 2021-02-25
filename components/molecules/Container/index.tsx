@@ -13,7 +13,7 @@ export const Container = ({
   bg?: any;
 }) => {
   return (
-    <Box mx="auto" maxWidth={maxWidth} width="100%" display={display} bg={bg}>
+    <Box mx="auto" maxWidth={maxWidth} width="100%" display={display} bg={bg} px={6}>
       {children}
     </Box>
   );

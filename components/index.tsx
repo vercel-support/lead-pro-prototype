@@ -9,11 +9,16 @@ export {
   Navigation,
   Dropdown,
   PageBody,
+  DividerHeader,
   DropdownContext,
   DropdownMenu,
   Drawer,
+  Grid, 
+  Column,
   Tabs,
   Modal,
+  ModalBody,
+  ModalHeader,
   TabItem,
   Stack
 } from "components/molecules";
