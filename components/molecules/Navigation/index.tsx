@@ -5,7 +5,20 @@ import {
   HiMenu,
   HiSelector,
 } from "react-icons/hi";
-import { BiCog, BiAward, BiChart, BiBuilding, BiUser, BiArchive, BiNotification, BiDollar, BiBookOpen, BiCheckCircle, BiFootball, BiPlug } from "react-icons/bi";
+import {
+  BiCog,
+  BiAward,
+  BiChart,
+  BiBuilding,
+  BiUser,
+  BiArchive,
+  BiNotification,
+  BiDollar,
+  BiBookOpen,
+  BiCheckCircle,
+  BiFootball,
+  BiPlug,
+} from "react-icons/bi";
 import React from "react";
 import { InternalLink } from "components/atoms";
 
@@ -97,8 +110,16 @@ const NavigationLink = ({
     >
       {icon && (
         <Box>
-          <Box w={6} h={6} mr={2} display="flex" alignItems="center" justifyContent="center" fontSize="xl">
-          {React.createElement(icon)}
+          <Box
+            w={6}
+            h={6}
+            mr={2}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            fontSize="xl"
+          >
+            {React.createElement(icon)}
           </Box>
         </Box>
       )}
@@ -129,20 +150,19 @@ export const Navigation = () => {
         <NavigationHeader />
         <NavigationAccountSelect />
         <InternalLink href="/leads/unread">
-          <NavigationLink isActive={true} icon={BiCheckCircle}>Leads</NavigationLink>
+          <NavigationLink isActive={true} icon={BiCheckCircle}>
+            Leads
+          </NavigationLink>
         </InternalLink>
-        <NavigationLink icon={BiFootball}>League</NavigationLink>
         <NavigationLink icon={BiChart}>Analytics</NavigationLink>
         <NavigationLink icon={BiAward}>Achievements</NavigationLink>
-        <NavigationLink icon={BiBookOpen}>Guides</NavigationLink>
       </NavigationSection>
       <NavigationSection>
-        <NavigationLink icon={BiCog}>Account</NavigationLink>
-        <NavigationLink icon={BiBuilding}>Offices</NavigationLink>
-        <NavigationLink icon={BiUser}>Users</NavigationLink>
-        <NavigationLink icon={BiArchive}>Archived leads</NavigationLink>
+        <InternalLink href="/account">
+          <NavigationLink icon={BiCog}>Account</NavigationLink>
+        </InternalLink>
         <InternalLink href="/integrations">
-        <NavigationLink icon={BiPlug}>Integrations</NavigationLink>
+          <NavigationLink icon={BiPlug}>Integrations</NavigationLink>
         </InternalLink>
       </NavigationSection>
       <Box mt="auto" px={horizontalPadding}>
