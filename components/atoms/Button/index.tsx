@@ -3,25 +3,36 @@ import { Box } from "components";
 type variants = "primary" | "ghost";
 
 const sizes = {
-  "sm": {
+  sm: {
     fontSize: "sm",
     px: 4,
-    py: 2
+    py: 2,
   },
-  "md": {
+  md: {
     fontSize: "md",
     px: 5,
-    py: 3
-  }
-}
+    py: 3,
+  },
+};
 
-export const Button = ({ children, variant, onClick, isBlock, size = "sm" }: {children, variant?: variants, onClick?: any, isBlock?: boolean, size: keyof typeof sizes}) => {
-
+export const Button = ({
+  children,
+  variant,
+  onClick,
+  isBlock,
+  size = "sm",
+}: {
+  children;
+  variant?: variants;
+  onClick?: any;
+  isBlock?: boolean;
+  size?: keyof typeof sizes;
+}) => {
   const selectedSize = sizes[size];
-  
+
   return (
     <Box
-      bg={variant === "primary" ?  "teal.500" : "white"}
+      bg={variant === "primary" ? "teal.500" : "white"}
       display="inline-block"
       color={variant === "primary" ? "white" : "gray.900"}
       cursor="pointer"
@@ -36,7 +47,7 @@ export const Button = ({ children, variant, onClick, isBlock, size = "sm" }: {ch
       rounded="4px"
       fontWeight="medium"
       borderColor={variant === "primary" ? "teal.600" : "gray.600"}
-      {...(onClick && {onClick: onClick})}
+      {...(onClick && { onClick: onClick })}
     >
       {children}
     </Box>

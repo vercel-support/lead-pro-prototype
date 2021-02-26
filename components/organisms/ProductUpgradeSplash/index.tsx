@@ -5,24 +5,16 @@ import { Children, useState } from "react";
 import { HiPlay } from "react-icons/hi";
 import { CardModal } from "../CardModal";
 
-const Bullet = ({ children }) => {
-  return (
-    <Box display="flex" alignItems="center" lineHeight="none">
-      <Box mr={3}>
-        <Box w={1} h={1} bg="blue.500" rounded="full" />
-      </Box>
-      {children}
-    </Box>
-  );
-};
-
-export const ProductUpgradeSplash = ({ product, handleClick }) => {
+export const ProductUpgradeSplash = ({ product}) => {
   const [isUpgradeModalOpen, setUpgradeModalOpen] = useState(false);
   const { name, color, description, price, usage } = product;
 
   return (
     <>
-      <CardModal isOpen={isUpgradeModalOpen} handleClose={() => setUpgradeModalOpen(false)}/>
+      <CardModal
+        isOpen={isUpgradeModalOpen}
+        handleClose={() => setUpgradeModalOpen(false)}
+      />
       <Box display="flex">
         <Box flex={1}>
           <Box display="flex" alignItems="center" mb={2}>

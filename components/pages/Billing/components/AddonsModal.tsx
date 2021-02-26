@@ -16,7 +16,7 @@ import { fetchAddons } from "services/api";
 export const AddonsModal = ({ isOpen, handleClose }) => {
   const addons = fetchAddons();
   return (
-    <Modal isOpen={isOpen} maxW="4xl" handleClose={handleClose}>
+    <Modal isOpen={isOpen} size="4xl" handleClose={handleClose}>
       <ModalHeader>Addons</ModalHeader>
       <ModalBody>
         {addons.map((addon) => {

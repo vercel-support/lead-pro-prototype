@@ -1,9 +1,9 @@
 import { Box } from "components";
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Close } from "components/atoms";
 
 interface ModalContext {
-  handleClose: Function;
+  handleClose: any;
   isOpen: boolean;
 }
 
@@ -54,10 +54,16 @@ export const ModalBody = ({ children }) => {
 };
 
 export const ModalHeader = ({ children }) => {
-
-  
   return (
-    <Box borderBottom="1px solid" px={6} py={4} fontSize="lg" display="flex" borderColor="gray.200" alignItems="center">
+    <Box
+      borderBottom="1px solid"
+      px={6}
+      py={4}
+      fontSize="lg"
+      display="flex"
+      borderColor="gray.200"
+      alignItems="center"
+    >
       {children}
       <ModalClose />
     </Box>
@@ -66,16 +72,23 @@ export const ModalHeader = ({ children }) => {
 
 export const ModalFooter = ({ children }) => {
   return (
-    <Box bg="gray.50" borderTop="1px solid" px={6} py={4} fontSize="lg" display="flex" borderColor="gray.200">
+    <Box
+      bg="gray.50"
+      borderTop="1px solid"
+      px={6}
+      py={4}
+      fontSize="lg"
+      display="flex"
+      borderColor="gray.200"
+    >
       {children}
     </Box>
   );
 };
 
 export const ModalClose = () => {
+  const { handleClose } = useContext(ModalContext);
 
-  const {handleClose} = useContext(ModalContext);
-  
   return (
     <Box
       cursor="pointer"
@@ -88,7 +101,7 @@ export const ModalClose = () => {
       ml="auto"
       rounded="sm"
       _hover={{
-        bg: "gray.100"
+        bg: "gray.100",
       }}
     >
       <Close />
