@@ -24,7 +24,7 @@ export const LayoutSettings = ({ title, children }) => {
           <InternalLink href={"/account/offices"}>
             <TabItem isActive={route === "/account/offices" && true}>Offices</TabItem>
           </InternalLink>
-          <InternalLink href={"/account/products"}>
+          <InternalLink href={"/account/users"}>
             <TabItem>Users</TabItem>
           </InternalLink>
         </Tabs>

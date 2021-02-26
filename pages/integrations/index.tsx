@@ -7,16 +7,20 @@ import {
   Card,
   Modal,
   Image,
+  Input,
+  ModalFooter,
+  ModalHeader,
   InternalLink,
   Toggle,
 } from "components";
 import { useState } from "react";
-import { Column, Grid, PageHeader } from "components/molecules";
+import { Column, Grid, ModalBody, PageHeader } from "components/molecules";
 import _ from "underscore";
 import { AspectRatio } from "@chakra-ui/react";
 import { fetchIntegrations, fetchIntegrationsCategories } from "services/api";
 import { paths } from "constants/paths";
 import { Integration } from "components/organisms/Integration";
+import { ModalClose } from "components/molecules/Modal";
 
 const Logo = ({ imageSrc }) => {
   return (
@@ -38,23 +42,19 @@ const Logo = ({ imageSrc }) => {
 const IntegrationCard = ({ integration }) => {
   const { name, logo, description, activatedAt } = integration;
   return (
-    
-      <Card>
-        <Box display="flex" w="full" p={4}>
-          <Logo imageSrc={`/integrations/${logo}`} />
-
-          <Box pl={4} display="flex" alignItems="center">
-            <Box>
-              <Box mb={2}>{name}</Box>
-
-              <Box ml="auto">
-                <Toggle isChecked={true} />
-              </Box>
+    <Card>
+      <Box display="flex" w="full" p={4}>
+        <Logo imageSrc={`/integrations/${logo}`} />
+        <Box pl={4} display="flex" alignItems="center">
+          <Box>
+            <Box mb={2}>{name}</Box>
+            <Box ml="auto">
+              <Toggle isChecked={true} />
             </Box>
           </Box>
         </Box>
-      </Card>
-    
+      </Box>
+    </Card>
   );
 };
 
@@ -78,6 +78,7 @@ const IntegrationListItem = ({ integration, handleModal }) => {
               <Toggle isChecked={activatedAt} />
             ) : (
               <Button
+                size="sm"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleModal();
@@ -133,16 +134,35 @@ const Integrations = () => {
   return (
     <Box width="100%" height="full" overflow="scroll">
       <PageHeader title="Integrations" />
-
       <Modal isOpen={isModalOpen} handleClose={() => setModalOpen(false)}>
-        <Box mb={12}>OAuth connect....</Box>
-        <InternalLink href={paths.INTEGRATIONS_INDEX + "/mailchimp"}>
-          <Button variant="primary">Go to integration</Button>
-        </InternalLink>
+        <ModalHeader>Connect your Drip account</ModalHeader>
+        <ModalBody>
+          <Stack spacing={4}>
+          <Input placeholder="API key" />
+          <Input placeholder="API secret" />
+          </Stack>
+        </ModalBody>
+        <ModalFooter>
+          <Box ml="auto">
+            <InternalLink href={paths.INTEGRATIONS_INDEX + "/mailchimp"}>
+              <Button variant="primary" size="md">
+                Connect
+              </Button>
+            </InternalLink>
+          </Box>
+        </ModalFooter>
       </Modal>
-
-      <Modal isOpen={isIntegrationOpen} handleClose={() => setIntegrationOpen(false)} maxW="3xl">
-        <Integration />
+      <Modal
+        isOpen={isIntegrationOpen}
+        handleClose={() => setIntegrationOpen(false)}
+        size="3xl"
+      >
+        <Box position="absolute" top={3} right={3}>
+          <ModalClose />
+        </Box>
+        <ModalBody>
+          <Integration />
+        </ModalBody>
       </Modal>
       <PageBody>
         <Container>
@@ -155,13 +175,12 @@ const Integrations = () => {
                 return (
                   <Column>
                     <Box onClick={() => setIntegrationOpen(true)}>
-                    <IntegrationCard integration={integration} />
-                    </Box>                 
+                      <IntegrationCard integration={integration} />
+                    </Box>
                   </Column>
                 );
-              }
-              else {
-                return <></>
+              } else {
+                return <></>;
               }
             })}
           </Grid>

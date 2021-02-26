@@ -1,13 +1,13 @@
 import { Tabs, TabItem, Box, Container, Stack } from "components";
 
-export const DividerHeader = ({ title }) => {
+export const DividerHeader = ({ title, fontSize = "sm" }) => {
     return (
       <Box display="flex" alignItems="center" w="full">
         <Box
           my={4}
           textTransform="uppercase"
-          letterSpacing="wide"
-          fontSize="xs"
+          letterSpacing="widest"
+          fontSize={fontSize}
           whiteSpace="nowrap"
           mr={2}
           color="gray.400"

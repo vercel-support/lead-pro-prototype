@@ -25,7 +25,7 @@ const Logo = ({ imageSrc }) => {
 const Field = () => {
   return (
     <>
-      <Box fontSize="sm" lineHeight="none" fontWeight="semibold">
+      <Box fontSize="sm" lineHeight="none" fontWeight="semibold" mb={1}>
         Mailchimp list
       </Box>
       <Box mb={2} color="gray.400" fontSize="sm">
@@ -41,40 +41,42 @@ const Field = () => {
 export const Integration = () => {
   return (
     <>
-      
-        <Box mb={6}>
-          <InternalLink href={paths.INTEGRATIONS_INDEX}>
-            <Box display="flex" alignItems="center">
-              <Box mr={3}>
-                <HiArrowLeft />
-              </Box>
-              Integrations
+      <Box mb={6}>
+        <InternalLink href={paths.INTEGRATIONS_INDEX}>
+          <Box display="flex" alignItems="center">
+            <Box mr={3}>
+              <HiArrowLeft />
             </Box>
-          </InternalLink>
-        </Box>
-        <Box display="flex">
-          <Box minW={32}>
-            <Logo imageSrc="/integrations/mailchimp.png" />
+            Integrations
           </Box>
-          <Box pl={6}>
-            <Box fontSize="sm" color="gray.400">
-              Marketing
-            </Box>
-            <Box fontSize="2xl" fontWeight="semibold">
-              Mailchimp
-            </Box>
-            <Box fontWeight="normal" mb={3} fontSize="sm">
-              Discover how people find and interact with your typeform. Get the
-              data you need to measure campaigns, improve conversions, and more.
-            </Box>
-            <Button>Disconnect</Button>
-            <Divider my={6} />
-            <Field />
-            <Divider my={6} />
-            <Button variant="primary">Save</Button>
+        </InternalLink>
+      </Box>
+      <Box display="flex">
+        <Box minW={32}>
+          <Logo imageSrc="/integrations/mailchimp.png" />
+        </Box>
+        <Box pl={6}>
+          <Box fontSize="xs" color="blue.500" textTransform="uppercase" letterSpacing="wide" fontWeight="bold">
+            Marketing
+          </Box>
+          <Box fontSize="2xl" fontWeight="semibold">
+            Mailchimp
+          </Box>
+          <Box fontWeight="normal" mb={3} fontSize="sm">
+            Discover how people find and interact with your typeform. Get the
+            data you need to measure campaigns, improve conversions, and more.
+          </Box>
+          <Button>Disconnect</Button>
+          <Divider my={6} />
+          <Field />
+          <Divider my={6} />
+          <Box display="flex">
+            <Box ml="auto">
+          <Button variant="primary" size="md">Save</Button>
+          </Box>
           </Box>
         </Box>
-      n
+      </Box>
     </>
   );
 };

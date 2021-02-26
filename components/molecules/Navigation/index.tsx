@@ -1,7 +1,6 @@
 import { Box, Table, Avatar, Image } from "components";
 import {
-  HiOutlineArchive,
-  HiChevronDown,
+
   HiMenu,
   HiSelector,
 } from "react-icons/hi";
@@ -9,18 +8,17 @@ import {
   BiCog,
   BiAward,
   BiChart,
-  BiBuilding,
-  BiUser,
-  BiArchive,
-  BiNotification,
-  BiDollar,
-  BiBookOpen,
+
   BiCheckCircle,
-  BiFootball,
+  
   BiPlug,
+  BiPhone,
+  BiHome,
+  BiMessage,
 } from "react-icons/bi";
 import React from "react";
 import { InternalLink } from "components/atoms";
+import {paths} from "constants/paths";
 
 const horizontalPadding = 4;
 
@@ -130,7 +128,7 @@ const NavigationLink = ({
 
 const NavigationSection = ({ children }) => {
   return (
-    <Box borderBottom="1px solid" borderColor="gray.100" py={3}>
+    <Box py={3}>
       {children}
     </Box>
   );
@@ -150,12 +148,27 @@ export const Navigation = () => {
         <NavigationHeader />
         <NavigationAccountSelect />
         <InternalLink href="/leads/unread">
-          <NavigationLink isActive={true} icon={BiCheckCircle}>
+          <NavigationLink icon={BiCheckCircle}>
             Leads
           </NavigationLink>
         </InternalLink>
+        <InternalLink href={paths.ANALYTICS_INDEX}>
         <NavigationLink icon={BiChart}>Analytics</NavigationLink>
+        </InternalLink>
+        <InternalLink href={paths.ACHIEVEMENTS_INDEX}>
         <NavigationLink icon={BiAward}>Achievements</NavigationLink>
+        </InternalLink>
+      </NavigationSection>
+      <NavigationSection>
+      <InternalLink href={paths.PRODUCTS_INDEX + "/autocaller"}>
+          <NavigationLink icon={BiPhone}>Autocaller</NavigationLink>
+        </InternalLink>
+        <InternalLink href={paths.PRODUCTS_INDEX + "/valuation-tool"}>
+          <NavigationLink icon={BiHome}>Valuation Tool</NavigationLink>
+        </InternalLink>
+        <InternalLink href={paths.PRODUCTS_INDEX + "/lead-responder"}>
+          <NavigationLink icon={BiMessage}>Lead Responder</NavigationLink>
+        </InternalLink>
       </NavigationSection>
       <NavigationSection>
         <InternalLink href="/account">
@@ -165,7 +178,7 @@ export const Navigation = () => {
           <NavigationLink icon={BiPlug}>Integrations</NavigationLink>
         </InternalLink>
       </NavigationSection>
-      <Box mt="auto" px={horizontalPadding}>
+      <Box mt="auto" px={horizontalPadding} cursor="pointer">
         <Box display="flex" alignItems="center">
           <Avatar
             size="xxs"

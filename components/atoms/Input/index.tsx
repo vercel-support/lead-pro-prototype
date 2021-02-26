@@ -1,10 +1,16 @@
 import { Box } from "components";
 
-export const Input = ({defaultValue}) => {
+export const Input = ({
+  defaultValue,
+  placeholder,
+}: {
+  defaultValue?: string;
+  placeholder?: string;
+}) => {
   return (
     <Box
       as="input"
-      placeholder="test"
+      placeholder={placeholder}
       border="1px solid"
       borderColor="gray.200"
       rounded="md"

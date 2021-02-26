@@ -95,15 +95,24 @@ export const fetchAddons = () => {
     {
       name: "Lead Responder",
       isActive: true,
+      slug: "lead-responder",
+      icon: "HiPhone",
       description:
         "Leads portals & the agent’s website receive email and text message replies, with a custom questionnaire to identify vendor, mortgage and landlord leads.",
       price: 39,
       color: "blue",
+      usage: {
+        type: "valuations",
+        allowance: 50,
+        used: 35,
+        feePerAdditionalUnit: 0.25,
+      },
     },
     {
       name: "Instant Valuation Tool",
       price: 50,
       color: "teal",
+      slug: "valuation-tool",
       description:
         "In 5 minutes agents can start converting unknown website visitors into valuation leads.  The tool can be used in social media and in google campaigns to generate vendor and landlord leads.",
       usage: {
@@ -115,6 +124,8 @@ export const fetchAddons = () => {
     },
     {
       name: "AutoCaller",
+      icon: "HiPhone",
+      slug: "autocaller",
       description:
         "High value email leads are converted from an email to a call, causing  the office phone to ring, connecting the agent directly to the lead, ahead of any competitors.",
       price: 82.5,
