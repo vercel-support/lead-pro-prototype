@@ -1,35 +1,27 @@
 import { Box, Table, Avatar, Image } from "components";
-import {
-
-  HiMenu,
-  HiSelector,
-} from "react-icons/hi";
+import { HiArrowsExpand, HiMenu, HiOutlineHome, HiSelector } from "react-icons/hi";
 import {
   BiCog,
   BiAward,
   BiChart,
-
   BiCheckCircle,
-  
   BiPlug,
   BiPhone,
   BiHome,
   BiMessage,
+  BiSlider,
+  BiArrowFromRight,
+  BiArrowFromLeft,
 } from "react-icons/bi";
-import React from "react";
+import React, { useState } from "react";
 import { InternalLink } from "components/atoms";
-import {paths} from "constants/paths";
+import { paths } from "constants/paths";
 
 const horizontalPadding = 4;
 
 const NavigationHeader = () => {
   return (
     <Box mb={4} display="flex" alignItems="center" px={horizontalPadding}>
-      <InternalLink href="/">
-        <Box width="120px">
-          <Image src="https://dashboard.lead.pro/images/leadpro-banner.png" />
-        </Box>
-      </InternalLink>
       <Box
         ml="auto"
         bg="gray.100"
@@ -112,6 +104,7 @@ const NavigationLink = ({
             w={6}
             h={6}
             mr={2}
+            opacity={0.75}
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -127,40 +120,68 @@ const NavigationLink = ({
 };
 
 const NavigationSection = ({ children }) => {
-  return (
-    <Box py={3}>
-      {children}
-    </Box>
-  );
+  return <Box py={3}>{children}</Box>;
 };
 
 export const Navigation = () => {
+  const [isExpanded, setExpanded] = useState(false);
   return (
     <Box
       width="220px"
       bg="gray.50"
       height="100%"
       display="flex"
+      borderRight="1px solid"
+      borderColor="gray.100"
+      marginLeft={isExpanded ? 0 : -220}
       flexDirection="column"
       pb={3}
+      position="relative"
+      zIndex={3}
     >
+      <Box
+        pos="absolute"
+        top={2}
+        right={-7}
+        w={5}
+        h={5}
+        bg="gray.100"
+        onClick={() => setExpanded(true)}
+        rounded="sm"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        cursor="pointer"
+        color="gray.400"
+        _hover={{
+          color: "gray.900",
+        }}
+      >
+        <BiArrowFromLeft />
+      </Box>
+      <Box w={7} h={7} pos="absolute" right={3} top={3} cursor="pointer" display="flex" rounded="md" justifyContent="center" alignItems="center" _hover={{
+        bg: "gray.100"
+      }}>
+      <Box onClick={() => setExpanded(false)}><BiArrowFromRight/></Box>
+      </Box>
       <NavigationSection>
-        <NavigationHeader />
-        <NavigationAccountSelect />
+        {/* <NavigationHeader /> */}
+        {/* <NavigationAccountSelect /> */}
+        <InternalLink href="/user/dashboard">
+          <NavigationLink icon={HiOutlineHome}>Dashboard</NavigationLink>
+        </InternalLink>
         <InternalLink href="/leads/unread">
-          <NavigationLink icon={BiCheckCircle}>
-            Leads
-          </NavigationLink>
+          <NavigationLink icon={BiCheckCircle}>Leads</NavigationLink>
         </InternalLink>
         <InternalLink href={paths.ANALYTICS_INDEX}>
-        <NavigationLink icon={BiChart}>Analytics</NavigationLink>
+          <NavigationLink icon={BiChart}>Analytics</NavigationLink>
         </InternalLink>
         <InternalLink href={paths.ACHIEVEMENTS_INDEX}>
-        <NavigationLink icon={BiAward}>Achievements</NavigationLink>
+          <NavigationLink icon={BiAward}>Achievements</NavigationLink>
         </InternalLink>
       </NavigationSection>
       <NavigationSection>
-      <InternalLink href={paths.PRODUCTS_INDEX + "/autocaller"}>
+        <InternalLink href={paths.PRODUCTS_INDEX + "/autocaller"}>
           <NavigationLink icon={BiPhone}>Autocaller</NavigationLink>
         </InternalLink>
         <InternalLink href={paths.PRODUCTS_INDEX + "/valuation-tool"}>

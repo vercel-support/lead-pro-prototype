@@ -11,14 +11,17 @@ export const Input = ({
     <Box
       as="input"
       placeholder={placeholder}
-      border="1px solid"
-      borderColor="gray.200"
+      // border="1px solid"
+      bg="gray.50"
+      // borderColor="gray.200"
       rounded="md"
       px={3}
-      py={2}
+      h={8}
       w="full"
+      fontSize="sm"
       defaultValue={defaultValue}
-      lineHeight="none"
+      lineHeight="1.5"
+      pb="2px"
       _focus={{ outline: "none", borderColor: "teal.500" }}
     />
   );

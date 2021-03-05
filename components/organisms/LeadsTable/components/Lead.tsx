@@ -16,8 +16,11 @@ import { TeamMember, TeamMemberDropdownItem } from "./TeamMember";
 import { DropdownMenu, Dropdown, DropdownMenuItem } from "components/molecules";
 import { ILead } from "interfaces/lead.interface";
 import {
+  HiBell,
   HiChevronDown,
   HiOutlineArchive,
+  HiOutlineClock,
+  HiOutlineTrash,
   HiSelector,
   HiStop,
 } from "react-icons/hi";
@@ -59,11 +62,7 @@ const additional = [
 ];
 
 const HeaderActions = ({ children }) => {
-  return (
-    <Box display="flex" ml="auto">
-      {children}
-    </Box>
-  );
+  return <Box display="flex">{children}</Box>;
 };
 
 const HeaderAction = ({ children }) => {
@@ -92,19 +91,21 @@ const Header = () => {
     <Box
       height="60px"
       minHeight="60px"
-      borderBottom="1px solid"
       display="flex"
       alignItems="center"
-      px={6}
+      px={3}
       borderColor="gray.100"
+      bg="gray.50"
     >
-      Karl Fisher
       <HeaderActions>
         <HeaderAction>
-          <BiArchive />
+          <HiOutlineClock />
         </HeaderAction>
         <HeaderAction>
-          <BiArrowFromLeft />
+          <HiOutlineTrash />
+        </HeaderAction>
+        <HeaderAction>
+          <BiArchive />
         </HeaderAction>
       </HeaderActions>
     </Box>
@@ -123,10 +124,11 @@ const Section = ({ title, children, icon }) => {
         _hover={{ color: "blue.500" }}
         cursor="pointer"
       >
-        {/* <Box
-          mr={2}
+        <Box
+          mr={1}
           display="flex"
-          bg="gray.50"
+          // bg="gray.50"
+          opacity={0.5}
           w={6}
           h={6}
           alignItems="center"
@@ -134,16 +136,15 @@ const Section = ({ title, children, icon }) => {
           rounded="md"
         >
           {icon && React.createElement(icon)}
-        </Box> */}
-        <Box fontSize="md" position="relative" mr={1} left={-1}>
-        <Box transform={isOpen === true ? "rotate(90deg)" : "rotate(0)"}>
+        </Box>
+        {/* <Box fontSize="md" position="relative" mr={1} left={-1}> */}
+        {/* <Box transform={isOpen === true ? "rotate(90deg)" : "rotate(0)"}>
           <BiCaretRight/>
           </Box>
-        </Box>
+        </Box> */}
         <Box fontWeight="semibold" fontSize="base">
           {title}
         </Box>
-        
       </Box>
       {isOpen && children}
     </Box>
@@ -184,7 +185,13 @@ const AdditionalLead = ({ lead }) => {
       <Box mr={2}>
         <Office>{lead.office}</Office>
       </Box>
-      <Label color={type === "Vendor" ? "blue" : type === "Mortgage" ? "orange" : "green"}>{type}</Label>
+      <Label
+        color={
+          type === "Vendor" ? "blue" : type === "Mortgage" ? "orange" : "green"
+        }
+      >
+        {type}
+      </Label>
 
       <Box ml="auto" color="gray.400" display="flex">
         <Box display="flex" alignItems="center">
@@ -228,6 +235,10 @@ const Status = () => {
   );
 };
 
+const Activity = () => {
+  return <Box></Box>;
+};
+
 const Office = ({ children }) => {
   return (
     <Box
@@ -248,10 +259,10 @@ const Office = ({ children }) => {
 };
 
 export const Lead = ({
-  isOpen,
+  
   lead = {} as ILead,
 }: {
-  isOpen: boolean;
+  
   lead?: ILead;
 }) => {
   const { person } = lead;
@@ -268,7 +279,7 @@ export const Lead = ({
           <Box p={5} flex={1} overflow="scroll">
             <Stack spacing={6}>
               <Status />
-              <Section title="Details" icon={BiListPlus}>
+              <Section title="Details" icon={HiBell}>
                 <Attribute label="Date" value="Thu 4/02/21 @ 09:42" />
                 <Attribute
                   label="Responsible"
@@ -327,9 +338,9 @@ export const Lead = ({
               </Section>
               <Section title="Other leads" icon={BiLabel}>
                 <Stack spacing={2}>
-                {additional.map((additional) => {
-                  return <AdditionalLead lead={additional} />;
-                })}
+                  {additional.map((additional) => {
+                    return <AdditionalLead lead={additional} />;
+                  })}
                 </Stack>
               </Section>
               <Section title="Contact" icon={BiUser}>

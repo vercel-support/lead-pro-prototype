@@ -50,9 +50,8 @@ export const fetchPlans = () => {
     {
       name: "Starter",
       description:
-      
         "For estate agents who want a few extra instructions each month.",
-        price: "Free",
+      price: "Free",
       count: 12,
       features: [
         "Instant online valuation tool",
@@ -149,6 +148,31 @@ export const fetchAddons = () => {
       color: "orange",
       description:
         "Lead Generation: Facebook Advertising, Instagram Advertising",
+    },
+  ];
+};
+
+export const fetchOffices = () => {
+  return [
+    {
+      name: "Oxford",
+      color: "blue",
+    },
+    {
+      name: "Rye",
+      color: "yellow",
+    },
+    {
+      name: "Bristol",
+      color: "purple",
+    },
+    {
+      name: "Bath",
+      color: "red",
+    },
+    {
+      name: "Norwich",
+      color: "teal",
     },
   ];
 };
@@ -269,8 +293,8 @@ export const fetchLeads = () => {
     {
       id: 3971462,
       status: 50,
-      createdAt: "2021-02-04T09:42:14.878Z",
-      updatedAt: "2021-02-04T09:42:14.878Z",
+      createdAt: "2021-02-01T09:42:14.878Z",
+      updatedAt: "2021-02-01T09:42:14.878Z",
       source: "ivt",
       type: "vendor",
       email: "karlanthonyfisher@gmail.com",

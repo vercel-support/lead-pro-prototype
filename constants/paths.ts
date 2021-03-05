@@ -4,5 +4,6 @@ export enum paths {
   PLANS_INDEX = "/account/plans",
   PRODUCTS_INDEX = "/products",
   ANALYTICS_INDEX = "/analytics",
+  LEADS_INDEX = "/leads",
   ACHIEVEMENTS_INDEX = "/achievements"
 }

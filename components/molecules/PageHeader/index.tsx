@@ -34,3 +34,20 @@ export const PageHeader = ({
     </Box>
   );
 };
+
+
+// const PageHeader = () => {
+//   return (
+//     <Box
+//       minHeight="60px"
+//       borderBottom="1px solid"
+//       display="flex"
+//       px={6}
+//       fontSize="lg"
+//       alignItems="center"
+//       borderColor="gray.100"
+//     >
+//       Leads
+//     </Box>
+//   );
+// };

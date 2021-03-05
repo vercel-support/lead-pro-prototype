@@ -15,7 +15,7 @@
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"preserveSymlinks": false,
-		"preserveConstEnums": false,
+		"preserveConstEnums": true,
 		"skipLibCheck": true,
 		"baseUrl": ".",
 		"typeRoots": ["./node_modules/@types", "./typings"],

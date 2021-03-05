@@ -4,13 +4,14 @@ import { Box, AspectRatio, Image } from "components";
 import { HiOutlineUser } from "react-icons/hi";
 
 const sizes = {
-  xxxs: "20px",
-  xxs: "28px",
-  xs: "36px",
-  sm: "45px",
-  base: "50px",
-  md: "60px",
-  lg: "80px",
+  xxxxs: { size: "16px", fontSize: "xs" },
+  xxxs: { size: "20px", fontSize: "xs" },
+  xxs: { size: "28px", fontSize: "sm" },
+  xs: { size: "36px", fontSize: "sm" },
+  sm: { size: "45px", fontSize: "md" },
+  base: { size: "50px", fontSize: "md" },
+  md: { size: "60px", fontSize: "lg" },
+  lg: { size: "80px", fontSize: "lg" },
 };
 
 export const Avatar = ({
@@ -36,17 +37,20 @@ export const Avatar = ({
 
   return (
     <AspectRatio
-      width={selectedSize}
-      height={selectedSize}
+      width={selectedSize.size}
+      height={selectedSize.size}
       ratio={1}
+      fontSize={selectedSize.fontSize}
       rounded="full"
+      fontWeight="medium"
+      lineHeight="none"
       display="inline-block"
       verticalAlign="middle"
       bg={colors[color] && colors[color][100]}
       color={colors[color] && colors[color][700]}
       overflow="hidden"
       {...(style === "outline" && {
-        border: "1px solid"
+        border: "1px solid",
       })}
     >
       {icon === true ? (

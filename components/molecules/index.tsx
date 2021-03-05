@@ -8,6 +8,7 @@ export { PageBody } from "./PageBody";
 export { PageSection } from "./PageSection";
 export { ProgressBar } from "./ProgressBar";
 export { Grid, Column } from "./Grid";
+export {HStack} from "./HStack";
 export { Navigation } from "./Navigation";
 export { Table } from "./Table";
 export { Tags } from "./Tags";
@@ -19,5 +20,8 @@ export {
   Dropdown,
   DropdownContext,
   DropdownMenu,
+  DropdownMenuHeader,
+  DropdownMenuHeading,
+  DropdownMenuDivider,
   DropdownMenuItem,
 } from "./Dropdown";

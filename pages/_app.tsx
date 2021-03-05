@@ -27,11 +27,15 @@ function CustomApp({ Component, pageProps }) {
       </Head>
 
       <Box display="flex" overflow="hidden" height="100vh">
-      <Navigation />
-      <Box flex={1} overflow="hidden" display="flex" roundedTopLeft="md" roundedBottomLeft="md" bg="white" shadow="0 -3px 5px rgba(00,00,00,0.15)">
-
-      <Component {...pageProps} />
-      </Box>
+        <Navigation />
+        <Box
+          flex={1}
+          overflow="hidden"
+          display="flex"
+          bg="white"
+        >
+          <Component {...pageProps} />
+        </Box>
       </Box>
     </ChakraProvider>
   );
