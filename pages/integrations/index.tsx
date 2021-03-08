@@ -131,10 +131,10 @@ const Sidebar = () => {
         <Box mb={2}>Categories</Box>
         <Stack spacing={1}>
           <SidebarLink label="All" count={12} isActive={true} />
-          {categories.map((category) => {
+          {/* {categories.map((category) => {
             const { name, count } = category;
             return <SidebarLink label={name} count={count} />;
-          })}
+          })} */}
         </Stack>
         <Box mt={4}>
           <Box

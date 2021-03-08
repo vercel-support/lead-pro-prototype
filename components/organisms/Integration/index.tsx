@@ -24,34 +24,58 @@ const Logo = ({ imageSrc }) => {
   );
 };
 
-const Field = ({ label, description, component }) => {
+const Field = ({
+  label,
+  description,
+  component,
+}: {
+  label: string;
+  description?: string;
+  component: any;
+}) => {
   return (
     <>
       <Box fontSize="sm" lineHeight="none" fontWeight="semibold" mb={1}>
         {label}
       </Box>
-      <Box mb={2} color="gray.400" fontSize="sm">
-        {description}
-      </Box>
+      {description && (
+        <Box mb={2} color="gray.400" fontSize="sm">
+          {description}
+        </Box>
+      )}
       <Box>{component}</Box>
     </>
   );
 };
 
-const Section = ({ title, children }) => {
+const Section = ({ title, children }: { title?: string; children: any }) => {
   return (
     <Box>
-      <Heading fontSize="lg" mb={3} fontWeight="semibold">
-        {title}
-      </Heading>
+      {title && (
+        <Heading fontSize="lg" mb={3} fontWeight="semibold">
+          {title}
+        </Heading>
+      )}
       {children}
     </Box>
   );
 };
 
-const RadioField = ({ label, component, isLast }) => {
+const RadioField = ({
+  label,
+  component,
+}: {
+  label: string;
+  component: any;
+}) => {
   return (
-    <Box py={4} borderTop="1px solid" borderColor="gray.100" display="flex" alignItems="center">
+    <Box
+      py={4}
+      borderTop="1px solid"
+      borderColor="gray.100"
+      display="flex"
+      alignItems="center"
+    >
       <Box fontSize="base">{label}</Box>
       <Box ml="auto">{component}</Box>
     </Box>
@@ -81,8 +105,8 @@ export const Integration = () => {
           <Box fontWeight="normal" mb={3} fontSize="md">
             Discover how people find and interact with your typeform. Get the
             data you need to measure campaigns, improve conversions, and more.
-          </Box> 
-          <Divider  my={8} />
+          </Box>
+          <Divider my={8} />
           <Stack spacing={8}>
             <Section title="Authentication">
               <Field
@@ -105,7 +129,6 @@ export const Integration = () => {
                 component={<Toggle isChecked={true} />}
               />
               <RadioField
-              isLast
                 label="Disconnect integration"
                 component={<Button>Disconnect</Button>}
               />
