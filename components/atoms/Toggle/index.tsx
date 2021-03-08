@@ -18,6 +18,7 @@ export const Toggle = ({ isChecked, size = "md" }) => {
     <Box
       width={selectedSize.width}
       h={selectedSize.height}
+      cursor="pointer"
       bg={isChecked ? "green.500" : "gray.200"}
       //   border="1px solid"
       rounded="full"

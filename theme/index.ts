@@ -12,7 +12,7 @@ export const theme = extendTheme({
   },
   fonts: {
     body: "system-ui, sans-serif",
-    heading: "Georgia, serif",
+    heading: "system-ui, sans-serif",
     mono: "Menlo, monospace",
   },
   colors: {

@@ -11,6 +11,7 @@ export { Divider } from "./Divider";
 export { Label } from "./Label";
 export { Image } from "./Image";
 export { Input } from "./Input";
+export {Heading} from "./Heading";
 export { Tag } from "./Tag";
 export { Toggle } from "./Toggle";
 export { InternalLink } from "./InternalLink";

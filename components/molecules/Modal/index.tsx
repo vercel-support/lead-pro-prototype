@@ -49,8 +49,8 @@ export const Modal = ({ children, handleClose, isOpen, size = "md" }) => {
   );
 };
 
-export const ModalBody = ({ children }) => {
-  return <Box p={6}>{children}</Box>;
+export const ModalBody = ({ children, padding = 6 }) => {
+  return <Box p={padding}>{children}</Box>;
 };
 
 export const ModalHeader = ({ children }) => {

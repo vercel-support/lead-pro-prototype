@@ -28,7 +28,7 @@ const Logo = ({ imageSrc }) => {
       bg="gray.100"
       w={16}
       h={16}
-      rounded="full"
+      rounded="md"
       border="1px solid"
       borderColor="gray.100"
       ratio={16 / 9}
@@ -58,16 +58,16 @@ const IntegrationCard = ({ integration }) => {
   );
 };
 
-const IntegrationListItem = ({ integration, handleModal }) => {
+const IntegrationListItem = ({ integration, handleModal, handleShowIntegration }) => {
   const { name, logo, description, activatedAt } = integration;
   return (
     <Card>
-      <Box display="flex" w="full" p={4}>
+      <Box display="flex" w="full" p={4} onClick={() => handleShowIntegration()} cursor="pointer">
         <Box flex={1}>
           <Logo imageSrc={`/integrations/${logo}`} />
         </Box>
         <Box pl={4} display="flex" alignItems="center">
-          <Box>
+          <Box pr={16}>
             <Box fontSize="md">{name}</Box>
             <Box fontSize="sm" color="gray.500" mb={3} fontWeight="normal">
               {description}
@@ -124,6 +124,38 @@ const SidebarLink = ({
   );
 };
 
+const Sidebar = () => {
+  return (
+    <Box>
+      <Box minWidth="250px">
+        <Box mb={2}>Categories</Box>
+        <Stack spacing={1}>
+          <SidebarLink label="All" count={12} isActive={true} />
+          {categories.map((category) => {
+            const { name, count } = category;
+            return <SidebarLink label={name} count={count} />;
+          })}
+        </Stack>
+        <Box mt={4}>
+          <Box
+            bg="blue.50"
+            px={5}
+            py={4}
+            border="1px solid"
+            borderColor="blue.400"
+            fontSize="sm"
+            rounded="4px"
+            color="blue.900"
+          >
+            <Box>Can't find your integration?</Box>
+            <Box textDecoration="underline">Get in touch.</Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
 const Integrations = () => {
   const integrations = fetchIntegrations();
   const categories = fetchIntegrationsCategories();
@@ -138,14 +170,14 @@ const Integrations = () => {
         <ModalHeader>Connect your Drip account</ModalHeader>
         <ModalBody>
           <Stack spacing={4}>
-          <Input placeholder="API key" />
-          <Input placeholder="API secret" />
+            <Input placeholder="API key" />
+            <Input placeholder="API secret" />
           </Stack>
         </ModalBody>
         <ModalFooter>
           <Box ml="auto">
             <InternalLink href={paths.INTEGRATIONS_INDEX + "/mailchimp"}>
-              <Button variant="primary" size="md">
+              <Button variant="primary" size="sm">
                 Connect
               </Button>
             </InternalLink>
@@ -160,16 +192,13 @@ const Integrations = () => {
         <Box position="absolute" top={3} right={3}>
           <ModalClose />
         </Box>
-        <ModalBody>
+        <ModalBody padding={12}>
           <Integration />
         </ModalBody>
       </Modal>
       <PageBody>
-        <Container>
-          <Box mb={4} fontSize="xl">
-            Active integrations
-          </Box>
-          <Grid columns={3}>
+        <Container maxWidth="3xl">
+          {/* <Grid columns={3}>
             {_.sortBy(integrations, "name").map((integration) => {
               if (integration.activatedAt) {
                 return (
@@ -183,53 +212,23 @@ const Integrations = () => {
                 return <></>;
               }
             })}
-          </Grid>
+          </Grid> */}
           <Box display="flex">
-            <Box minWidth="250px">
-              <Box mb={2}>Categories</Box>
-              <Stack spacing={1}>
-                <SidebarLink label="All" count={12} isActive={true} />
-                {categories.map((category) => {
-                  const { name, count } = category;
-                  return <SidebarLink label={name} count={count} />;
-                })}
-              </Stack>
-              <Box mt={4}>
-                <Box
-                  bg="blue.50"
-                  px={5}
-                  py={4}
-                  border="1px solid"
-                  borderColor="blue.400"
-                  fontSize="sm"
-                  rounded="4px"
-                  color="blue.900"
-                >
-                  <Box>Can't find your integration?</Box>
-                  <Box textDecoration="underline">Get in touch.</Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box pl={12}>
-              <Stack>
-                {_.sortBy(integrations, "name").map((integration) => {
-                  const { activatedAt } = integration;
+            <Stack>
+              {_.sortBy(integrations, "name").map((integration) => {
+                const { activatedAt } = integration;
 
-                  if (!activatedAt) {
-                    return (
-                      <IntegrationListItem
-                        handleModal={(e) => {
-                          setModalOpen(true);
-                        }}
-                        integration={integration}
-                      />
-                    );
-                  } else {
-                    return <></>;
-                  }
-                })}
-              </Stack>
-            </Box>
+                return (
+                  <IntegrationListItem
+                    handleModal={(e) => {
+                      setModalOpen(true);
+                    }}
+                    handleShowIntegration={() => setIntegrationOpen(true)}
+                    integration={integration}
+                  />
+                );
+              })}
+            </Stack>
           </Box>
         </Container>
       </PageBody>

@@ -3,9 +3,11 @@ import { Box } from "components";
 export const Input = ({
   defaultValue,
   placeholder,
+  type = "text"
 }: {
   defaultValue?: string;
   placeholder?: string;
+  type?: string;
 }) => {
   return (
     <Box
@@ -17,6 +19,7 @@ export const Input = ({
       rounded="md"
       px={3}
       h={8}
+      type={type}
       w="full"
       fontSize="sm"
       defaultValue={defaultValue}

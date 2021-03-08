@@ -6,6 +6,7 @@ export {
   InternalLink,
   Image,
   Card,
+  Heading,
   Box, Button, Input, Divider,
   Toggle,
   
