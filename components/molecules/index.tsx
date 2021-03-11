@@ -17,6 +17,8 @@ export { Stack } from "./Stack";
 export { Tabs, TabItem } from "./Tabs";
 
 export {
+  Menu,
+  MenuList,
   Dropdown,
   DropdownContext,
   DropdownMenu,

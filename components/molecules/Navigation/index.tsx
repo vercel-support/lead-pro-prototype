@@ -139,7 +139,7 @@ export const Navigation = () => {
       position="relative"
       zIndex={3}
     >
-      <Box
+      {/* <Box
         pos="absolute"
         top={2}
         right={-7}
@@ -158,11 +158,11 @@ export const Navigation = () => {
         }}
       >
         <BiArrowFromLeft />
-      </Box>
+      </Box> */}
       <Box w={7} h={7} pos="absolute" right={3} top={3} cursor="pointer" display="flex" rounded="md" justifyContent="center" alignItems="center" _hover={{
         bg: "gray.100"
       }}>
-      <Box onClick={() => setExpanded(false)}><BiArrowFromRight/></Box>
+      {/* <Box onClick={() => setExpanded(false)}><BiArrowFromRight/></Box> */}
       </Box>
       <NavigationSection>
         {/* <NavigationHeader /> */}

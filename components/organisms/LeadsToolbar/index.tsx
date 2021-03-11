@@ -1,15 +1,8 @@
-import { Box, HStack, Input, Button } from "components";
+import { Box, HStack, Input, Button, Menu, MenuList } from "components";
 import React, { useState, useContext } from "react";
 import { LeadsTableContext } from "components/organisms/LeadsTable";
+import { LeadsFilter } from "components/organisms/LeadsFilter";
 
-import {
-  DropdownMenu,
-  Dropdown,
-  DropdownMenuItem,
-  DropdownMenuDivider,
-  DropdownMenuHeading,
-  Page,
-} from "components/molecules";
 import {
   HiViewBoards,
   HiMail,
@@ -17,9 +10,16 @@ import {
   HiViewGrid,
   HiScale,
   HiSelector,
+  HiChevronRight,
+  HiSearch,
+  HiFilter,
 } from "react-icons/hi";
 
 import _ from "underscore";
+import { InputGroup, InputLeftElement } from "@chakra-ui/input";
+import { MenuButton } from "@chakra-ui/menu";
+import { Center } from "@chakra-ui/layout";
+import { DropdownMenuItem } from "components/molecules";
 
 const Views = [
   {
@@ -39,7 +39,7 @@ const Views = [
   },
 ];
 
-const TableButton = ({ icon, children }: {icon?: any, children?: any}) => {
+const TableButton = ({ icon, children }: { icon?: any; children?: any }) => {
   return (
     <Box
       bg="gray.50"
@@ -77,40 +77,55 @@ export const LeadsToolbar = () => {
       borderBottom="1px solid"
       borderColor="gray.100"
     >
-      
-        {/* <Box mr={3}>
-          <Dropdown>
-            <TableButton icon={HiScale}>View</TableButton>
-            <DropdownMenu width={200}>
-              <DropdownMenuHeading>Layout</DropdownMenuHeading>
-              {Views.map((view) => {
-                return (
-                  <DropdownMenuItem
-                    icon={<ViewIcon icon={view.icon} />}
-                    onClick={() => handleSetView(view.name)}
-                  >
-                    {view.name}
-                  </DropdownMenuItem>
-                );
-              })}
-              <DropdownMenuDivider />
-              <DropdownMenuHeading>Section by</DropdownMenuHeading>
-              <DropdownMenuItem onClick={() => handleSetSection("none")}>Default (none)</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => handleSetSection("createdAt")}>Due date</DropdownMenuItem>
-            </DropdownMenu>
-          </Dropdown>
-        </Box> */}
-        <Box flex={1} mr={3}>
-        <Input placeholder="Search leads" />
+      <Box flex={1} mr={3} display="flex" maxW="sm">
+        <Box mr={2} display="flex" alignItems="center">
+          <Menu>
+            <MenuButton bg="gray.50" height={9} w={9} rounded="md">
+              <Center>
+                <HiFilter />
+              </Center>
+            </MenuButton>
+            <MenuList>
+              <LeadsFilter />
+            </MenuList>
+          </Menu>
         </Box>
-      
+        <InputGroup size="sm">
+          <InputLeftElement>
+            <HiSearch />
+          </InputLeftElement>
+          <Input
+            placeholder="Search leads"
+            size="sm"
+            variant="filled"
+            rounded="md"
+            height={9}
+            bg="gray.50"
+          />
+        </InputGroup>
+      </Box>
+
       <Box ml="auto">
         <HStack>
-          <TableButton>Export</TableButton>
-          <Box>
+          {/* <Box>
             <Button variant="primary">Add lead</Button>
+          </Box> */}
+          <Box>
+          <Menu>
+          <MenuButton>
+            <Box display="flex" alignItems="center">
+              Show
+            </Box>
+          </MenuButton>
+          <MenuList>
+            <DropdownMenuItem>
+            Archived</DropdownMenuItem>
+            <DropdownMenuItem>Spam</DropdownMenuItem>
+          </MenuList>
+        </Menu>
           </Box>
         </HStack>
+     
       </Box>
     </Box>
   );

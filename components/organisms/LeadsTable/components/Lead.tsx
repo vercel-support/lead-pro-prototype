@@ -20,6 +20,7 @@ import {
   HiChevronDown,
   HiOutlineArchive,
   HiOutlineClock,
+  HiOutlineMail,
   HiOutlineTrash,
   HiSelector,
   HiStop,
@@ -89,13 +90,12 @@ const HeaderAction = ({ children }) => {
 const Header = () => {
   return (
     <Box
-      height="60px"
-      minHeight="60px"
+      height={14}
+      minHeight={14}
       display="flex"
       alignItems="center"
       px={3}
       borderColor="gray.100"
-      bg="gray.50"
     >
       <HeaderActions>
         <HeaderAction>
@@ -258,13 +258,15 @@ const Office = ({ children }) => {
   );
 };
 
-export const Lead = ({
-  
-  lead = {} as ILead,
-}: {
-  
-  lead?: ILead;
-}) => {
+const ActionButton = () => {
+  return (
+    <Box bg="gray.100" h={24} w="full">
+      <HiOutlineMail />
+    </Box>
+  );
+};
+
+export const Lead = ({ lead = {} as ILead }: { lead?: ILead }) => {
   const { person } = lead;
   const team = fetchTeam();
   return (
@@ -272,7 +274,7 @@ export const Lead = ({
       <Box bg="white" height="100%" display="flex" flexDirection="column">
         <Header />
         <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
-          <Tabs height="45px" isFitted={false} px={6}>
+          <Tabs height={16} isFitted={false} px={6}>
             <TabItem isActive={true}>Lead</TabItem>
             <TabItem>Notes</TabItem>
           </Tabs>
@@ -377,6 +379,9 @@ export const Lead = ({
               border="1px solid"
             />
           </Box>
+        </Box>
+        <Box>
+          <ActionButton />
         </Box>
       </Box>
     </>

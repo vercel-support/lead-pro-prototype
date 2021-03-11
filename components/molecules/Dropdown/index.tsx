@@ -1,56 +1,15 @@
 import { Box } from "components";
+export {MenuList, Menu} from "@chakra-ui/react";
 import { Children, useContext, useState } from "react";
 import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 
-export const Dropdown = ({
-  children,
-  showMode,
-  isOpen = false,
-  display
-}: {
-  children: any;
-  showMode?: any;
-  display?: any;
-  isOpen?: boolean;
-}) => {
-  const [_isOpen, setStatus] = useState(isOpen);
 
-  const handleToggle = (status) => {
-    setStatus(status);
-  };
-
+export const Dropdown = (props: any) => {
   return (
-    <Box display="inline-block">
-      <OutsideClickHandler
-        onOutsideClick={() => {
-          handleToggle(false);
-        }}
-      >
-        <DropdownContext.Provider
-          value={{
-            isOpen: _isOpen,
-            toggle: handleToggle,
-          }}
-        >
-          <Box
-            position="relative"
-            display="inline-block"
-            {...(showMode === "hover" && {
-              onMouseEnter: () => handleToggle(true),
-            })}
-            {...(showMode === "hover" && {
-              onMouseLeave: () => handleToggle(false),
-            })}
-            onClick={() => handleToggle(true)}
-          >
-            {children}
-          </Box>
-        </DropdownContext.Provider>
-      </OutsideClickHandler>
-    </Box>
-  );
-};
+    <div></div>
+  )
+}
 
 export const DropdownMenuHeading = ({ children }) => {
   return (
@@ -60,12 +19,13 @@ export const DropdownMenuHeading = ({ children }) => {
   );
 }
 
+
 export const DropdownMenuHeader= ({children}) => {
-  return <Box textAlign="center" fontSize="sm" lineHeight="none" pt={2} pb={2}>{children}</Box>;
+  return <Box textAlign="left" px={3} fontSize="xs" lineHeight="none" pt={2} pb={2} textTransform="uppercase" letterSpacing="wide" opacity={0.75}>{children}</Box>;
 };
 
 export const DropdownMenuDivider = () => {
-  return <Box borderTop="1px solid" borderColor="gray.100" my={1} />;
+  return <Box borderTop="1px solid" borderColor="gray.200" my={1} w="full" />;
 };
 
 export const DropdownMenuItem = ({
@@ -129,7 +89,7 @@ export const DropdownMenu = ({
   position?: positions;
   p?: any;
 }) => {
-  const { isOpen: _isOpen } = useContext(DropdownContext);
+  // const { isOpen: _isOpen } = useContext(DropdownContext);
 
   const pos =
     position === "bottomRight"
@@ -137,28 +97,8 @@ export const DropdownMenu = ({
       : { right: 0, top: "100%" };
 
   return (
-    <Box
-      position="absolute"
-      overflowY="hidden"
-      bg="white"
-      color="gray.900"
-      shadow="sm"
-      py={1}
-      rounded="md"
-      width={width}
-      border="1px solid"
-      borderColor="gray.100"
-      transition="all .25s"
-      transform={_isOpen === true ? "translateY(0)" : "translateY(10px)"}
-      transformOrigin="100% 0"
-      visibility={_isOpen === true ? "visible" : "hidden"}
-      opacity={_isOpen === true ? "1" : 0}
-      zIndex={999}
-      style={{
-        ...pos,
-      }}
-    >
+    <div>
       {children}
-    </Box>
+    </div>
   );
 };
