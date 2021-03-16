@@ -104,7 +104,7 @@ export const fetchAddons = () => {
       charges: [
         {
           type: "Variable",
-          unitName: "extra seats",
+          unitName: "Extra seats",
           unitPrice: 4,
           usage: 7,
         },

@@ -36,7 +36,7 @@ export const Addon = ({
     });
 
   return (
-    <Box p={6} rounded="md" bg="gray.50" borderTop="4px solid" borderColor={`${color}.500`}>
+    <Box p={6} rounded="md" bg="white" shadow="md" border="1px solid" borderColor="gray.100">
       <Box display="flex" fontSize="md" alignItems="center">
         <Box d="flex" mb={1} alignItems="center">
           <Box
@@ -101,7 +101,7 @@ export const Addon = ({
                   ) : type === "Variable" ? (
                     <Box display="flex">
                       <Box>
-                        {charge.usage} {charge.unitName} in use
+                        {charge.unitName} ({charge.usage} x £{charge.unitPrice})
                       </Box>
                       <Box ml="auto">£{charge.unitPrice * charge.usage} </Box>
                     </Box>
@@ -173,7 +173,7 @@ export const Addon = ({
         </Stack>
       </Box>
       <Box display="flex" mt={4} fontSize="sm" fontWeight="semibold">
-        Total
+        Subtotal
         <Box ml="auto">£{total}</Box>
       </Box>
     </Box>
