@@ -61,6 +61,7 @@ interface ILeadsTableContext {
   sectionBy: leadGroupings;
   handleSetView: Function;
   handleSetSection: Function;
+  handleStatusChange: Function;
 }
 
 export const DateColumn = ({ children }) => {
@@ -106,7 +107,7 @@ export const StatusColumn = ({ lead }) => {
   const { handleStatusChange } = useContext(LeadsTableContext);
   return (
     <Box flex={1} display="flex" alignItems="center">
-      <Menu display="flex" alignItems="center">
+      <Menu>
         <MenuButton>
           <Label color={status === "Contacted" ? "orange" : "red"}>
             {status}
@@ -330,6 +331,7 @@ export const LeadsTableContext = React.createContext<ILeadsTableContext>({
   sectionBy: "none",
   handleSetSection: () => {},
   handleSetView: () => {},
+  handleStatusChange: () => {}
 });
 
 export const LeadsTable = ({ status }) => {
@@ -378,7 +380,10 @@ export const LeadsTable = ({ status }) => {
         <Box flex={1}>
           <LeadsStages />
           <LeadsToolbar />
-          <LeadStatusChangeModal isOpen={isReasonModalOpen} handleClose={() => setReasonModalOpen(false)} />
+          <LeadStatusChangeModal
+            isOpen={isReasonModalOpen}
+            handleClose={() => setReasonModalOpen(false)}
+          />
           <Box bg="gray.50" flex={1}>
             <Box display="flex">
               {columns.map((column, i) => {

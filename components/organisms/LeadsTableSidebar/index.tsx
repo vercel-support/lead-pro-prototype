@@ -1,33 +1,39 @@
 
-const LeadsTableSidebar = () => {
-    return (
-      <Box
-        w={72}
-        h="full"
-        bg="white"
-        borderRight="1px solid"
-        borderColor="gray.100"
-        p={6}
-      >
-        <Stack spacing={1}>
-          <SidebarLink color="blue" isActive icon={<HiInbox />}>
-            Inbox
-          </SidebarLink>
-          <SidebarLink color="blue" icon={<HiBriefcase />}>
-            Business
-          </SidebarLink>
-          <SidebarLink color="blue" icon={<HiEmojiSad />}>
-            No business
-          </SidebarLink>
-        </Stack>
+export const Test = () => {
+  return (
+    <div></div>
+  )
+}
+
+// export const LeadsTableSidebar = () => {
+//     return (
+//       <Box
+//         w={72}
+//         h="full"
+//         bg="white"
+//         borderRight="1px solid"
+//         borderColor="gray.100"
+//         p={6}
+//       >
+//         <Stack spacing={1}>
+//           <SidebarLink color="blue" isActive icon={<HiInbox />}>
+//             Inbox
+//           </SidebarLink>
+//           <SidebarLink color="blue" icon={<HiBriefcase />}>
+//             Business
+//           </SidebarLink>
+//           <SidebarLink color="blue" icon={<HiEmojiSad />}>
+//             No business
+//           </SidebarLink>
+//         </Stack>
   
-        {LeadTypes.map((type) => {
-          const { name, color } = type;
-          return <DropdownMenuItem>{name}</DropdownMenuItem>;
-        })}
-      </Box>
-    );
-  };
+//         {LeadTypes.map((type) => {
+//           const { name, color } = type;
+//           return <DropdownMenuItem>{name}</DropdownMenuItem>;
+//         })}
+//       </Box>
+//     );
+//   };
 
 
 // const SidebarFilters = () => {

@@ -40,7 +40,7 @@ import { DropdownMenuItem } from "components/molecules";
 //   },
 // ];
 
-const DropdownButton = ({ icon, children }) => {
+const DropdownButton = ({ icon, children }: any) => {
   return (
     <Box
       display="flex"
