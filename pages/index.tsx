@@ -1,6 +1,7 @@
+import { LayoutDefault } from "components/layouts/LayoutDefault";
 import { Leads } from "components/pages/Leads";
 import React from "react";
 
 export default function PageDashboard() {
-  return <></>;
+  return <LayoutDefault>Dashboard comes here...</LayoutDefault>;
 }

@@ -12,8 +12,7 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 function CustomApp({ Component, pageProps }) {
-  const [isLauncherOpen, setLauncherState] = useState(false);
-
+  
   return (
     <ChakraProvider theme={theme}>
       <NextSeo title="Lead Pro" />
@@ -27,7 +26,6 @@ function CustomApp({ Component, pageProps }) {
       </Head>
 
       <Box display="flex" overflow="hidden" height="100vh">
-        <Navigation />
         <Box
           flex={1}
           overflow="hidden"

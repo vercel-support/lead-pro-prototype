@@ -4,9 +4,10 @@ import React from "react";
 import { LayoutSettings } from "components/layouts/LayoutSettings";
 
 
-export const Section = ({ title, children }) => {
+export const Section = ({ title, children }: any) => {
     return (
       <Box w="full">
+        {title &&
         <Box
           fontSize="2xl"
           fontWeight="bold"
@@ -16,7 +17,7 @@ export const Section = ({ title, children }) => {
           mb={0}
         >
           {title}
-        </Box>
+        </Box>}
         {children}
       </Box>
     );

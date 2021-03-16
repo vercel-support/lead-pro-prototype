@@ -27,7 +27,7 @@ export const Tabs = ({
 export const TabItem = ({
   children,
   isActive,
-  color = "blue",
+  color = "teal",
 }: {
   children: any;
   isActive?: any;

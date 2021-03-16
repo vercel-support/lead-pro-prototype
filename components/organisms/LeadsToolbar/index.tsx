@@ -2,7 +2,6 @@ import { Box, HStack, Input, Button, Menu, MenuList } from "components";
 import React, { useState, useContext } from "react";
 import { LeadsTableContext } from "components/organisms/LeadsTable";
 import { LeadsFilter } from "components/organisms/LeadsFilter";
-
 import {
   HiViewBoards,
   HiMail,
@@ -13,57 +12,140 @@ import {
   HiChevronRight,
   HiSearch,
   HiFilter,
+  HiUser,
+  HiOfficeBuilding,
+  HiTag,
 } from "react-icons/hi";
-
 import _ from "underscore";
 import { InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { MenuButton } from "@chakra-ui/menu";
 import { Center } from "@chakra-ui/layout";
 import { DropdownMenuItem } from "components/molecules";
 
-const Views = [
-  {
-    name: "Kanban",
-    color: "blue",
-    icon: <HiViewBoards />,
-  },
-  {
-    name: "List",
-    color: "blue",
-    icon: <HiViewGrid />,
-  },
-  {
-    name: "Table",
-    color: "blue",
-    icon: <HiViewList />,
-  },
-];
+// const Views = [
+//   {
+//     name: "Kanban",
+//     color: "blue",
+//     icon: <HiViewBoards />,
+//   },
+//   {
+//     name: "List",
+//     color: "blue",
+//     icon: <HiViewGrid />,
+//   },
+//   {
+//     name: "Table",
+//     color: "blue",
+//     icon: <HiViewList />,
+//   },
+// ];
 
-const TableButton = ({ icon, children }: { icon?: any; children?: any }) => {
+const DropdownButton = ({ icon, children }) => {
   return (
     <Box
-      bg="gray.50"
+      display="flex"
       rounded="md"
+      whiteSpace="nowrap"
       px={2}
-      h={8}
-      display="inline-flex"
-      alignItems="center"
-      fontSize="sm"
-      cursor="pointer"
       lineHeight="none"
-      _hover={{ bg: "gray.100" }}
+      h={8}
+      fontWeight="medium"
+      cursor="pointer"
+      color="gray.400"
+      fontSize="sm"
+      alignItems="center"
+      _hover={{
+        borderColor: "gray.300",
+        bg: "gray.50",
+      }}
     >
-      {icon && <Box mr={1}>{React.createElement(icon)}</Box>}
+      {icon && (
+        <Box
+          mr={2}
+          w={5}
+          h={5}
+          bg="gray.50"
+          color="gray.300"
+          rounded="md"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          {React.createElement(icon)}
+        </Box>
+      )}
       {children}
-      <Box ml={1}>
-        <HiSelector />
-      </Box>
     </Box>
   );
 };
 
-const ViewIcon = ({ icon, color }) => {
-  return <Box w={3}>{icon}</Box>;
+const LeadsActions = () => {
+  return (
+    <HStack>
+      <Box
+        whiteSpace="nowrap"
+        fontSize="sm"
+        opacity={0.5}
+        display="flex"
+        height="full"
+        alignItems="center"
+        fontWeight="normal"
+      >
+        Filter by
+      </Box>
+      <Menu>
+        <MenuButton>
+        <DropdownButton icon={HiUser}>Responsible</DropdownButton>
+        </MenuButton>
+        <MenuList>
+          <LeadsFilter />
+        </MenuList>
+      </Menu>
+
+      <Menu>
+        <MenuButton>
+          <DropdownButton icon={HiOfficeBuilding}>Offices</DropdownButton>
+        </MenuButton>
+        <MenuList>
+          <DropdownMenuItem>Archived</DropdownMenuItem>
+          <DropdownMenuItem>Spam</DropdownMenuItem>
+        </MenuList>
+      </Menu>
+
+      <Box mr={2} display="flex" alignItems="center">
+        <Menu>
+          <MenuButton>
+          <DropdownButton icon={HiTag}>Types</DropdownButton>
+          </MenuButton>
+          <MenuList>
+            <LeadsFilter />
+          </MenuList>
+        </Menu>
+      </Box>
+    </HStack>
+  );
+};
+
+const LeadsSearch = () => {
+  return (
+    <>
+      <InputGroup size="sm">
+        <InputLeftElement size="sm" opacity={0.3}>
+          <HiSearch />
+        </InputLeftElement>
+        <Input
+          placeholder="Search leads"
+          size="sm"
+          variant="filled"
+          rounded="md"
+          bg="gray.50"
+          _hover={{
+            bg: "white",
+          }}
+        />
+      </InputGroup>
+    </>
+  );
 };
 
 export const LeadsToolbar = () => {
@@ -71,61 +153,20 @@ export const LeadsToolbar = () => {
   return (
     <Box
       px={6}
-      h={16}
+      h={12}
       display="flex"
       alignItems="center"
+      // shadow="sm"
+      position="relative"
+      zIndex={2}
       borderBottom="1px solid"
+      borderTop="1px solid"
       borderColor="gray.100"
     >
-      <Box flex={1} mr={3} display="flex" maxW="sm">
-        <Box mr={2} display="flex" alignItems="center">
-          <Menu>
-            <MenuButton bg="gray.50" height={9} w={9} rounded="md">
-              <Center>
-                <HiFilter />
-              </Center>
-            </MenuButton>
-            <MenuList>
-              <LeadsFilter />
-            </MenuList>
-          </Menu>
-        </Box>
-        <InputGroup size="sm">
-          <InputLeftElement>
-            <HiSearch />
-          </InputLeftElement>
-          <Input
-            placeholder="Search leads"
-            size="sm"
-            variant="filled"
-            rounded="md"
-            height={9}
-            bg="gray.50"
-          />
-        </InputGroup>
-      </Box>
-
-      <Box ml="auto">
-        <HStack>
-          {/* <Box>
-            <Button variant="primary">Add lead</Button>
-          </Box> */}
-          <Box>
-          <Menu>
-          <MenuButton>
-            <Box display="flex" alignItems="center">
-              Show
-            </Box>
-          </MenuButton>
-          <MenuList>
-            <DropdownMenuItem>
-            Archived</DropdownMenuItem>
-            <DropdownMenuItem>Spam</DropdownMenuItem>
-          </MenuList>
-        </Menu>
-          </Box>
-        </HStack>
-     
+      <LeadsActions />
+      <LeadsSearch />
+      <Box>
+        <DropdownButton>Bulk</DropdownButton>
       </Box>
     </Box>
   );

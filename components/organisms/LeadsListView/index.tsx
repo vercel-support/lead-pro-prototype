@@ -4,36 +4,23 @@ import _ from "underscore";
 import { ILead } from "interfaces/lead.interface";
 import { LeadsSection } from "components/organisms/LeadsSection";
 
-// const ListViewItemIcon = ({ children }) => {
-//   return (
-//     <Box
-//       opacity={0.5}
-//       _hover={{
-//         opacity: 1,
-//       }}
-//     >
-//       {children}
-//     </Box>
-//   );
-// };
-
-// const ListViewItemIconContainer = ({ children }) => {
-//   return (
-//     <Box
-//       w={7}
-//       h={7}
-//       display="flex"
-//       alignItems="center"
-//       justifyContent="center"
-//       // rounded="md"
-//       // _hover={{
-//       //   bg: "gray.100",
-//       // }}
-//     >
-//       {children}
-//     </Box>
-//   );
-// };
+const Checkbox = () => {
+  return (
+    <Box
+      w={4}
+      h={4}
+      border="1px solid"
+      position="absolute"
+      left={2}
+      top={3}
+      rounded="md"
+      shadow="sm"
+      borderColor="gray.200"
+      opacity={0}
+      _groupHover={{ opacity: 1 }}
+    />
+  );
+};
 
 export const ListViewItem = ({
   lead,
@@ -58,21 +45,21 @@ export const ListViewItem = ({
       alignItems="center"
       cursor="pointer"
       borderColor="gray.100"
-      height={14}
+      height={10}
+      position="relative"
+      fontSize="sm"
     >
+      <Checkbox />
       {columns.map((column, i) => {
-
         const isLast = i === columns.length - 1 ? true : false;
-        
         return (
           <Box
             width={!isLast && column.width}
-            borderRight={!isLast ? "1px solid": "none"}
+            borderRight={!isLast ? "1px solid" : "none"}
             flexShrink={0}
             flex={isLast ? 1 : "none"}
             borderColor="gray.100"
-            py={3}
-            px={6}
+            px={8}
             h="full"
             alignItems="center"
             display="flex"
@@ -82,26 +69,6 @@ export const ListViewItem = ({
           </Box>
         );
       })}
-{/* 
-      <Box
-        opacity={0}
-        _groupHover={{
-          opacity: 1,
-        }}
-      >
-        <HStack spacing={1}>
-          <ListViewItemIconContainer>
-            <ListViewItemIcon>
-              <HiArchive />
-            </ListViewItemIcon>
-          </ListViewItemIconContainer>
-          <ListViewItemIconContainer>
-            <ListViewItemIcon>
-              <HiTrash />
-            </ListViewItemIcon>
-          </ListViewItemIconContainer>
-        </HStack>
-      </Box> */}
     </Box>
   );
 };

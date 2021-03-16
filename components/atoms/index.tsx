@@ -7,6 +7,7 @@ export { Button } from "./Button";
 export { Card } from "./Card";
 export { Close } from "./Close";
 export { Divider } from "./Divider";
+export {ColorTag} from "./ColorTag";
 
 export { Label } from "./Label";
 export { Image } from "./Image";

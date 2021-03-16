@@ -42,6 +42,29 @@ const NavigationHeader = () => {
   );
 };
 
+export const NavigationContainer = ({children}) => {
+
+  const [isExpanded, setExpanded] = useState(true);
+  
+  return (
+    <Box
+      width="220px"
+      bg="gray.50"
+      height="100%"
+      display="flex"
+      borderRight="1px solid"
+      borderColor="gray.100"
+      marginLeft={isExpanded ? 0 : -220}
+      flexDirection="column"
+      pb={3}
+      position="relative"
+      zIndex={3}
+    >
+      {children}
+    </Box>
+  )
+}
+
 const NavigationAccountSelect = () => {
   return (
     <Box
@@ -71,7 +94,7 @@ const NavigationAccountSelect = () => {
   );
 };
 
-const NavigationLink = ({
+export const NavigationLink = ({
   children,
   icon,
   isActive,
@@ -124,7 +147,7 @@ const NavigationSection = ({ children }) => {
 };
 
 export const Navigation = () => {
-  const [isExpanded, setExpanded] = useState(false);
+  const [isExpanded, setExpanded] = useState(true);
   return (
     <Box
       width="220px"

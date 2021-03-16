@@ -39,7 +39,7 @@ const Invoice = ({ invoice }) => {
 
 export const Invoices = () => {
   return (
-    <Section title="Invoices">
+    <Section>
       {months.map((invoice) => {
         return <Invoice invoice={invoice} />;
       })}

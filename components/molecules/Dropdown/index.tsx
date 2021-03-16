@@ -1,15 +1,12 @@
 import { Box } from "components";
-export {MenuList, Menu} from "@chakra-ui/react";
+export { MenuList, Menu } from "@chakra-ui/react";
 import { Children, useContext, useState } from "react";
 import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 
-
 export const Dropdown = (props: any) => {
-  return (
-    <div></div>
-  )
-}
+  return <div></div>;
+};
 
 export const DropdownMenuHeading = ({ children }) => {
   return (
@@ -17,16 +14,40 @@ export const DropdownMenuHeading = ({ children }) => {
       {children}
     </Box>
   );
-}
+};
 
-
-export const DropdownMenuHeader= ({children}) => {
-  return <Box textAlign="left" px={3} fontSize="xs" lineHeight="none" pt={2} pb={2} textTransform="uppercase" letterSpacing="wide" opacity={0.75}>{children}</Box>;
+export const DropdownMenuHeader = ({ children }) => {
+  return (
+    <Box
+      textAlign="left"
+      px={3}
+      fontSize="xs"
+      lineHeight="none"
+      pt={2}
+      pb={2}
+      textTransform="uppercase"
+      letterSpacing="wide"
+      opacity={0.75}
+    >
+      {children}
+    </Box>
+  );
 };
 
 export const DropdownMenuDivider = () => {
-  return <Box borderTop="1px solid" borderColor="gray.200" my={1} w="full" />;
+  return <Box borderTop="1px solid" borderColor="gray.100" my={2} w="full" />;
 };
+
+export const DropdownMenuGroup = ({title, children}) => {
+  return (
+    <Box>
+      <Box px={3} textTransform="uppercase" letterSpacing="wide" fontSize="xs" color="gray.500" fontWeight="semibold" mb={1}>
+      {title}
+      </Box>
+      {children}
+    </Box>
+  )
+}
 
 export const DropdownMenuItem = ({
   children,
@@ -74,7 +95,12 @@ export const DropdownContext = React.createContext<IDropdownContext>({
   toggle: () => {},
 });
 
-type positions = "topRight" | "bottomRight" | "topLeft" | "bottomLeft" | "right";
+type positions =
+  | "topRight"
+  | "bottomRight"
+  | "topLeft"
+  | "bottomLeft"
+  | "right";
 
 export const DropdownMenu = ({
   children,
@@ -96,9 +122,5 @@ export const DropdownMenu = ({
       ? { right: 0, top: "100%" }
       : { right: 0, top: "100%" };
 
-  return (
-    <div>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 };

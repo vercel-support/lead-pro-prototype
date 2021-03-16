@@ -38,8 +38,8 @@ export const ProductUpgradeSplash = ({ product}) => {
 
             <Box>
               <DividerHeader title="Pricing" />£{price} per month, up to{" "}
-              {usage.allowance} {usage.type}. £{usage.feePerAdditionalUnit} for
-              every additional {usage.type} above your allowance.
+              {/* {usage.allowance} {usage.type}. £{usage.feePerAdditionalUnit} for
+              every additional {usage.type} above your allowance. */}
             </Box>
           </Box>
 

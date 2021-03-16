@@ -92,34 +92,69 @@ export const fetchPlans = () => {
 export const fetchAddons = () => {
   return [
     {
+      name: "Users",
+      isActive: true,
+      slug: "lead-responder",
+      isRemovable: false,
+      icon: "HiPhone",
+      description:
+        "Your plan includes 4 free users. Additional seats cost £4 per month.",
+      price: 0,
+      color: "blue",
+      charges: [
+        {
+          type: "Variable",
+          unitName: "extra seats",
+          unitPrice: 4,
+          usage: 7,
+        },
+      ],
+    },
+    {
       name: "Lead Responder",
       isActive: true,
+      isRemovable: true,
       slug: "lead-responder",
       icon: "HiPhone",
       description:
         "Leads portals & the agent’s website receive email and text message replies, with a custom questionnaire to identify vendor, mortgage and landlord leads.",
       price: 39,
       color: "blue",
-      usage: {
-        type: "valuations",
-        allowance: 50,
-        used: 35,
-        feePerAdditionalUnit: 0.25,
-      },
+      charges: [
+        {
+          type: "Fixed",
+          feeName: "Subscription fee",
+          unitPrice: 39,
+        },
+        {
+          type: "Usage",
+          allowance: 50,
+          usage: 45,
+          unitPrice: 0.25,
+        },
+      ],
     },
     {
       name: "Instant Valuation Tool",
       price: 50,
+      isRemovable: true,
       color: "teal",
       slug: "valuation-tool",
       description:
         "In 5 minutes agents can start converting unknown website visitors into valuation leads.  The tool can be used in social media and in google campaigns to generate vendor and landlord leads.",
-      usage: {
-        type: "valuations",
-        allowance: 50,
-        used: 35,
-        feePerAdditionalUnit: 0.25,
-      },
+      charges: [
+        {
+          type: "Fixed",
+          feeName: "Subscription fee",
+          unitPrice: 50,
+        },
+        {
+          type: "Usage",
+          allowance: 50,
+          usage: 35,
+          unitPrice: 0.25,
+        },
+      ],
     },
     {
       name: "AutoCaller",
@@ -127,27 +162,47 @@ export const fetchAddons = () => {
       slug: "autocaller",
       description:
         "High value email leads are converted from an email to a call, causing  the office phone to ring, connecting the agent directly to the lead, ahead of any competitors.",
-      price: 82.5,
-      usage: {
-        type: "mins",
-        allowance: 500,
-        used: 510,
-        feePerAdditionalUnit: 0.03,
-      },
       color: "green",
+      charges: [
+        {
+          type: "Fixed",
+          feeName: "Subscription fee",
+          unitPrice: 82.5,
+        },
+        {
+          type: "Usage",
+          allowance: 500,
+          usage: 510,
+          unitPrice: 0.03,
+        },
+      ],
     },
     {
       name: "Drip Integration",
-      price: 25,
+      isRemovable: true,
       color: "purple",
       description: "Connect third party marketing tools e.g. Drip",
+      charges: [
+        {
+          type: "Fixed",
+          feeName: "Subscription fee",
+          unitPrice: 25,
+        },
+      ],
     },
     {
       name: "Marketing Package",
-      price: 699,
+      isRemovable: true,
       color: "orange",
       description:
         "Lead Generation: Facebook Advertising, Instagram Advertising",
+      charges: [
+        {
+          type: "Fixed",
+          feeName: "Subscription fee",
+          unitPrice: 699,
+        },
+      ],
     },
   ];
 };
@@ -238,11 +293,62 @@ export const fetchIntegrations = () => {
   ];
 };
 
+export const fetchStages = () => {
+  return [
+    {
+      name: "In Progress",
+      color: "gray",
+      statuses: [
+        {
+          name: "Keep in touch",
+          color: "green",
+        },
+        {
+          name: "Contacted",
+          color: "orange",
+        },
+      ],
+    },
+    {
+      name: "Business",
+      color: "gray",
+      statuses: [
+        {
+          name: "Viewing booked",
+          color: "blue",
+        },
+        {
+          name: "Valuation booked",
+          color: "red",
+        },
+        {
+          name: "Instructed",
+          color: "purple",
+        },
+      ],
+    },
+    {
+      name: "No business",
+      color: "gray",
+      statuses: [
+        {
+          name: "Non contactable",
+          color: "gray",
+        },
+        {
+          name: "Lost to other agent",
+          color: "red",
+        },
+      ],
+    },
+  ];
+};
+
 export const fetchLeads = () => {
   return [
     {
       id: 3971462,
-      status: 50,
+      status: "Keep in touch",
       createdAt: "2021-02-04T09:42:14.878Z",
       updatedAt: "2021-02-04T09:42:14.878Z",
       source: "ivt",
@@ -271,7 +377,7 @@ export const fetchLeads = () => {
     },
     {
       id: 3971462,
-      status: 50,
+      status: "Contacted",
       createdAt: "2021-02-04T09:42:14.878Z",
       updatedAt: "2021-02-04T09:42:14.878Z",
       source: "ivt",
@@ -292,7 +398,7 @@ export const fetchLeads = () => {
     },
     {
       id: 3971462,
-      status: 50,
+      status: "Contacted",
       createdAt: "2021-02-01T09:42:14.878Z",
       updatedAt: "2021-02-01T09:42:14.878Z",
       source: "ivt",
@@ -313,7 +419,7 @@ export const fetchLeads = () => {
     },
     {
       id: 3971462,
-      status: 50,
+      status: "Keep in touch",
       createdAt: "2021-02-04T09:42:14.878Z",
       updatedAt: "2021-02-04T09:42:14.878Z",
       source: "ivt",
@@ -334,7 +440,7 @@ export const fetchLeads = () => {
     },
     {
       id: 3971462,
-      status: 50,
+      status: "Contacted",
       createdAt: "2021-02-04T09:42:14.878Z",
       updatedAt: "2021-02-04T09:42:14.878Z",
       source: "ivt",

@@ -6,10 +6,12 @@ import {
   DropdownMenuHeader,
   DropdownMenuItem,
   Label,
+  ModalFooter,
+  ModalBody,
   Avatar,
 } from "components";
 import { fetchLeads } from "services/api";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Lead } from "./components/Lead";
 import _ from "underscore";
 import { LeadsKanbanView } from "components/organisms/LeadsKanbanView";
@@ -17,11 +19,26 @@ import { LeadsStages } from "components/organisms/LeadsStages";
 import { LeadsToolbar } from "components/organisms/LeadsToolbar";
 import { LeadTypes } from "constants/leadTypes";
 import {
+  format,
+  addDays,
+  addWeeks,
+  startOfISOWeek,
+  endOfISOWeek,
+} from "date-fns";
+import { SelectStatusMenu } from "components/organisms/SelectStatusMenu";
+import { LeadStatusChangeModal } from "components/organisms/LeadStatusChangeModal";
+import {
   LeadsListView,
   ListViewItem,
 } from "components/organisms/LeadsListView";
 import { leadGroupings } from "constants/leadGroupings";
-import { Center, FormControl, MenuButton, Square } from "@chakra-ui/react";
+import {
+  Center,
+  FormControl,
+  MenuButton,
+  Square,
+  Textarea,
+} from "@chakra-ui/react";
 import {
   HiBriefcase,
   HiCalendar,
@@ -32,9 +49,10 @@ import {
   HiUser,
   HiSun,
 } from "react-icons/hi";
-import { DropdownMenuDivider, Stack } from "components/molecules";
+import { DropdownMenuDivider, Modal, Stack } from "components/molecules";
 import { LeadsFilter } from "../LeadsFilter";
-import {Resizable} from "re-resizable";
+import { Resizable } from "re-resizable";
+import { Button } from "components/atoms";
 
 type views = "Kanban" | "Table" | "List";
 
@@ -66,10 +84,10 @@ export const ResponsibleColumn = () => {
   return (
     <Menu>
       <MenuButton display="flex">
-        <Box display="flex" alignItems="center" fontSize="sm">
+        <Box display="flex" alignItems="center">
           <Box mr={2}>
             <Avatar
-              size="xxs"
+              size="xxxs"
               initials="S"
               color="blue"
               imageSrc="https://s3.amazonaws.com/profile_photos/9385458149476.ro69QIeUi8md7Lr0OAFD_60x60.png"
@@ -83,26 +101,19 @@ export const ResponsibleColumn = () => {
   );
 };
 
-export const StatusColumn = () => {
+export const StatusColumn = ({ lead }) => {
+  const { status } = lead;
+  const { handleStatusChange } = useContext(LeadsTableContext);
   return (
-    <Box flex={1}>
-      <Menu>
-        <MenuButton display="flex" alignItems="center">
-          <Label color="red">Keep in touch</Label>
+    <Box flex={1} display="flex" alignItems="center">
+      <Menu display="flex" alignItems="center">
+        <MenuButton>
+          <Label color={status === "Contacted" ? "orange" : "red"}>
+            {status}
+          </Label>
         </MenuButton>
         <MenuList>
-          <DropdownMenuHeader>In progress</DropdownMenuHeader>
-          <DropdownMenuItem>Keep in touch</DropdownMenuItem>
-          <DropdownMenuItem>Contacted</DropdownMenuItem>
-          <DropdownMenuDivider />
-          <DropdownMenuHeader>Business</DropdownMenuHeader>
-          <DropdownMenuItem>Viewing Booked</DropdownMenuItem>
-          <DropdownMenuItem>Valuation Booked</DropdownMenuItem>
-          <DropdownMenuItem>Instructed</DropdownMenuItem>
-          <DropdownMenuDivider />
-          <DropdownMenuHeader>No Business</DropdownMenuHeader>
-          <DropdownMenuItem>Non contactable</DropdownMenuItem>
-          <DropdownMenuItem>Lost to other agent</DropdownMenuItem>
+          <SelectStatusMenu handleClick={handleStatusChange} />
         </MenuList>
       </Menu>
     </Box>
@@ -114,10 +125,10 @@ const PersonColumn = ({ column, lead }) => {
   return (
     <Box flex={1}>
       {/* <Box w={2} h={2} bg="red.500" rounded="full" pos="absolute" /> */}
-      <Box mb={1} lineHeight="none" fontSize="sm" fontWeight="semibold">
+      <Box lineHeight="none" fontWeight="medium">
         {person.fullName}
       </Box>
-      <Box fontSize="xs">
+      {/* <Box fontSize="xs">
         <HStack>
           <Box
             color="blue.500"
@@ -131,7 +142,7 @@ const PersonColumn = ({ column, lead }) => {
             25 Torridge Road
           </Box>
         </HStack>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
@@ -193,18 +204,26 @@ const columns = [
 const sections = [
   {
     name: "Today",
+    date: format(new Date(), "eee do MMMM"),
   },
   {
     name: "Tomorrow",
+    date: format(addDays(new Date(), 1), "eee do MMMM"),
   },
   {
     name: "This week",
+    date: format(addDays(new Date(), 2), "eee do MMMM"),
   },
   {
     name: "Next week",
+    date:
+      format(startOfISOWeek(addWeeks(new Date(), 1)), "eee do MMMM") +
+      " - " +
+      format(endOfISOWeek(addWeeks(new Date(), 1)), "eee do MMMM"),
   },
   {
     name: "Later",
+    date: format(startOfISOWeek(addWeeks(new Date(), 2)), "eee do MMMM"),
   },
 ];
 
@@ -212,10 +231,9 @@ const CustomHandle = (props) => (
   <Box
     width={1}
     height="100%"
-    top={"5px"}
+    top={0}
     right={0}
     transition="all .5s"
-    rounded="full"
     bg="transparent"
     // bg="blue.500"
     cursor="col-resize"
@@ -237,6 +255,7 @@ const LeadsTableHeaderCell = ({ children, column, isLast }) => {
       borderRight={!isLast ? "1px solid" : "none"}
       fontSize="xs"
       color="gray.400"
+      bg="white"
       borderBottom="1px solid"
       borderColor="gray.100"
       display="flex"
@@ -256,73 +275,55 @@ const LeadsTableHeaderCell = ({ children, column, isLast }) => {
 };
 
 const LeadsSection = ({ section }) => {
-  const { name } = section;
+  const { name, date } = section;
+
+  const [isOpen, setOpen] = useState(true);
 
   let leads = fetchLeads();
 
   return (
-    <Box w="full">
-      <Box display="flex" alignItems="center" px={6} pb={2} pt={6}>
-        {/* <Square cursor="pointer" rounded="sm" w={6} h={6}>
-          <Center>
-            <HiChevronRight />
+    <Box w="full" borderBottom="1px solid" borderColor="gray.100">
+      <Box
+        display="flex"
+        alignItems="center"
+        px={6}
+        pb={2}
+        pt={6}
+        onClick={() => setOpen(!isOpen)}
+      >
+        <Square cursor="pointer" w={5} h={5} bg="gray.100" rounded="md" mr={2}>
+          <Center color="gray.400" fontSize="lg">
+            <Box transform={isOpen ? "rotate(90deg)" : "none"}>
+              <HiChevronRight />
+            </Box>
           </Center>
-        </Square> */}
+        </Square>
         <Box
           lineHeight="none"
           textTransform="uppercase"
-          opacity={0.5}
+          color="gray.800"
           fontSize="xs"
-          fontWeight="bold"
+          fontWeight="semibold"
         >
           {name}
+          <Box as="span" fontSize="xs" ml={2} opacity={0.5}>
+            {Math.floor(Math.random() * 5) + 1}
+          </Box>
         </Box>
         <Box ml="auto" opacity={0.5} fontSize="sm">
-          16 Dec 2020
+          {date}
         </Box>
       </Box>
-      <Box shadow="sm">
-        {leads.map((lead) => {
-          return <ListViewItem lead={lead} columns={columns} />;
-        })}
-      </Box>
+      {isOpen && (
+        <Box shadow="sm">
+          {leads.map((lead) => {
+            return <ListViewItem lead={lead} columns={columns} />;
+          })}
+        </Box>
+      )}
     </Box>
   );
 };
-
-// const SidebarFilters = () => {
-//   return (
-//     <>
-//       <Box>
-//         <SidebarSectionHeading>Lead types</SidebarSectionHeading>
-//         <Stack spacing={2}>
-//           {LeadTypes.map((type) => {
-//             const { name, color } = type;
-//             return (
-//               <SidebarItem icon={<ColorTag color={type.color} />}>
-//                 {name}
-//               </SidebarItem>
-//             );
-//           })}
-//         </Stack>
-//       </Box>
-
-//       {/* <Box>
-//         <SidebarSectionHeading>Offices</SidebarSectionHeading>
-//         <Stack spacing={2}>
-//           {offices.map((office) => {
-//             return (
-//               <SidebarItem icon={<ColorTag color={office.color} />}>
-//                 {office.name}
-//               </SidebarItem>
-//             );
-//           })}
-//         </Stack>
-//       </Box>
-//       </Box> */}
-//     </>
-//   );
-// };
 
 export const LeadsTableContext = React.createContext<ILeadsTableContext>({
   view: "Kanban",
@@ -336,6 +337,7 @@ export const LeadsTable = ({ status }) => {
 
   const [view, setView] = useState<views>("List");
 
+  const [isReasonModalOpen, setReasonModalOpen] = useState(false);
   // leads = leads.filter((el) => el.status === selectedStatus.code);
 
   const [isLeadOpen, setLeadOpen] = useState(false);
@@ -346,6 +348,10 @@ export const LeadsTable = ({ status }) => {
 
   const handleSetView = (view) => {
     setView(view);
+  };
+
+  const handleStatusChange = () => {
+    setReasonModalOpen(!isReasonModalOpen);
   };
 
   const handleSetSection = (section: leadGroupings) => {
@@ -360,37 +366,19 @@ export const LeadsTable = ({ status }) => {
 
   return (
     <LeadsTableContext.Provider
-      value={{ view, sectionBy, handleSetView, handleSetSection }}
+      value={{
+        view,
+        sectionBy,
+        handleSetView,
+        handleSetSection,
+        handleStatusChange,
+      }}
     >
       <Box flex={1} display="flex">
-        <Box
-          w={72}
-          h="full"
-          bg="white"
-          borderRight="1px solid"
-          borderColor="gray.100"
-          p={6}
-        >
-          <Stack spacing={1}>
-            <SidebarLink color="blue" isActive icon={<HiInbox />}>
-              Inbox
-            </SidebarLink>
-            <SidebarLink color="blue" icon={<HiBriefcase />}>
-              Business
-            </SidebarLink>
-            <SidebarLink color="blue" icon={<HiEmojiSad />}>
-              No business
-            </SidebarLink>
-          </Stack>
-
-          {LeadTypes.map((type) => {
-            const { name, color } = type;
-            return <DropdownMenuItem>{name}</DropdownMenuItem>;
-          })}
-        </Box>
         <Box flex={1}>
           <LeadsStages />
           <LeadsToolbar />
+          <LeadStatusChangeModal isOpen={isReasonModalOpen} handleClose={() => setReasonModalOpen(false)} />
           <Box bg="gray.50" flex={1}>
             <Box display="flex">
               {columns.map((column, i) => {
@@ -418,7 +406,7 @@ export const LeadsTable = ({ status }) => {
         handleComponent={{
           left: <CustomHandle />,
         }}
-        maxWidth="50%"
+        maxWidth="80%"
       >
         <Box
           // minW={600}

@@ -7,6 +7,7 @@ import { Section, Field } from "components/molecules/Settings";
 export default function PageAccount() {
   return (
     <LayoutSettings title="Account">
+      <Stack spacing={12}>
       <Section title="Your details">
         <Field title="Name">Sam Zawadzki</Field>
         <Field title="Email">sam@lead.pro</Field>
@@ -29,6 +30,7 @@ export default function PageAccount() {
         </Field>
         <Field title="Website">www.propertytechnology.co.uk</Field>
       </Section>
+      </Stack>
     </LayoutSettings>
   );
 }

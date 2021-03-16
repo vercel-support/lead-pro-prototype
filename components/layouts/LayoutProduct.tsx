@@ -1,9 +1,11 @@
 import { Box } from "components";
 import React from "react";
 import _ from "underscore";
+import { LayoutDefault } from "./LayoutDefault";
 
 export const LayoutProduct = ({ title, children }) => {
   return (
+    <LayoutDefault>
     <Box w="full" py={4} overflow="scroll" h="full" px={4}>
       <Box
         display="flex"
@@ -18,5 +20,6 @@ export const LayoutProduct = ({ title, children }) => {
       </Box>
       <Box py={10}>{children}</Box>
     </Box>
+    </LayoutDefault>
   );
 };

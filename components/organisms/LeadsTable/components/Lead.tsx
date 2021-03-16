@@ -272,9 +272,9 @@ export const Lead = ({ lead = {} as ILead }: { lead?: ILead }) => {
   return (
     <>
       <Box bg="white" height="100%" display="flex" flexDirection="column">
-        <Header />
+        
         <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
-          <Tabs height={16} isFitted={false} px={6}>
+          <Tabs height={14} isFitted={false} px={6}>
             <TabItem isActive={true}>Lead</TabItem>
             <TabItem>Notes</TabItem>
           </Tabs>

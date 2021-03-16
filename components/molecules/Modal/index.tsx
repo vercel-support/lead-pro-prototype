@@ -18,7 +18,7 @@ export const Modal = ({ children, handleClose, isOpen, size = "md" }) => {
       <Box
         w="full"
         h="full"
-        bg="rgba(255,255,255,0.8)"
+        bg="rgba(00,00,00,0.3)"
         display="flex"
         position="fixed"
         left={0}
@@ -33,8 +33,6 @@ export const Modal = ({ children, handleClose, isOpen, size = "md" }) => {
           bg="white"
           rounded="md"
           shadow="lg"
-          border="1px solid"
-          borderColor="gray.200"
           w="full"
           position="relative"
           overflow="hidden"
@@ -59,9 +57,9 @@ export const ModalHeader = ({ children }) => {
       borderBottom="1px solid"
       px={6}
       py={4}
-      fontSize="lg"
+      fontSize="md"
       display="flex"
-      borderColor="gray.200"
+      borderColor="gray.100"
       alignItems="center"
     >
       {children}
@@ -74,7 +72,6 @@ export const ModalFooter = ({ children }) => {
   return (
     <Box
       bg="gray.50"
-      borderTop="1px solid"
       px={6}
       py={4}
       fontSize="lg"
@@ -93,13 +90,13 @@ export const ModalClose = () => {
     <Box
       cursor="pointer"
       onClick={handleClose}
-      w={8}
-      h={8}
+      w={6}
+      h={6}
       display="flex"
       alignItems="center"
       justifyContent="center"
       ml="auto"
-      rounded="sm"
+      rounded="md"
       _hover={{
         bg: "gray.100",
       }}

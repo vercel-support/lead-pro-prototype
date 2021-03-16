@@ -12,18 +12,8 @@ export {HStack} from "./HStack";
 export { Navigation } from "./Navigation";
 export { Table } from "./Table";
 export { Tags } from "./Tags";
-export { Modal, ModalHeader, ModalBody, ModalFooter } from "./Modal";
+export * from "./Modal";
 export { Stack } from "./Stack";
 export { Tabs, TabItem } from "./Tabs";
 
-export {
-  Menu,
-  MenuList,
-  Dropdown,
-  DropdownContext,
-  DropdownMenu,
-  DropdownMenuHeader,
-  DropdownMenuHeading,
-  DropdownMenuDivider,
-  DropdownMenuItem,
-} from "./Dropdown";
+export * from "./Dropdown";

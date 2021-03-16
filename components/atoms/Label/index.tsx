@@ -15,6 +15,7 @@ export const Label = ({
       bg={`${color}.100`}
       fontSize="xs"
       fontWeight="medium"
+      verticalAlign="text-bottom"
       display="inline-block"
       color={`${color}.900`}
       rounded="full"
