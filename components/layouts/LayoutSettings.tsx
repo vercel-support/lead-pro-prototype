@@ -7,8 +7,6 @@ import {
   NavigationLink,
 } from "components/molecules/Navigation";
 import {
-  HiArrowLeft,
-  HiDatabase,
   HiOutlineCog,
   HiOutlineCurrencyDollar,
   HiOutlineOfficeBuilding,
@@ -19,23 +17,13 @@ import { paths } from "constants/paths";
 const links = [
   {
     label: "Account",
-    href: "/account",
+    href: paths.SETTINGS_INDEX,
     icon: HiOutlineCog,
   },
   {
     label: "Billing",
-    href: "/account/billing",
+    href: paths.BILLING_INDEX,
     icon: HiOutlineCurrencyDollar,
-  },
-  {
-    label: "Offices",
-    href: "/account/offices",
-    icon: HiOutlineOfficeBuilding,
-  },
-  {
-    label: "Users",
-    href: "/account/users",
-    icon: HiOutlineUsers,
   },
 ];
 
@@ -47,22 +35,22 @@ export const LayoutSettings = ({ title, children }) => {
     <Box w="full" overflow="hidden" h="full" display="flex">
       <NavigationContainer>
         <InternalLink href={paths.DASHBOARD_INDEX}>
-        <Box
-          px={5}
-          py={4}
-          cursor="pointer"
-          display="flex"
-          alignItems="center"
-          fontSize="sm"
-          borderBottom="1px solid"
-          borderColor="gray.100"
-          mb={3}
-          _hover={{
-            bg: "gray.100",
-          }}
-        >
-          Dashboard
-        </Box>
+          <Box
+            px={5}
+            py={4}
+            cursor="pointer"
+            display="flex"
+            alignItems="center"
+            fontSize="sm"
+            borderBottom="1px solid"
+            borderColor="gray.100"
+            mb={3}
+            _hover={{
+              bg: "gray.100",
+            }}
+          >
+            Dashboard
+          </Box>
         </InternalLink>
         {links.map((link) => {
           return (

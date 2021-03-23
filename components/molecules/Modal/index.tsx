@@ -76,7 +76,9 @@ export const ModalFooter = ({ children }) => {
       py={4}
       fontSize="lg"
       display="flex"
-      borderColor="gray.200"
+      borderTop="1px solid"
+      borderColor="gray.100"
+      
     >
       {children}
     </Box>

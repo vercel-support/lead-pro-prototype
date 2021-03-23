@@ -46,8 +46,8 @@ export const Avatar = ({
       lineHeight="none"
       display="inline-block"
       verticalAlign="middle"
-      bg={colors[color] && colors[color][100]}
-      color={colors[color] && colors[color][700]}
+      bg={colors[color] && colors[color][600]}
+      color="white"
       overflow="hidden"
       {...(style === "outline" && {
         border: "1px solid",

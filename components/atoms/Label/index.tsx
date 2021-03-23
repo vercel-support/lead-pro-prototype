@@ -14,6 +14,7 @@ export const Label = ({
       px={3}
       bg={`${color}.100`}
       fontSize="xs"
+      textTransform="capitalize"
       fontWeight="medium"
       verticalAlign="text-bottom"
       display="inline-block"

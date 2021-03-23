@@ -18,17 +18,17 @@ import { fetchStages } from "services/api";
 const StatusItem = ({ color, name, handleClick }) => {
   return (
     <DropdownMenuItem onClick={handleClick}>
-        <Box display="flex" alignItems="center">
-            <Box mr={2}>
-      <ColorTag color={color} />
-      </Box>
-      {name}
+      <Box display="flex" alignItems="center">
+        <Box mr={2}>
+          <ColorTag color={color} />
+        </Box>
+        {name}
       </Box>
     </DropdownMenuItem>
   );
 };
 
-export const SelectStatusMenu = ({handleClick}) => {
+export const SelectStatusMenu = ({ handleClick }) => {
   const stages = fetchStages();
   return (
     <>
@@ -37,7 +37,13 @@ export const SelectStatusMenu = ({handleClick}) => {
           <>
             <DropdownMenuGroup title={stage.name}>
               {stage.statuses.map((status) => {
-                return <StatusItem color={status.color} name={status.name} handleClick={handleClick}/>;
+                return (
+                  <StatusItem
+                    color={status.color}
+                    name={status.name}
+                    handleClick={handleClick}
+                  />
+                );
               })}
             </DropdownMenuGroup>
             {i < stages.length - 1 && <DropdownMenuDivider />}

@@ -32,7 +32,7 @@ export const Button = ({
 
   return (
     <Box
-      bg={variant === "primary" ? "teal.500" : "white"}
+      bg={variant === "primary" ? "emerald.600" : "white"}
       display="inline-block"
       color={variant === "primary" ? "white" : "gray.900"}
       cursor="pointer"
@@ -46,7 +46,7 @@ export const Button = ({
       w={isBlock && "100%"}
       rounded="4px"
       fontWeight="medium"
-      borderColor={variant === "primary" ? "teal.600" : "gray.600"}
+      borderColor={variant === "primary" ? "emerald.600" : "gray.600"}
       {...(onClick && { onClick: onClick })}
     >
       {children}

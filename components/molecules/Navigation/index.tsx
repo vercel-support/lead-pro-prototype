@@ -190,10 +190,10 @@ export const Navigation = () => {
       <NavigationSection>
         {/* <NavigationHeader /> */}
         {/* <NavigationAccountSelect /> */}
-        <InternalLink href="/user/dashboard">
+        <InternalLink href={paths.DASHBOARD_INDEX}>
           <NavigationLink icon={HiOutlineHome}>Dashboard</NavigationLink>
         </InternalLink>
-        <InternalLink href="/leads/unread">
+        <InternalLink href={paths.LEADS_INDEX}>
           <NavigationLink icon={BiCheckCircle}>Leads</NavigationLink>
         </InternalLink>
         <InternalLink href={paths.ANALYTICS_INDEX}>

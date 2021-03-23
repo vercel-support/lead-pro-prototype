@@ -7,8 +7,13 @@ import {
   HiBriefcase,
   HiCurrencyDollar,
   HiInbox,
+  HiOutlineBan,
+  HiOutlineBriefcase,
+  HiOutlineCurrencyPound,
+  HiOutlineInbox,
 } from "react-icons/hi";
 import { paths } from "constants/paths";
+import { HStack } from "components/molecules";
 
 const SidebarItem = ({
   children,
@@ -29,30 +34,30 @@ const SidebarItem = ({
       roundedTop="md"
       border="1px solid"
       borderBottom="none"
-    bottom="-1px"
+      bottom="-1px"
       px={3}
-      color={isActive ? "gray.800": "gray.400" }
+      color={isActive ? "gray.800" : "gray.600"}
       position="relative"
       fontSize="sm"
       fontWeight="medium"
       alignItems="center"
       cursor="pointer"
+      _hover={{
+        bg: !isActive && "#f1f1f1",
+      }}
       zIndex={10}
-      // borderRight={!isLast ? "1px solid" : "none"}
       borderColor={isActive ? "gray.100" : "transparent"}
       bg={isActive ? "white" : "transparent"}
     >
       <Box
         w={6}
         h={6}
-        // bg={isActive ? "teal.700" : "gray.100"}
         rounded="md"
         mr={1}
         fontSize="lg"
         color={isActive ? "teal.600" : "gray.400"}
         display="flex"
         alignItems="center"
-        // shadow={isActive && "sm"}
         justifyContent="center"
       >
         {React.cloneElement(icon)}
@@ -60,48 +65,42 @@ const SidebarItem = ({
       {children}
 
       <Box
-        ml="auto"
-        fontSize="xs"
-        bg={isActive ? "teal.600" : "transparent"}
-        color={isActive? "white" : "gray.300"}
+        ml={3}
+        fontSize="10px"
+        fontWeight="semibold"
+        bg={isActive ? "teal.600" : "gray.100"}
+        color={isActive ? "white" : "gray.500"}
         p={1}
-        w={8}
+        pb="5px"
+        w={7}
         textAlign="center"
         rounded="full"
         lineHeight="none"
       >
         {Math.floor(Math.random() * 50) + 1}
       </Box>
-      {/* {isActive && (
-        <Box
-          position="absolute"
-          bottom={0}
-          left={0}
-          bg="teal.600"
-          width="100%"
-          h={1}
-        />
-      )} */}
     </Box>
   );
 };
 
 export const LeadsStages = () => {
   return (
-    <Box display="flex" bg="gray.50" px={6} pt={3} height={14}>
-      <InternalLink href={paths.LEADS_INDEX + "/snoozed"} flex={1}>
-        <SidebarItem icon={<HiInbox />} isActive={true}>
-          Inbox
-        </SidebarItem>
-      </InternalLink>
-      <InternalLink href={paths.LEADS_INDEX + "/snoozed"} flex={1}>
-        <SidebarItem icon={<HiCurrencyDollar />}>Business</SidebarItem>
-      </InternalLink>
-      <InternalLink href={paths.LEADS_INDEX + "/snoozed"} flex={1}>
-        <SidebarItem icon={<HiBan />} isLast>
-          No business
-        </SidebarItem>
-      </InternalLink>
+    <Box display="flex" bg="gray.50" px={2} pt={2} height={12}>
+      <HStack spacing={1}>
+        <InternalLink href={paths.LEADS_INDEX} flex={1} height="100%">
+          <SidebarItem icon={<HiOutlineInbox />} isActive={true}>
+            Inbox
+          </SidebarItem>
+        </InternalLink>
+        <InternalLink href={paths.LEADS_WON_INDEX} flex={1} height="100%">
+          <SidebarItem icon={<HiOutlineBriefcase />}>Business</SidebarItem>
+        </InternalLink>
+        <InternalLink href={paths.LEADS_LOST_INDEX} flex={1} height="100%">
+          <SidebarItem icon={<HiOutlineBan />} isLast>
+            No business
+          </SidebarItem>
+        </InternalLink>
+      </HStack>
     </Box>
   );
 };

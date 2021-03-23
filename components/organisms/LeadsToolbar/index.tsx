@@ -3,42 +3,26 @@ import React, { useState, useContext } from "react";
 import { LeadsTableContext } from "components/organisms/LeadsTable";
 import { LeadsFilter } from "components/organisms/LeadsFilter";
 import {
-  HiViewBoards,
-  HiMail,
-  HiViewList,
-  HiViewGrid,
-  HiScale,
-  HiSelector,
-  HiChevronRight,
   HiSearch,
   HiFilter,
   HiUser,
   HiOfficeBuilding,
   HiTag,
+  HiOutlineUser,
+  HiOutlineOfficeBuilding,
+  HiOutlineTag,
 } from "react-icons/hi";
 import _ from "underscore";
 import { InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { MenuButton } from "@chakra-ui/menu";
 import { Center } from "@chakra-ui/layout";
 import { DropdownMenuItem } from "components/molecules";
-
-// const Views = [
-//   {
-//     name: "Kanban",
-//     color: "blue",
-//     icon: <HiViewBoards />,
-//   },
-//   {
-//     name: "List",
-//     color: "blue",
-//     icon: <HiViewGrid />,
-//   },
-//   {
-//     name: "Table",
-//     color: "blue",
-//     icon: <HiViewList />,
-//   },
-// ];
+import { SelectUserMenu } from "../SelectUserMenu";
+import { SelectOfficeMenu } from "../SelectOfficeMenu";
+import { SelectTypeMenu } from "../SelectTypeMenu";
+import {columns} from "components/organisms/LeadsTable/components/Columns"
+import { Toggle } from "components/atoms";
+import { SelectLeadTypeMenu } from "../SelectLeadTypeMenu";
 
 const DropdownButton = ({ icon, children }: any) => {
   return (
@@ -51,7 +35,7 @@ const DropdownButton = ({ icon, children }: any) => {
       h={8}
       fontWeight="medium"
       cursor="pointer"
-      color="gray.400"
+      color="gray.600"
       fontSize="sm"
       alignItems="center"
       _hover={{
@@ -62,10 +46,10 @@ const DropdownButton = ({ icon, children }: any) => {
       {icon && (
         <Box
           mr={2}
-          w={5}
-          h={5}
+          w={6}
+          h={6}
           bg="gray.50"
-          color="gray.300"
+          color="gray.500"
           rounded="md"
           display="flex"
           alignItems="center"
@@ -81,44 +65,43 @@ const DropdownButton = ({ icon, children }: any) => {
 
 const LeadsActions = () => {
   return (
-    <HStack>
-      <Box
-        whiteSpace="nowrap"
-        fontSize="sm"
-        opacity={0.5}
-        display="flex"
-        height="full"
-        alignItems="center"
-        fontWeight="normal"
-      >
-        Filter by
-      </Box>
+    <HStack spacing={1}>
       <Menu>
         <MenuButton>
-        <DropdownButton icon={HiUser}>Responsible</DropdownButton>
+          <DropdownButton icon={HiOutlineUser}>Responsible</DropdownButton>
         </MenuButton>
         <MenuList>
-          <LeadsFilter />
+          <SelectUserMenu />
         </MenuList>
       </Menu>
 
       <Menu>
         <MenuButton>
-          <DropdownButton icon={HiOfficeBuilding}>Offices</DropdownButton>
+          <DropdownButton icon={HiOutlineOfficeBuilding}>
+            Offices
+          </DropdownButton>
         </MenuButton>
         <MenuList>
-          <DropdownMenuItem>Archived</DropdownMenuItem>
-          <DropdownMenuItem>Spam</DropdownMenuItem>
+          <SelectOfficeMenu />
         </MenuList>
       </Menu>
-
       <Box mr={2} display="flex" alignItems="center">
         <Menu>
           <MenuButton>
-          <DropdownButton icon={HiTag}>Types</DropdownButton>
+            <DropdownButton icon={HiOutlineTag}>Statuses</DropdownButton>
           </MenuButton>
-          <MenuList>
-            <LeadsFilter />
+          <MenuList width={300}>
+            <SelectTypeMenu />
+          </MenuList>
+        </Menu>
+      </Box>
+      <Box mr={2} display="flex" alignItems="center">
+        <Menu>
+          <MenuButton>
+            <DropdownButton icon={HiOutlineTag}>Types</DropdownButton>
+          </MenuButton>
+          <MenuList width={300}>
+            <SelectLeadTypeMenu/>
           </MenuList>
         </Menu>
       </Box>
@@ -130,15 +113,17 @@ const LeadsSearch = () => {
   return (
     <>
       <InputGroup size="sm">
-        <InputLeftElement size="sm" opacity={0.3}>
+        <InputLeftElement size="md" opacity={0.5}>
           <HiSearch />
         </InputLeftElement>
         <Input
           placeholder="Search leads"
           size="sm"
-          variant="filled"
+          backgroundColor="transparent"
           rounded="md"
           bg="gray.50"
+          pb="2px"
+          border="1px solid"
           _hover={{
             bg: "white",
           }}
@@ -152,11 +137,12 @@ export const LeadsToolbar = () => {
   const { handleSetView, handleSetSection } = useContext(LeadsTableContext);
   return (
     <Box
-      px={6}
-      h={12}
+      pl={1}
+      pr={2}
+      minH={12}
       display="flex"
       alignItems="center"
-      // shadow="sm"
+      shadow="sm"
       position="relative"
       zIndex={2}
       borderBottom="1px solid"
@@ -164,9 +150,33 @@ export const LeadsToolbar = () => {
       borderColor="gray.100"
     >
       <LeadsActions />
-      <LeadsSearch />
-      <Box>
-        <DropdownButton>Bulk</DropdownButton>
+      <Box ml="auto" minWidth={300} display="flex">
+      
+        <Box mr={2} display="flex" alignItems="center">
+          <Menu>
+            <MenuButton>
+              <DropdownButton>Columns</DropdownButton>
+            </MenuButton>
+            <MenuList>
+              {columns.map((column) => {
+                return (
+                  <DropdownMenuItem>
+                    <Box display="flex" alignItems="center">
+                      <Box mr={2}>
+                    <Toggle isChecked size="sm"/>
+                    </Box>
+                    {column.name}
+                    </Box>
+                  </DropdownMenuItem>
+                )
+              })}
+            </MenuList>
+          </Menu>
+        </Box>
+        <Box mr={4}>
+        <DropdownButton>Export</DropdownButton>
+        </Box>
+        <LeadsSearch />
       </Box>
     </Box>
   );

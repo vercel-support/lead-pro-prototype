@@ -6,11 +6,8 @@ export default function PageDashboard({status}) {
 }
 
 export async function getServerSideProps(ctx) {
-  const { query } = ctx;
-
-  const { status } = query;
 
   return {
-    props: {status},
+    props: {},
   };
 }

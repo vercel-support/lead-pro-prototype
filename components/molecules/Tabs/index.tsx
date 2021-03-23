@@ -4,12 +4,14 @@ export const Tabs = ({
   children,
   height,
   isFitted = true,
+  fontSize,
   px,
 }: {
   children: any;
   height?: any;
   isFitted?: boolean;
   px?: number;
+  fontSize?: string;
 }) => {
   return (
     <Box
@@ -17,6 +19,7 @@ export const Tabs = ({
       borderBottom="1px solid"
       borderColor="gray.100"
       height={height}
+      fontSize={fontSize}
       px={px}
     >
       {children}

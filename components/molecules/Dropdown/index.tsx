@@ -1,5 +1,5 @@
-import { Box } from "components";
-export { MenuList, Menu } from "@chakra-ui/react";
+import { Box, Input } from "components";
+import { MenuList as _MenuList, Menu as _Menu, MenuButton as _MenuButton } from "@chakra-ui/react";
 import { Children, useContext, useState } from "react";
 import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -7,6 +7,30 @@ import OutsideClickHandler from "react-outside-click-handler";
 export const Dropdown = (props: any) => {
   return <div></div>;
 };
+
+export const Menu = ({children}: any) => {
+  return (
+    <_Menu>
+      {children}
+    </_Menu>
+  )
+}
+
+export const MenuButton = ({children}: any) => {
+  return (
+    <_MenuButton>
+      {children}
+    </_MenuButton>
+  )
+}
+
+export const MenuList = ({children, width}: any) => {
+  return (
+    <_MenuList borderColor="gray.100" shadow="md" py={2} width={width}>
+      {children}
+    </_MenuList>
+  )
+}
 
 export const DropdownMenuHeading = ({ children }) => {
   return (
@@ -33,6 +57,12 @@ export const DropdownMenuHeader = ({ children }) => {
     </Box>
   );
 };
+
+export const DropdownMenuSearch = () => {
+  return (
+    <Input placeholder="Search" fontSize="xs" h="auto" bg="gray.50" px={3} border="none" lineHeight="none" py={2}/>
+  )
+}
 
 export const DropdownMenuDivider = () => {
   return <Box borderTop="1px solid" borderColor="gray.100" my={2} w="full" />;
@@ -74,13 +104,14 @@ export const DropdownMenuItem = ({
       py={2}
       lineHeight="none"
       display="flex"
-      fontWeight="normal"
       alignItems="center"
-      fontSize="sm"
+      fontSize="sm" 
+      fontWeight="medium"
+      width="100%"
       onClick={(e) => handleClick(e)}
     >
       {icon && <Box mr={2}>{icon}</Box>}
-      <Box opacity={0.75}>{children}</Box>
+      <Box flex={1}>{children}</Box>
     </Box>
   );
 };
