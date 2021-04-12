@@ -7,15 +7,13 @@ export default function handler(req, res) {
   if (req.method === "POST") {
     const { email } = JSON.parse(req.body);
     
-    const mjMail = fs.readFileSync(join("_files", `${email}.mjml`), "utf8");
-
-    console.log(mjMail);
+    const mjMail = fs.readFileSync(join(".", __dirname, "_files", `${email}.mjml`), "utf8");
     
-    // const { html, errors } = mjml2html(mjMail, {
-    //   filePath: "emails",
-    // });
+    const { html, errors } = mjml2html(mjMail, {
+      filePath: "_files",
+    });
 
-    // res.status(200).json({ html });
+    res.status(200).json({ html });
   } else {
   }
 }
