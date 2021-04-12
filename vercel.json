@@ -1,7 +1,7 @@
 {
   "functions": {
     "pages/api/compile.js": {
-      "includeFiles": "emails/**"
+      "includeFiles": "_files/**"
     }
   }
 }
