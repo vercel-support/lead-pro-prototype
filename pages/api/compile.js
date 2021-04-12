@@ -12,9 +12,9 @@ export default function handler(req, res) {
 
 
     
-    // const mjMail = fs.readFileSync(join(__dirname, "emails", `${email}.mjml`), "utf8");
+    const mjMail = fs.readFileSync(join("./", "_files", `${email}.mjml`), "utf8");
 
-    // console.log(mjMail);
+    console.log(mjMail);
     
     // const { html, errors } = mjml2html(mjMail, {
     //   filePath: "emails",
