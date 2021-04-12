@@ -7,10 +7,10 @@ export default function handler(req, res) {
   if (req.method === "POST") {
     const { email } = JSON.parse(req.body);
     
-    const mjMail = fs.readFileSync(join(".", __dirname, "public/_files", `${email}.mjml`), "utf8");
+    const mjMail = fs.readFileSync(join(".", __dirname, "_files", `${email}.mjml`), "utf8");
     
     const { html, errors } = mjml2html(mjMail, {
-      filePath: "public/_files",
+      filePath: "_files",
     });
 
     res.status(200).json({ html });
