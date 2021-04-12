@@ -6,13 +6,8 @@ const { join } = require('path')
 export default function handler(req, res) {
   if (req.method === "POST") {
     const { email } = JSON.parse(req.body);
-
-    console.log(__dirname)
-    console.log("sdfgsdfgsdfgsdgsdgsd");
-
-
     
-    const mjMail = fs.readFileSync(join("./", "_files", `${email}.mjml`), "utf8");
+    const mjMail = fs.readFileSync(join("_files", `${email}.mjml`), "utf8");
 
     console.log(mjMail);
     
