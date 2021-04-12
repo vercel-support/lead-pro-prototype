@@ -8,12 +8,13 @@ export default function handler(req, res) {
     const { email } = JSON.parse(req.body);
 
     console.log(__dirname)
+    console.log("sdfgsdfgsdfgsdgsdgsd");
 
 
     
-    const mjMail = fs.readFileSync(join(__dirname, "emails", `${email}.mjml`), "utf8");
+    // const mjMail = fs.readFileSync(join(__dirname, "emails", `${email}.mjml`), "utf8");
 
-    console.log(mjMail);
+    // console.log(mjMail);
     
     // const { html, errors } = mjml2html(mjMail, {
     //   filePath: "emails",
