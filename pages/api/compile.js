@@ -6,7 +6,7 @@ const { join } = require('path')
 export default function handler(req, res) {
   if (req.method === "POST") {
     const { email } = JSON.parse(req.body);
-    const mjMail = fs.readFileSync(join(__dirname, `emails/${email}.mjml`), "utf8");
+    const mjMail = fs.readFileSync(join(__dirname, "emails", `${email}.mjml`), "utf8");
 
     const { html, errors } = mjml2html(mjMail, {
       filePath: "emails",
