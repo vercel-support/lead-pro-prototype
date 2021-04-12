@@ -8,17 +8,18 @@ export default function handler(req, res) {
     const { email } = JSON.parse(req.body);
 
     console.log(__dirname)
+
     
-    const mjMail = fs.readFileSync(join(__dirname, "emails", `${email}.mjml`), "utf8");
-
-    console.log(mjMail);
     
+    // const mjMail = fs.readFileSync(join(__dirname, "emails", `${email}.mjml`), "utf8");
 
-    const { html, errors } = mjml2html(mjMail, {
-      filePath: "emails",
-    });
+    // console.log(mjMail);
+    
+    // const { html, errors } = mjml2html(mjMail, {
+    //   filePath: "emails",
+    // });
 
-    res.status(200).json({ html });
+    // res.status(200).json({ html });
   } else {
   }
 }
