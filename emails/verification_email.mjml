@@ -1,0 +1,20 @@
+<mjml>
+  <mj-include path="partials/head.mjml" />
+  <mj-body>
+    <mj-include path="partials/navigation.mjml" />
+    <mj-wrapper>
+      <mj-section>
+        <mj-column padding="0">
+          <mj-text padding="0">
+            <h2>Let's finish creating your account.</h2>
+            <p>You're just one step away from being able to generate more leads for your business.</p>
+            <p>Please confirm that <strong>{{email}}</strong> is your email address to finish creating your account.</p>
+          </mj-text>
+          <mj-spacer height="10px"/>
+          <mj-button width="100%" href="https://lead.pro">Confirm email address</mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-include path="partials/footer.mjml" />
+  </mj-body>
+</mjml>

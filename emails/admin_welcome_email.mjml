@@ -1,0 +1,30 @@
+<mjml>
+  <mj-include path="partials/head.mjml" />
+  <mj-body>
+    <mj-include path="partials/navigation.mjml" />
+    <mj-wrapper>
+      <mj-section>
+        <mj-column padding="0">
+          <mj-text padding="0">
+            <p>Hi {{firstName}},</p>
+            <p>Congratulations on completing the setup of your LeadPro account! 🥳</p>
+            <p>I founded LeadPro to make it easier for estate agents to better manage their leads and increase their revenue.</p>
+            <p>To get you started as quickly as possible I highly recommend signing up for one of our Training Webinars. These run a few times each day and so you can pick a day and time to join that suits you best.</p>
+            <p>In the webinar you'll learn:</p>
+            <p>✅ How to use the LeadPro dashboard</p>
+            <p>✅ How to link LeadPro to the portals</p>
+            <p>✅ Turning on your instant valuation tool</p>
+            <p>✅ How to add additional users</p>
+            <p>✅ How to edit your office settings</p>
+            <p>✅ How to enable Autocaller</p>
+            <p>Once again thanks for signing up and look forward to hopefully seeing you in an upcoming Training Webinar.</p>
+            <p>Many thanks,</p>
+            <p><strong>Sam Oliver Zawadzki</strong></br>
+            Co-founder & CEO of LeadPro</p>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-include path="partials/footer.mjml" />
+  </mj-body>
+</mjml>

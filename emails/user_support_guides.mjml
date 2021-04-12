@@ -1,0 +1,42 @@
+<mjml>
+  <mj-include path="partials/head.mjml" />
+  <mj-body>
+    <mj-include path="partials/navigation.mjml" />
+    <mj-wrapper>
+      <mj-section>
+        <mj-column padding="0">
+          <mj-text padding="0">
+            
+Hi {first-name},
+
+Here are a few useful support guides to get you started with LeadPro:
+
+[Using the LeadPro dashboard]
+
+[Adding additional users to your LeadPro account
+
+[Linking to your website]
+
+[Using the Instant Valuation Tool]
+
+[FAQ]
+
+If you need any support please email contact@lead.pro or check the support guides at https://dashboard.lead.pro/guides
+
+
+          </mj-text>
+          <mj-spacer height="10px" />
+          <mj-button width="100%" href="https://lead.pro">Reset password</mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-section padding="0 0 0 30px">
+      <mj-column width="100%">
+        <mj-spacer height="20px" />
+        <mj-text font-size="12px" color="#999">
+          <div>© 2021 Property Technology Ltd</div>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
