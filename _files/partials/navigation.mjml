@@ -1,5 +1,0 @@
-<mj-section padding="30px 0 20px 30px" text-align="left">
-  <mj-column width="100%" padding="0" vertical-align="middle">
-    <mj-image src="https://uploads-ssl.webflow.com/5dd807df89973f6a1ce7f1e6/5f7dc74fc3e758979c2b4ae1_leadpro-logo2-p-500.png" href="https://lead.pro" width="160px" align="left" target="_blank" padding="0"></mj-image>
-  </mj-column>
-</mj-section>

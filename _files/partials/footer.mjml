@@ -1,7 +1,0 @@
-<mj-section padding="20px 0 80px 30px">
-  <mj-column width="100%">
-    <mj-text font-size="12px">
-      ©{{currentYear}} {{companyName}}
-    </mj-text>
-  </mj-column>
-</mj-section>
