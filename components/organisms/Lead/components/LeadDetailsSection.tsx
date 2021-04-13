@@ -2,14 +2,6 @@ import { Box, Avatar, Attribute, Label } from "components";
 import { fetchLeads, fetchTeam } from "services/api";
 import React from "react";
 import {
-  DropdownMenu,
-  Dropdown,
-  DropdownMenuItem,
-  Menu,
-  MenuList,
-} from "components/molecules";
-import { ILead } from "interfaces/lead.interface";
-import {
   HiBell,
   HiOutlineAnnotation,
   HiOutlineCalendar,
@@ -23,7 +15,6 @@ import {
   HiOutlineUser,
 } from "react-icons/hi";
 import { LeadSection } from "./LeadSection";
-import { Cell } from "./LeadCell";
 import { Office } from "./Office";
 
 export const LeadDetailsSection = () => {
