@@ -19,9 +19,8 @@ export const TableControl = ({
   component?: any;
 }) => {
   return (
-    
-      <Box height="100%">
-        <Styles>
+    <Box height="100%">
+      <Styles>
         <Dropdown>
           <Box
             cursor="pointer"
@@ -34,8 +33,7 @@ export const TableControl = ({
             {component ? component : children}
           </Box>
         </Dropdown>
-        </Styles>
-      </Box>
-    
+      </Styles>
+    </Box>
   );
 };

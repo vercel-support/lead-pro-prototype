@@ -8,25 +8,25 @@ import {TypeColumn} from "./TypeColumn";
 export const columns = [
   {
     name: "Name",
-    width: 300,
+    width: 200,
     icon: HiOutlineUser,
     component: PersonColumn,
   },
   {
     name: "Type",
-    width: 140,
+    width: 100,
     icon: HiOutlineUser,
     component: TypeColumn,
   },
   {
     name: "Status",
-    width: 200,
+    width: 140,
     icon: HiOutlineTag,
     component: StatusColumn,
   },
   {
     name: "Responsible",
-    width: 200,
+    width: 140,
     icon: HiOutlineUser,
     component: ResponsibleColumn,
   },

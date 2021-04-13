@@ -5,7 +5,7 @@ import { BiCaretRight } from "react-icons/bi";
 export const LeadSection = ({ title, children, icon, p = 5, border = "1px solid", pb }: any) => {
   const [isOpen, setOpen] = useState(true);
   return (
-    <Box bg="white" p={p} borderBottom={border} borderColor="gray.50" pb={pb}>
+    <Box p={p} borderBottom={border} borderColor="gray.50" pb={pb}>
       <Box
         display="flex"
         alignItems="center"
@@ -15,9 +15,9 @@ export const LeadSection = ({ title, children, icon, p = 5, border = "1px solid"
         {title && (
           <>
             <Box
-              w={4}
-              h={4}
-              bg="gray.50"
+              w={5}
+              h={5}
+              bg="gray.100"
               rounded="md"
               display="flex"
               alignItems="center"
@@ -25,12 +25,15 @@ export const LeadSection = ({ title, children, icon, p = 5, border = "1px solid"
               mr={2}
               fontSize="xs"
               color="gray.600"
+              _hover={{
+                bg: "gray.200"
+              }}
             >
               <Box transform={`rotate(${isOpen ? "90deg" : "0deg"})`}>
                 <BiCaretRight />
               </Box>
             </Box>
-            <Box fontWeight="semibold" fontSize="sm" color="gray.800">
+            <Box fontWeight="semibold" fontSize="sm" color="gray.900">
               {title}
             </Box>
           </>

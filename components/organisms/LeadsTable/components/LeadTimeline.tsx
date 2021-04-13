@@ -115,7 +115,14 @@ const TimelineEntry = ({ entry, isLast }: any) => {
               Call lasted 15 seconds. Recipient didn't pick up
             </Box>
           ) : (
-            <Box p={3} border="1px solid" rounded="md" borderColor="gray.100">
+            <Box
+              p={3}
+              border="1px solid"
+              rounded="md"
+              borderColor="gray.100"
+              bg="white"
+              shadow="sm"
+            >
               {message}
             </Box>
           )}
@@ -225,7 +232,6 @@ const DropdownButton = ({ label, value, icon }: any) => {
         lineHeight="none"
         py={2}
         h={8}
-        bg="white"
       >
         {value}
       </Box>
@@ -235,40 +241,43 @@ const DropdownButton = ({ label, value, icon }: any) => {
 
 export const LeadTimeline = () => {
   return (
-    <Box flex={1} overflow="scroll" bg="white">
-      <LeadSection title="Activity">
-        <Box mb={2}>
-          <DropdownButton
-            label="Next action date"
-            value="15 Jan 2021"
-            icon={HiOutlineCalendar}
-          />
-          <DropdownButton
-            label="Responsible"
-            icon={HiOutlineUser}
-            value={
-              <Box display="flex" alignItems="center">
-                <Box mr={2}>
-                  <Avatar size="xxs" initials="S" color="teal" imageSrc="https://s3.amazonaws.com/profile_photos/9385458149476.ro69QIeUi8md7Lr0OAFD_60x60.png" />
-                </Box>
-                Sam Z.
+    <Box flex={1} overflow="scroll" p={5}>
+      <Box mb={2}>
+        <DropdownButton
+          label="Next action date"
+          value="15 Jan 2021"
+          icon={HiOutlineCalendar}
+        />
+        <DropdownButton
+          label="Responsible"
+          icon={HiOutlineUser}
+          value={
+            <Box display="flex" alignItems="center">
+              <Box mr={2}>
+                <Avatar
+                  size="xxs"
+                  initials="S"
+                  color="teal"
+                  imageSrc="https://s3.amazonaws.com/profile_photos/9385458149476.ro69QIeUi8md7Lr0OAFD_60x60.png"
+                />
               </Box>
-            }
-          />
-        </Box>
-        <LeadContactButtons />
-        <Divider my={5} />
-        <AddNote />
+              Sam Z.
+            </Box>
+          }
+        />
+      </Box>
+      <LeadContactButtons />
+      <Divider my={5} />
+      <AddNote />
 
-        <Box display="flex" my={5}>
-          <TimelineTab isActive>All</TimelineTab>
-          <TimelineTab>Calls</TimelineTab>
-          <TimelineTab>Notes</TimelineTab>
-          <TimelineTab>Emails</TimelineTab>
-        </Box>
+      <Box display="flex" my={5}>
+        <TimelineTab isActive>All</TimelineTab>
+        <TimelineTab>Calls</TimelineTab>
+        <TimelineTab>Notes</TimelineTab>
+        <TimelineTab>Emails</TimelineTab>
+      </Box>
 
-        <Timeline />
-      </LeadSection>
+      <Timeline />
     </Box>
   );
 };

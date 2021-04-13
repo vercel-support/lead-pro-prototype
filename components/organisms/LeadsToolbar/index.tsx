@@ -20,7 +20,7 @@ import { DropdownMenuItem } from "components/molecules";
 import { SelectUserMenu } from "../SelectUserMenu";
 import { SelectOfficeMenu } from "../SelectOfficeMenu";
 import { SelectTypeMenu } from "../SelectTypeMenu";
-import {columns} from "components/organisms/LeadsTable/components/Columns"
+import { columns } from "components/organisms/LeadsTable/components/Columns";
 import { Toggle } from "components/atoms";
 import { SelectLeadTypeMenu } from "../SelectLeadTypeMenu";
 
@@ -101,7 +101,7 @@ const LeadsActions = () => {
             <DropdownButton icon={HiOutlineTag}>Types</DropdownButton>
           </MenuButton>
           <MenuList width={300}>
-            <SelectLeadTypeMenu/>
+            <SelectLeadTypeMenu />
           </MenuList>
         </Menu>
       </Box>
@@ -151,7 +151,6 @@ export const LeadsToolbar = () => {
     >
       <LeadsActions />
       <Box ml="auto" minWidth={300} display="flex">
-      
         <Box mr={2} display="flex" alignItems="center">
           <Menu>
             <MenuButton>
@@ -163,18 +162,18 @@ export const LeadsToolbar = () => {
                   <DropdownMenuItem>
                     <Box display="flex" alignItems="center">
                       <Box mr={2}>
-                    <Toggle isChecked size="sm"/>
-                    </Box>
-                    {column.name}
+                        <Toggle isChecked size="sm" />
+                      </Box>
+                      {column.name}
                     </Box>
                   </DropdownMenuItem>
-                )
+                );
               })}
             </MenuList>
           </Menu>
         </Box>
         <Box mr={4}>
-        <DropdownButton>Export</DropdownButton>
+          <DropdownButton>Export</DropdownButton>
         </Box>
         <LeadsSearch />
       </Box>

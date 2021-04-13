@@ -4,16 +4,16 @@ import React from "react";
 
 export const Attribute = ({ label, value, py = 2, fontSize = "sm", icon }: any) => {
   return (
-    <Box display="flex" py={py} alignItems="center" fontSize={fontSize}>
+    <Box display={"flex"} py={py} alignItems="center" fontSize={fontSize}>
       <Box
-        width="180px"
+        width="150px"
         lineHeight="none"
         color="gray.500"
         fontWeight="medium"
         display="flex"
       >
         {icon && (
-          <Box mr={2} w={4} display="flex" alignItems="center" justifyContent="center">
+          <Box mr={1} w={4} display="flex" alignItems="center" justifyContent="center">
             {React.createElement(icon)}
           </Box>
         )}
