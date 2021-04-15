@@ -35,8 +35,8 @@ export const LeadBookingSection = () => {
   ];
 
   return (
-    <LeadSection title="Valuation booking request">
-      <Box pl={6}>
+    <LeadSection title="Valuation booking request" tooltip="These are the dates specified by the lead when asked when they're available">
+      <Box pl={7}>
         <Box
           fontSize="xs"
           color="gray.700"

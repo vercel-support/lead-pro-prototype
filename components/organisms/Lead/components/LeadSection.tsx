@@ -1,8 +1,20 @@
 import { Box } from "components";
 import React, { Children, useState } from "react";
 import { BiCaretRight } from "react-icons/bi";
+import { Tooltip } from "@chakra-ui/react";
+import {
+  HiQuestionMarkCircle,
+} from "react-icons/hi";
 
-export const LeadSection = ({ title, children, icon, p = 5, border = "1px solid", pb }: any) => {
+export const LeadSection = ({
+  title,
+  children,
+  icon,
+  p = 5,
+  border = "1px solid",
+  pb,
+  tooltip,
+}: any) => {
   const [isOpen, setOpen] = useState(true);
   return (
     <Box p={p} borderBottom={border} borderColor="gray.50" pb={pb}>
@@ -26,7 +38,7 @@ export const LeadSection = ({ title, children, icon, p = 5, border = "1px solid"
               fontSize="xs"
               color="gray.600"
               _hover={{
-                bg: "gray.200"
+                bg: "gray.200",
               }}
             >
               <Box transform={`rotate(${isOpen ? "90deg" : "0deg"})`}>
@@ -36,6 +48,15 @@ export const LeadSection = ({ title, children, icon, p = 5, border = "1px solid"
             <Box fontWeight="semibold" fontSize="sm" color="gray.900">
               {title}
             </Box>
+            {tooltip && (
+              <Box ml="auto">
+                <Tooltip label={tooltip} fontSize="xs">
+                  <div>
+                    <HiQuestionMarkCircle />
+                  </div>
+                </Tooltip>
+              </Box>
+            )}
           </>
         )}
       </Box>
