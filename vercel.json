@@ -1,6 +1,6 @@
 {
   "functions": {
-    "pages/api/compile.js": {
+    "api/compile.js": {
       "includeFiles": "included/_files/**"
     }
   }
