@@ -4,16 +4,14 @@ const path = require("path")
 const { join } = require('path')
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
-    const { email } = JSON.parse(req.body);
-    
-    const mjMail = fs.readFileSync(join(__dirname, "public/_files", `${email}.mjml`), "utf8");
-    
-    const { html, errors } = mjml2html(mjMail, {
-      filePath: "public/_files",
-    });
 
-    res.status(200).json({ html });
-  } else {
-  }
+
+  const folder = './public/_files/'
+
+  const folder_contents = fs.readdirSync(folder)
+
+  console.log(folder_contents)
+
+  res.status(200).json({ folder_contents })
+
 }
