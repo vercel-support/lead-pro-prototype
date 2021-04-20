@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/compile.js": {
-      "includeFiles": "included/_files/**"
+      "includeFiles": "public/_files/**"
     }
   }
 }

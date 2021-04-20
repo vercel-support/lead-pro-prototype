@@ -6,7 +6,7 @@ const { join } = require('path')
 export default function handler(req, res) {
 
 
-  const folder = './'
+  const folder = './public/_files'
 
   const folder_contents = fs.readdirSync(folder)
 
